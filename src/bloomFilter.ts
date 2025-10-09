@@ -1,10 +1,10 @@
 import { BloomFilter } from 'bloom-filters'
-import { ChainId, NETWORKS_CONFIG } from '@codefi/metafi-common'
+import { ChainId, NETWORKS_CONFIG } from './chainId'
 
 import { getSchemaByChainId } from './constants'
 import { Transaction } from './types'
 
-const chainIds = Object.keys(NETWORKS_CONFIG).map(Number)
+const chainIds = Object.keys(NETWORKS_CONFIG).map(Number) as ChainId[]
 
 const bloomByNetwork = chainIds.reduce((bloomByNetworkAcc, chainId) => {
   const schemas = getSchemaByChainId(chainId)

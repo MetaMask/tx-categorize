@@ -1,4 +1,4 @@
-import { ChainId } from '@codefi/metafi-common'
+import { ChainId } from './chainId'
 
 import { SchemaV2, TransactionSchema } from './types'
 import {
