@@ -1,7 +1,7 @@
 import { doesTxMatchSchema } from './bloomFilter'
 import { Transaction } from './types'
 
-jest.mock('./chainId', () => ({
+jest.mock('@codefi/metafi-common', () => ({
   NETWORKS_CONFIG: { 1: true },
 }))
 

@@ -1,5 +1,3 @@
-import { ChainId } from './chainId'
-
 import { SchemaV2, TransactionSchema } from './types'
 import {
   arbitrumSchemas,
@@ -17,6 +15,7 @@ import {
   optimismSchemas,
   polygonSchemas,
 } from './txSchemas'
+import { ChainId } from './networks'
 
 const chainIdToSchemaMap: { [id in ChainId]?: Array<TransactionSchema<SchemaV2>> } = {
   [ChainId.ARBITRUM]: arbitrumSchemas,
@@ -36,6 +35,12 @@ const chainIdToSchemaMap: { [id in ChainId]?: Array<TransactionSchema<SchemaV2>>
 }
 
 export const getSchemaByChainId = (chainId: ChainId) => {
+
+  if (!chainIdToSchemaMap[chainId]) {
+  
+    throw new Error(`No schema found for chainId: ${chainId}`)
+  }
+
   return chainIdToSchemaMap[chainId]
 }
 

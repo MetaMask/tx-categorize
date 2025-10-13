@@ -1,0 +1,32 @@
+name: Main
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+
+  format:
+    uses: ./.github/workflows/format.yaml
+    needs: build
+
+  security:
+    uses: ./.github/workflows/security.yaml
+    needs: build
+
+  test:
+    uses: ./.github/workflows/test.yaml
+    needs: build
+    secrets:
+      INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+
+  publish:
+    uses: ./.github/workflows/publish.yaml
+    needs: [build, format, security, test]

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ChainId } from './chainId'
+import { ChainId } from '@codefi/metafi-common'
 
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
 

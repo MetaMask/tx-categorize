@@ -1,139 +1,81 @@
-# Transaction Categorize
+# @codefi/metafi
 
-A TypeScript library for categorizing blockchain transactions across multiple networks including Ethereum, Polygon, BSC, Arbitrum, Optimism, Avalanche, and more.
+MetaMask Curated Experiences (MMCX) Software Development Kit
 
-## Features
+## Setup
+To set up the repo:
+1. Install latest LTS version of [Node.js](https://nodejs.org)
+2. Install [Yarn](https://yarnpkg.com) with [Corepack](https://yarnpkg.com/corepack)
+   - Note: If you previously installed Yarn globally via npm, yarn, or homebrew, you will need to uninstall it first
+3. Run `yarn` in the root directory to install dependencies 
 
-- **Multi-chain Support**: Supports 14+ blockchain networks
-- **Transaction Categorization**: Categorizes transactions by type (DeFi, NFT, Bridge, etc.)
-- **Localization**: Multi-language support for transaction descriptions
-- **Bloom Filter Optimization**: Efficient transaction matching using bloom filters
-- **TypeScript Support**: Full TypeScript definitions included
+## Build
+- Run `yarn build` in the root directory to build all packages
+- Run `yarn workspace <package-name> build` to build a specific package
 
-## Installation
+## Testing
+- Run `yarn test` in the root directory to run all tests
+- Run `yarn workspace <package-name> test` to run tests for a specific package
 
-```bash
-npm install @metamask/tx-categorize
-# or
-yarn add @metamask/tx-categorize
-```
+## Linting
+- Run `yarn lint` in the root directory to lint all packages
+- Run `yarn workspace <package-name> lint` to lint a specific package
+- Run `yarn lint:fix` in the root directory to fix linting issues
 
-## Usage
+## Packages
 
-### Basic Usage
+This repository is a monorepo for the following packages
 
-```typescript
-import {
-  determineTransactionMetadataV5,
-  ChainId,
-} from '@metamask/tx-categorize';
+| **Package**                                              | **Version** | **Description**                                                                                                                  |
+|:---------------------------------------------------------| :---------: |:---------------------------------------------------------------------------------------------------------------------------------|
+| [`@codefi/metafi-common`](packages/common)               |             | Common parameters and utility function for MetaFi services <br />Ex: Chain parameters, network configurations, utility functions |
+| [`@codefi/metafi-core`](packages/core)                   |             | MetaFi service clients. <br />Ex: Swap Api, Token Api, etc.                                                                      |
+| [`@codefi/metafi-web3`](packages/web3)                   |             | Web3 service clients. <br />Ex: Coingecko, Etherscan, etc.                                                                       |
+| **Experiences**                                          |             |                                                                                                                                  |
+| [`@codefi/metafi-swap`](packages/swap)                   |             | A module that provides token Swap functionality                                                                                  |
+| [`@codefi/metafi-account`](packages/account)             |             | A module that provides functionality for getting EVM account data such as balances, transactions, etc.                           |
+| [`@codefi/metafi-eth-scan`](packages/eth-scan)           |             | A module that provides functionality for getting Ether and token balances                                                        |
+| [`@codefi/metafi-tx-categorize`](packages/tx-categorize) |             | A module that provides functionality for categorize and label transactions                                                       |
 
-const transaction = {
-  toAddress: '0xA0b86a33E6441b8C4C8C0C4C0C4C0C4C0C4C0C4C',
-  methodId: '0xa9059cbb',
-  topics: [
-    '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-  ],
-  logs: [
-    {
-      address: '0xA0b86a33E6441b8C4C8C0C4C0C4C0C4C0C4C0C4C',
-      topics: [
-        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-      ],
-      data: '0x...',
-      logIndex: 0,
-    },
-  ],
-};
+## MetaFi Common
 
-const result = determineTransactionMetadataV5({
-  transaction,
-});
+**Package:** [`@codefi/metafi-common`](packages/common)
 
-console.log(result);
-// Output: { transactionCategory: 'TRANSFER', transactionProtocol: 'ERC_20', ... }
-```
+### Supported Chains
 
-### With Chain ID
+- Ethereum
+- BNB Smart Chain
+- Polygon
+- Avalanche
 
-```typescript
-import { determineTransactionMetadata, ChainId } from '@metamask/tx-categorize';
+\*\* All supported chains testnets are included
 
-const result = determineTransactionMetadata({
-  chainId: ChainId.ETHEREUM,
-  transaction: {
-    toAddress: '0x...',
-    methodId: '0x...',
-    // ... other transaction data
-  },
-});
-```
+## MetaFi Core
 
-### Localization
+**Package:** [`@codefi/metafi-core`](packages/core)
 
-```typescript
-import { initializeI18next, Language } from '@metamask/tx-categorize';
+### Supported MetaFi Services
 
-// Initialize with specific language
-await initializeI18next(Language.EN);
+- Token Api
+- Gas Api
+- Swap Api
+- Transaction Api
+- Transaction Insights Api
+- Account Api
+- Price Api
 
-// Use localized descriptions
-const result = determineTransactionMetadataV5({
-  transaction,
-  language: Language.EN,
-});
-```
+## MetaFi Web3
 
-## Supported Networks
+**Package:** [`@codefi/metafi-web3`](packages/web3)
 
-- Ethereum (1)
-- Polygon (137)
-- BSC (56)
-- Arbitrum (42161)
-- Optimism (10)
-- Avalanche (43114)
-- Fantom (250)
-- Celo (42220)
-- Cronos (25)
-- Aurora (1313161554)
-- Moonbeam (1284)
-- Moonriver (1285)
-- Base (8453)
-- Linea (59144)
+### Supported Web3 Clients
 
-## Transaction Categories
-
-The library categorizes transactions into various types including:
-
-- **DeFi Operations**: APPROVE, BORROW, REPAY, DEPOSIT, WITHDRAW
-- **NFT Operations**: NFT_EXCHANGE, NFT_APPROVE, NFT_TRANSFER
-- **Bridge Operations**: BRIDGE_IN, BRIDGE_OUT
-- **Staking**: STAKE, UNSTAKE
-- **Exchange**: EXCHANGE, DEPOSIT_EXCHANGE_WITHDRAW
-- **Standard**: TRANSFER, CONTRACT_CALL
-
-## Development
-
-### Scripts
-
-There are 2 utility scripts in this repository:
-
-1. **List Metrics**: `yarn list:metrics` - Fetches lists of unique items for analysis
-2. **Debug Categorization**: `yarn categorize <tx_hash> <chain_id>` - Helps debug why a transaction is categorized in a specific way
-
-### Building
-
-```bash
-yarn build
-```
-
-### Testing
-
-```bash
-yarn test
-yarn test:cov  # with coverage
-```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+- Aave
+- Blockexplorer (Etherscan compatible)
+- Coingecko
+- Compound
+- Covalent
+- Debank
+- Moralis
+- OpenSea
+- Rarible

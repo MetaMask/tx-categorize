@@ -1,4 +1,4 @@
-import { ChainId } from './chainId'
+import { ChainId } from '@codefi/metafi-common'
 
 import { Action } from './enums'
 

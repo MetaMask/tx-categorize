@@ -1,13 +1,14 @@
 import { BloomFilter } from 'bloom-filters'
-import { ChainId, NETWORKS_CONFIG } from './chainId'
+
 
 import { getSchemaByChainId } from './constants'
 import { Transaction } from './types'
+import { ChainId } from './networks'
 
-const chainIds = Object.keys(NETWORKS_CONFIG).map(Number) as ChainId[]
+const chainIds = Object.values(ChainId).map(Number)
 
 const bloomByNetwork = chainIds.reduce((bloomByNetworkAcc, chainId) => {
-  const schemas = getSchemaByChainId(chainId)
+  const schemas = getSchemaByChainId(chainId as ChainId)
 
   if (!schemas?.length) {
     bloomByNetworkAcc[chainId] = undefined

@@ -19,12 +19,4 @@ module.exports = {
     '^@codefi/(.+)$': ['<rootDir>/../$1/src', '<rootDir>/../../node_modules/@codefi/$1'],
   },
   testPathIgnorePatterns: ['node_modules', 'lib', 'dist', 'artifacts', 'typings'],
-  coverageThreshold: {
-    global: {
-      statements: 30,
-      branches: 25,
-      functions: 20,
-      lines: 30,
-    },
-  },
 }

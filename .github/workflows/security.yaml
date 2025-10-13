@@ -1,0 +1,46 @@
+name: Security
+
+on:
+  workflow_call:
+    inputs:
+      NPM_AUDIT_LEVEL:
+        description: "Audit level for package manager"
+        default: 'critical'
+        required: false
+        type: string
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 20.x ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Yarn
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+
+      - name: Audit dependencies
+        run: |
+          set -e
+          echo "Running yarn npm audit..."
+          AUDIT_OUTPUT_FILE=$(mktemp)
+          yarn npm audit --all --recursive --severity=${{ inputs.NPM_AUDIT_LEVEL }} | tee "$AUDIT_OUTPUT_FILE"
+          AUDIT_EXIT_CODE=$?
+          AUDIT_OUTPUT=$(cat "$AUDIT_OUTPUT_FILE")
+          rm "$AUDIT_OUTPUT_FILE"
+          if [ $AUDIT_EXIT_CODE -eq 0 ]; then
+            echo "No critical vulnerabilities found."
+          else
+            echo "Critical vulnerabilities found:"
+            echo "$AUDIT_OUTPUT"
+            exit $AUDIT_EXIT_CODE
+          fi
