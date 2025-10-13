@@ -1,6 +1,5 @@
 import { BloomFilter } from 'bloom-filters'
 
-
 import { getSchemaByChainId } from './constants'
 import { Transaction } from './types'
 import { ChainId } from './networks'

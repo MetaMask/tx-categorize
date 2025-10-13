@@ -35,9 +35,7 @@ const chainIdToSchemaMap: { [id in ChainId]?: Array<TransactionSchema<SchemaV2>>
 }
 
 export const getSchemaByChainId = (chainId: ChainId) => {
-
   if (!chainIdToSchemaMap[chainId]) {
-  
     throw new Error(`No schema found for chainId: ${chainId}`)
   }
 

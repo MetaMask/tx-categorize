@@ -21,14 +21,7 @@
     "prettier": "prettier --check '**/*.{js,ts}' .",
     "prettier:fix": "prettier --write '**/*.{js,ts}' .",
     "coverage:combined": "node ./scripts/aggregate-pkg-coverage.js && nyc merge .nyc_output coverage/merged-coverage.json && nyc report -t coverage --report-dir coverage/lcov-report --reporter=html --reporter=cobertura",
-    "account": "yarn workspace @codefi/metafi-account",
-    "common": "yarn workspace @codefi/metafi-common",
-    "core": "yarn workspace @codefi/metafi-core",
-    "eth-scan": "yarn workspace @codefi/metafi-eth-scan",
-    "nestjs": "yarn workspace @codefi/metafi-nestjs",
-    "swap": "yarn workspace @codefi/metafi-swap",
-    "tx-categorize": "yarn workspace @codefi/metafi-tx-categorize",
-    "web3": "yarn workspace @codefi/metafi-web3"
+    "tx-categorize": "yarn workspace @codefi/metafi-tx-categorize"
   },
   "lint-staged": {
     "**/*.ts": [

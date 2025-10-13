@@ -7,30 +7,10 @@
     "allowJs": true
   },
   "references": [
-    {
-      "path": "./packages/account"
-    },
-    {
-      "path": "./packages/common"
-    },
-    {
-      "path": "./packages/core"
-    },
-    {
-      "path": "./packages/eth-scan"
-    },
-    {
-      "path": "./packages/swap"
-    },
+
     {
       "path": "./packages/tx-categorize"
     },
-    {
-      "path": "./packages/web3"
-    },
-    {
-      "path": "./packages/nestjs"
-    }
   ],
   "files": [],
   "include": ["scripts", "**/*.config.js", "**/*.config.packages.js"],
