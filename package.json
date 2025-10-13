@@ -5,6 +5,10 @@
   "main": "index.ts",
   "author": "Consensys Software Inc.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/tx-categorize.git"
+  },
   "files": [],
   "private": true,
   "workspaces": [
@@ -21,11 +25,12 @@
     "publish": "yarn workspaces foreach --all --no-private exec jf npm publish --tolerate-republish",
     "lint": "eslint . --ext js,ts",
     "lint:fix": "yarn lint --fix",
-    "lint:changelog": "echo 'Changelog linting not configured yet'",
+    "lint:changelog": "auto-changelog validate --prettier",
     "prettier": "prettier --check '**/*.{js,ts}' .",
     "prettier:fix": "prettier --write '**/*.{js,ts}' .",
     "coverage:combined": "node ./scripts/aggregate-pkg-coverage.js && nyc merge .nyc_output coverage/merged-coverage.json && nyc report -t coverage --report-dir coverage/lcov-report --reporter=html --reporter=cobertura",
-    "tx-categorize": "yarn workspace @codefi/metafi-tx-categorize"
+    "tx-categorize": "yarn workspace @codefi/metafi-tx-categorize",
+    "sync-workflows": "bash ./scripts/sync-workflows.sh"
   },
   "lint-staged": {
     "**/*.ts": [
@@ -46,6 +51,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@metamask/auto-changelog": "^5.1.0",
     "@types/eslint": "^8",
     "@types/jest": "^27.4.1",
     "@types/qs": "^6.9.15",
@@ -63,7 +69,7 @@
     "jest-sonar-reporter": "^2.0.0",
     "lint-staged": "^10.5.1",
     "nyc": "^15.1.0",
-    "prettier": "^2.5.1",
+    "prettier": "^3.6.2",
     "prettier-plugin-solidity": "^1.4.1",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.2"

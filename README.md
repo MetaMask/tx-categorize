@@ -22,60 +22,23 @@ To set up the repo:
 - Run `yarn workspace <package-name> lint` to lint a specific package
 - Run `yarn lint:fix` in the root directory to fix linting issues
 
+## Release & Publishing
+
+This project follows MetaMask's standard release process with automated workflows.
+
+📖 **[View the complete Release & Publishing Guide →](RELEASE.md)**
+
+Quick commands:
+- `yarn lint:changelog` - Validate changelog formatting
+
+See [RELEASE.md](RELEASE.md) for detailed instructions on creating releases, managing changelogs, and publishing to npm.
+
 ## Packages
 
 This repository is a monorepo for the following packages
 
 | **Package**                                              | **Version** | **Description**                                                                                                                  |
 |:---------------------------------------------------------| :---------: |:---------------------------------------------------------------------------------------------------------------------------------|
-| [`@codefi/metafi-common`](packages/common)               |             | Common parameters and utility function for MetaFi services <br />Ex: Chain parameters, network configurations, utility functions |
-| [`@codefi/metafi-core`](packages/core)                   |             | MetaFi service clients. <br />Ex: Swap Api, Token Api, etc.                                                                      |
-| [`@codefi/metafi-web3`](packages/web3)                   |             | Web3 service clients. <br />Ex: Coingecko, Etherscan, etc.                                                                       |
-| **Experiences**                                          |             |                                                                                                                                  |
-| [`@codefi/metafi-swap`](packages/swap)                   |             | A module that provides token Swap functionality                                                                                  |
-| [`@codefi/metafi-account`](packages/account)             |             | A module that provides functionality for getting EVM account data such as balances, transactions, etc.                           |
-| [`@codefi/metafi-eth-scan`](packages/eth-scan)           |             | A module that provides functionality for getting Ether and token balances                                                        |
+
 | [`@codefi/metafi-tx-categorize`](packages/tx-categorize) |             | A module that provides functionality for categorize and label transactions                                                       |
 
-## MetaFi Common
-
-**Package:** [`@codefi/metafi-common`](packages/common)
-
-### Supported Chains
-
-- Ethereum
-- BNB Smart Chain
-- Polygon
-- Avalanche
-
-\*\* All supported chains testnets are included
-
-## MetaFi Core
-
-**Package:** [`@codefi/metafi-core`](packages/core)
-
-### Supported MetaFi Services
-
-- Token Api
-- Gas Api
-- Swap Api
-- Transaction Api
-- Transaction Insights Api
-- Account Api
-- Price Api
-
-## MetaFi Web3
-
-**Package:** [`@codefi/metafi-web3`](packages/web3)
-
-### Supported Web3 Clients
-
-- Aave
-- Blockexplorer (Etherscan compatible)
-- Coingecko
-- Compound
-- Covalent
-- Debank
-- Moralis
-- OpenSea
-- Rarible
