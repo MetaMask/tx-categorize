@@ -32,7 +32,6 @@ jobs:
       security-events: write
     secrets:
       SECURITY_SCAN_METRICS_TOKEN: ${{ secrets.SECURITY_SCAN_METRICS_TOKEN }}
-      APPSEC_BOT_SLACK_WEBHOOK: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 
   build-lint-test:
     name: Build, lint, and test
