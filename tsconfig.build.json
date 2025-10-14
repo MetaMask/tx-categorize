@@ -2,7 +2,7 @@
   "references": [
     {
       "path": "./packages/tx-categorize"
-    },
+    }
   ],
   "files": [],
   "include": [],

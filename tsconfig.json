@@ -7,10 +7,9 @@
     "allowJs": true
   },
   "references": [
-
     {
       "path": "./packages/tx-categorize"
-    },
+    }
   ],
   "files": [],
   "include": ["scripts", "**/*.config.js", "**/*.config.packages.js"],
