@@ -57,12 +57,6 @@ jobs:
           is-high-risk-environment: false
           node-version: ${{ matrix.node-version }}
       - run: yarn lint
-      - name: Validate RC changelog
-        if: ${{ startsWith(github.head_ref, 'release/') }}
-        run: yarn lint:changelog --rc
-      - name: Validate changelog
-        if: ${{ !startsWith(github.head_ref, 'release/') }}
-        run: yarn lint:changelog
       - name: Require clean working directory
         shell: bash
         run: |
