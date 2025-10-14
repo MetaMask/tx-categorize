@@ -1,0 +1,147 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "project": "tsconfig.json"
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "artifacts": true,
+    "contract": true,
+    "web3": true
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "lib/",
+    "packages/eth-scan/vendor/**/*",
+    "**/*.d.ts",
+    "**/*.cjs",
+    "**/categorize.js",
+    "**/listMetrics.js"
+  ],
+  "plugins": ["prettier", "eslint-plugin-import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "prefer-const": "error",
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 2, "maxEOF": 1 }],
+    "no-var": "error",
+    "quotes": ["error", "single", "avoid-escape"],
+    "import/first": "error",
+    "import/no-deprecated": "warn",
+    "import/no-duplicates": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-self-import": "error",
+    "import/no-useless-path-segments": "error",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always"
+      }
+    ],
+    "import/extensions": ["error", "never", { "json": "always" }],
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
+    "newline-before-return": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "plugin:import/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+      ],
+      "plugins": ["@typescript-eslint"],
+      "parserOptions": {
+        "project": ["./tsconfig.packages.json"]
+      },
+      "settings": {
+        "import/parsers": {
+          "@typescript-eslint/parser": [".ts"]
+        },
+        "import/resolver": {
+          "typescript": {
+            "project": "tsconfig.json"
+          }
+        }
+      },
+      "rules": {
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            "default": "array-simple"
+          }
+        ],
+        "@typescript-eslint/ban-ts-comment": [
+          "error",
+          {
+            "ts-expect-error": "allow-with-description"
+          }
+        ],
+        "@typescript-eslint/consistent-type-assertions": [
+          "error",
+          {
+            "assertionStyle": "as"
+          }
+        ],
+        "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "no-public"
+          }
+        ],
+        "@typescript-eslint/method-signature-style": ["error", "method"],
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-empty-function": "off"
+      }
+    },
+    {
+      "files": ["*.test.{ts,js}", "**/tests/**/*.{ts,js}", "jest.config.js", "jest.setup.js"],
+      "env": {
+        "jest": true
+      },
+      "extends": ["plugin:eslint-plugin-jest/recommended", "plugin:eslint-plugin-jest/style"],
+      "plugins": ["eslint-plugin-jest"],
+      "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "modules": true
+        }
+      },
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "paths": ["packages/eth-scan"]
+          }
+        }
+      }
+    },
+    {
+      "files": ["packages/eth-scan/scripts/**/*.{ts,js}"],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "paths": ["packages/eth-scan"]
+          }
+        }
+      }
+    }
+  ]
+}

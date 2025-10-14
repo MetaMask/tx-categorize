@@ -1,0 +1,41 @@
+{
+  "name": "@metamask/tx-categorize",
+  "version": "0.7.1",
+  "description": "MetaFi Tx Categorize",
+  "author": "Consensys Software Inc.",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "categorize": "yarn build && node ./scripts/categorize.js",
+    "list:metrics": "yarn build && node ./scripts/listMetrics.js",
+    "test": "jest --passWithNoTests",
+    "test:cov": "jest --ci --coverage",
+    "release": "standard-version",
+    "tscheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/i18next": "^13.0.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^18.19.45",
+    "@types/seedrandom": "^3",
+    "jest": "^29.7.0",
+    "nock": "^13.2.4",
+    "seedrandom": "^3.0.5",
+    "standard-version": "^9.3.2",
+    "typescript": "^5.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/tx-categorize.git"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "bloom-filters": "^3.0.1",
+    "i18next": "^24.2.3",
+    "i18next-fs-backend": "^2.6.0"
+  }
+}

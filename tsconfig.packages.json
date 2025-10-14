@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "composite": true,
+//    "strict": true, // Re-enable this in the future
+    "paths": {
+      "@codefi/*": ["../*/src"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

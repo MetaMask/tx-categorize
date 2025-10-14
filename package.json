@@ -1,61 +1,81 @@
 {
-  "name": "@metamask/tx-categorize",
-  "version": "0.7.1",
-  "description": "Transaction categorization library for blockchain transactions",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "@codefi/metafi",
+  "version": "1.0.0",
+  "description": "MetaFi Software Development Kit",
+  "main": "index.ts",
   "author": "Consensys Software Inc.",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/MetaMask/tx-categorize.git"
   },
-  "keywords": [
-    "blockchain",
-    "ethereum",
-    "transaction",
-    "categorization",
-    "defi",
-    "nft",
-    "metamask",
-    "typescript"
+  "files": [],
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "categorize": "yarn build && node ./scripts/categorize.js",
-    "list:metrics": "yarn build && node ./scripts/listMetrics.js",
-    "test": "jest --passWithNoTests",
-    "test:cov": "jest --ci --coverage",
-    "release": "standard-version",
-    "tscheck": "tsc --noEmit"
+    "test": "yarn workspaces foreach --all --parallel run test --collectCoverage=false",
+    "test:source": "yarn workspaces foreach --all --parallel run test --collectCoverage=false",
+    "test:types": "yarn workspaces foreach --all --parallel run tscheck",
+    "tscheck": "yarn workspaces foreach --all --parallel run tscheck",
+    "coverage": "yarn test --coverage --passWithNoTests",
+    "build": "yarn workspaces foreach --all --parallel --topological --verbose run build",
+    "build:docs": "echo 'Docs build not configured yet'",
+    "publish": "yarn workspaces foreach --all --no-private exec jf npm publish --tolerate-republish",
+    "lint": "eslint . --ext js,ts",
+    "lint:fix": "yarn lint --fix",
+    "prettier": "prettier --check '**/*.{js,ts}' .",
+    "prettier:fix": "prettier --write '**/*.{js,ts}' .",
+    "coverage:combined": "node ./scripts/aggregate-pkg-coverage.js && nyc merge .nyc_output coverage/merged-coverage.json && nyc report -t coverage --report-dir coverage/lcov-report --reporter=html --reporter=cobertura",
+    "tx-categorize": "yarn workspace @metamask/tx-categorize",
+    "sync-workflows": "bash ./scripts/sync-workflows.sh"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn tscheck",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "npm test"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/plugin-transform-modules-commonjs": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/i18next": "^13.0.0",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@types/eslint": "^8",
     "@types/jest": "^27.4.1",
-    "@types/node": "^18.19.45",
-    "@types/seedrandom": "^3",
+    "@types/qs": "^6.9.15",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^28.8.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^4.3.0",
     "jest": "^29.7.0",
-    "nock": "^13.2.4",
-    "seedrandom": "^3.0.5",
-    "standard-version": "^9.3.2",
+    "jest-junit": "^13.2.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "lint-staged": "^10.5.1",
+    "nyc": "^15.1.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-solidity": "^1.4.1",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.2"
   },
-  "dependencies": {
-    "axios": "^1.8.4",
-    "bloom-filters": "^3.0.1",
-    "i18next": "^24.2.3",
-    "i18next-fs-backend": "^2.6.0"
+  "packageManager": "yarn@4.4.1",
+  "resolutions": {
+    "meow": "13.2.0",
+    "secp256k1": "4.0.4",
+    "elliptic": "6.6.1"
   }
 }

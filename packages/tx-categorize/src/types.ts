@@ -1,6 +1,5 @@
-import { ChainId } from './chainId'
-
 import { Action } from './enums'
+import { ChainId } from './networks'
 
 export interface DeterminantMap {
   contracts: Array<{

@@ -1,13 +1,13 @@
 import axios from 'axios'
-import { ChainId } from './chainId'
 
+import { ChainId } from './networks'
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
 
 import { Language, determineTransactionMetadataV5, initializeI18next } from './index'
 
 jest.setTimeout(30 * 1000)
 
-const getTxWithLogsFromPrimitives = async (txHash: string, chainId = ChainId.ETHEREUM) => {
+const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = ChainId.ETHEREUM) => {
   const regexForTxHash = /^0x[0-9a-fA-F]{64}$/
   if (!regexForTxHash.test(txHash)) {
     throw new Error(`Invalid txHash ${txHash} ~ ${chainId}`)
