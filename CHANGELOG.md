@@ -17,4 +17,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated tsconfig to remove reference to deleted common package
 
-[Unreleased]: https://github.com/your-org/tx-categorize/compare/HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/HEAD

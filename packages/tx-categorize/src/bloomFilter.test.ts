@@ -1,9 +1,7 @@
 import { doesTxMatchSchema } from './bloomFilter'
 import { Transaction } from './types'
 
-jest.mock('@codefi/metafi-common', () => ({
-  NETWORKS_CONFIG: { 1: true },
-}))
+// Mock removed - no longer needed after removing @codefi/metafi-common dependency
 
 jest.mock('./constants', () => ({
   getSchemaByChainId: jest

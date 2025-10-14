@@ -1,9 +1,9 @@
 {
-  "name": "@codefi/metafi-tx-categorize",
+  "name": "@metamask/tx-categorize",
   "version": "0.7.1",
   "description": "MetaFi Tx Categorize",
   "author": "Consensys Software Inc.",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -28,8 +28,11 @@
     "standard-version": "^9.3.2",
     "typescript": "^5.6.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/tx-categorize.git"
+  },
   "dependencies": {
-    "@codefi/metafi-common": "^1.11.7",
     "axios": "^1.8.4",
     "bloom-filters": "^3.0.1",
     "i18next": "^24.2.3",

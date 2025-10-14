@@ -40,5 +40,5 @@ This repository is a monorepo for the following packages
 | **Package**                                              | **Version** | **Description**                                                                                                                  |
 |:---------------------------------------------------------| :---------: |:---------------------------------------------------------------------------------------------------------------------------------|
 
-| [`@codefi/metafi-tx-categorize`](packages/tx-categorize) |             | A module that provides functionality for categorize and label transactions                                                       |
+| [`@metamask/tx-categorize`](packages/tx-categorize) |             | A module that provides functionality for categorize and label transactions                                                       |
 

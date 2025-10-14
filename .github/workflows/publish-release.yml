@@ -32,7 +32,8 @@ jobs:
           retention-days: 4
           include-hidden-files: true
           path: |
-            ./dist
+            ./packages/*/dist
+            ./packages/*/package.json
             ./node_modules/.yarn-state.yml
 
   publish-npm-dry-run:
@@ -53,7 +54,7 @@ jobs:
         uses: MetaMask/action-npm-publish@v5
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          subteam: S042S7RE4AE # @metamask-npm-publishers
+          # subteam: S042S7RE4AE # MetaMask-specific - update with your team's Slack ID if needed
         env:
           SKIP_PREPACK: true
 
@@ -80,37 +81,40 @@ jobs:
         env:
           SKIP_PREPACK: true
 
-  get-release-version:
-    needs: publish-npm
-    runs-on: ubuntu-latest
-    outputs:
-      RELEASE_VERSION: ${{ steps.get-release-version.outputs.RELEASE_VERSION }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-      - id: get-release-version
-        shell: bash
-        run: ./scripts/get.sh ".version" "RELEASE_VERSION"
+  # Documentation publishing disabled until build:docs is configured
+  # Uncomment these jobs once you set up TypeDoc or your documentation build process
+  
+  # get-release-version:
+  #   needs: publish-npm
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     RELEASE_VERSION: ${{ steps.get-release-version.outputs.RELEASE_VERSION }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ github.sha }}
+  #     - id: get-release-version
+  #       shell: bash
+  #       run: ./scripts/get.sh ".version" "RELEASE_VERSION"
 
-  publish-release-to-gh-pages:
-    name: Publish docs to `${{ needs.get-release-version.outputs.RELEASE_VERSION }}` directory of `gh-pages` branch
-    needs: get-release-version
-    permissions:
-      contents: write
-    uses: ./.github/workflows/publish-docs.yml
-    with:
-      destination_dir: ${{ needs.get-release-version.outputs.RELEASE_VERSION }}
-    secrets:
-      PUBLISH_DOCS_TOKEN: ${{ secrets.PUBLISH_DOCS_TOKEN }}
+  # publish-release-to-gh-pages:
+  #   name: Publish docs to `${{ needs.get-release-version.outputs.RELEASE_VERSION }}` directory of `gh-pages` branch
+  #   needs: get-release-version
+  #   permissions:
+  #     contents: write
+  #   uses: ./.github/workflows/publish-docs.yml
+  #   with:
+  #     destination_dir: ${{ needs.get-release-version.outputs.RELEASE_VERSION }}
+  #   secrets:
+  #     PUBLISH_DOCS_TOKEN: ${{ secrets.PUBLISH_DOCS_TOKEN }}
 
-  publish-release-to-latest-gh-pages:
-    name: Publish docs to `latest` directory of `gh-pages` branch
-    needs: publish-npm
-    permissions:
-      contents: write
-    uses: ./.github/workflows/publish-docs.yml
-    with:
-      destination_dir: latest
-    secrets:
-      PUBLISH_DOCS_TOKEN: ${{ secrets.PUBLISH_DOCS_TOKEN }}
+  # publish-release-to-latest-gh-pages:
+  #   name: Publish docs to `latest` directory of `gh-pages` branch
+  #   needs: publish-npm
+  #   permissions:
+  #     contents: write
+  #   uses: ./.github/workflows/publish-docs.yml
+  #   with:
+  #     destination_dir: latest
+  #   secrets:
+  #     PUBLISH_DOCS_TOKEN: ${{ secrets.PUBLISH_DOCS_TOKEN }}

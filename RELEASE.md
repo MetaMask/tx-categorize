@@ -82,11 +82,11 @@ After the automated workflows complete:
 1. Check that the GitHub release was created successfully
 2. Verify the npm package was published (if applicable):
    ```bash
-   npm view @codefi/metafi-tx-categorize versions
+   npm view @metamask/tx-categorize versions
    ```
 3. Test installation of the new version:
    ```bash
-   npm install @codefi/metafi-tx-categorize@latest
+   npm install @metamask/tx-categorize@latest
    ```
 
 ## Manual NPM Publishing (Alternative)
