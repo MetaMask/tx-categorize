@@ -12,3 +12,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release of @metamask/tx-categorize
 
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/MetaMask/tx-categorize/releases/tag/v1.0.3
