@@ -1,6 +1,6 @@
 {
   "name": "@codefi/metafi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MetaFi Software Development Kit",
   "main": "index.ts",
   "author": "Consensys Software Inc.",
