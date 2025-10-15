@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5]
+
+### Uncategorized
+
+- Update package.json
+- feat: readme updates
+
 ## [1.0.4]
 
 ### Uncategorized
@@ -27,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of @metamask/tx-categorize
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/MetaMask/tx-categorize/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/MetaMask/tx-categorize/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/MetaMask/tx-categorize/releases/tag/v1.0.3
