@@ -1,6 +1,6 @@
 {
   "name": "@MetaMask/monorepo",
-  "version": "1.0.5",
+  "version": "0.1.0",
   "description": "MetaFi Software Development Kit",
   "main": "index.ts",
   "author": "Consensys Software Inc.",
