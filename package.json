@@ -1,5 +1,5 @@
 {
-  "name": "@codefi/metafi",
+  "name": "@MetaMask/monorepo",
   "version": "1.0.4",
   "description": "MetaFi Software Development Kit",
   "main": "index.ts",
@@ -22,7 +22,7 @@
     "coverage": "yarn test --coverage --passWithNoTests",
     "build": "yarn workspaces foreach --all --parallel --topological --verbose run build",
     "build:docs": "echo 'Docs build not configured yet'",
-    "publish": "yarn workspaces foreach --all --no-private exec jf npm publish --tolerate-republish",
+    "publish": "yarn workspaces foreach --all --no-private exec npm publish",
     "lint": "eslint . --ext js,ts",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --check '**/*.{js,ts}' .",
