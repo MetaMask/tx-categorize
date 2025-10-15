@@ -7,34 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.5]
-
-### Uncategorized
-
-- Update package.json
-- feat: readme updates
-
-## [1.0.4]
-
-### Uncategorized
-
-- Update CHANGELOG.md ([#9](https://github.com/MetaMask/tx-categorize/pull/9))
-- feat: remove docs upload ([#8](https://github.com/MetaMask/tx-categorize/pull/8))
-- 1.0.3 ([#7](https://github.com/MetaMask/tx-categorize/pull/7))
-- 1.0.2
-- 1.0.1
-- feat: fix pl
-- feat: latest
-- feat: fix
-- feat: copy monorepo
-
-## [1.0.3]
-
 ### Added
 
 - Initial release of @metamask/tx-categorize
+- Transaction categorization engine supporting multiple EVM chains
+- Bloom filter optimization for efficient method ID and topic lookups
+- Support for 15+ blockchain networks (Ethereum, Polygon, Arbitrum, Optimism, etc.)
+- Multi-language localization support (15 languages)
+- Comprehensive transaction schemas including DeFi, NFT, and token operations
+- Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v1.0.5...HEAD
-[1.0.5]: https://github.com/MetaMask/tx-categorize/compare/v1.0.4...v1.0.5
-[1.0.4]: https://github.com/MetaMask/tx-categorize/compare/v1.0.3...v1.0.4
-[1.0.3]: https://github.com/MetaMask/tx-categorize/releases/tag/v1.0.3
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v0.0.0...HEAD
