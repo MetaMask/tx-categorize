@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.1]
+
+### Uncategorized
+
+- Fix changelog and version: update changelog formatting and synchronize version numbers for release notes
+
 ### Added
 
 - Initial release of @metamask/tx-categorize
@@ -17,4 +23,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v0.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/MetaMask/tx-categorize/releases/tag/v0.0.1
