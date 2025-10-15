@@ -9,10 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0]
 
-### Uncategorized
-
-- Fix changelog and version: update changelog formatting and synchronize version numbers for release notes
-
 ### Added
 
 - Initial release of @metamask/tx-categorize
