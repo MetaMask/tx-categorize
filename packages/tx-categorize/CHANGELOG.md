@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of @metamask/tx-categorize
+- Initial release of `@metamask/tx-categorize` ([#17](https://github.com/MetaMask/tx-categorize/pull/17))
 - Transaction categorization engine supporting multiple EVM chains
 - Bloom filter optimization for efficient method ID and topic lookups
 - Support for 15+ blockchain networks (Ethereum, Polygon, Arbitrum, Optimism, etc.)
