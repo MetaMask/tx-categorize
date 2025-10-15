@@ -1,13 +1,16 @@
 {
   "name": "@metamask/tx-categorize",
-  "version": "1.0.4",
-  "description": "MetaFi Tx Categorize",
+  "version": "1.0.3",
+  "description": "A library for categorizing and labeling blockchain transactions",
   "author": "Consensys Software Inc.",
   "license": "ISC",
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "categorize": "yarn build && node ./scripts/categorize.js",

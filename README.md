@@ -1,6 +1,6 @@
-# @codefi/metafi
+# tx-categorize
 
-MetaMask Curated Experiences (MMCX) Software Development Kit
+A library for categorizing and labeling blockchain transactions across multiple EVM-compatible networks.
 
 ## Setup
 To set up the repo:
@@ -29,16 +29,15 @@ This project follows MetaMask's standard release process with automated workflow
 📖 **[View the complete Release & Publishing Guide →](RELEASE.md)**
 
 Quick commands:
-- `yarn lint:changelog` - Validate changelog formatting
+- `yarn sync-workflows` - Sync latest workflow files from MetaMask/utils
 
 See [RELEASE.md](RELEASE.md) for detailed instructions on creating releases, managing changelogs, and publishing to npm.
 
-## Packages
+## Package
 
-This repository is a monorepo for the following packages
+| **Package**                                    | **Version** | **Description**                                                           |
+|:-----------------------------------------------|:-----------:|:--------------------------------------------------------------------------|
+| [`tx-categorize`](packages/tx-categorize)     | 1.0.3       | A library for categorizing and labeling blockchain transactions           |
 
-| **Package**                                              | **Version** | **Description**                                                                                                                  |
-|:---------------------------------------------------------| :---------: |:---------------------------------------------------------------------------------------------------------------------------------|
-
-| [`@metamask/tx-categorize`](packages/tx-categorize) |             | A module that provides functionality for categorize and label transactions                                                       |
+**View the [package README](packages/tx-categorize/README.md) for detailed usage and contribution guidelines.**
 
