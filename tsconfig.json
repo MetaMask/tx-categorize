@@ -13,5 +13,5 @@
   ],
   "files": [],
   "include": ["scripts", "**/*.config.js", "**/*.config.packages.js"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules"]
 }

@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@MetaMask/monorepo@workspace:.":
+"@MetaMask/tx-categorize-monorepo@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@MetaMask/monorepo@workspace:."
+  resolution: "@MetaMask/tx-categorize-monorepo@workspace:."
   dependencies:
     "@babel/core": "npm:^7.16.12"
     "@babel/plugin-transform-modules-commonjs": "npm:^7.16.8"
