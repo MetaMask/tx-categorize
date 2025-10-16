@@ -1,6 +1,6 @@
 {
   "name": "@metamask/tx-categorize",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A library for categorizing and labeling blockchain transactions",
   "author": "Consensys Software Inc.",
   "license": "ISC",
