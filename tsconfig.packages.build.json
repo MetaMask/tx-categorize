@@ -6,6 +6,16 @@
     "inlineSources": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "outDir": "./dist"
-  }
+    "outDir": "./dist",
+    "noEmit": false
+  },
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.js", 
+    "**/testCases.mock.ts",
+    "**/testCases.mock.js",
+    "**/__tests__/**/*",
+    "**/__mocks__/**/*",
+    "**/__fixtures__/**/*"
+  ]
 }

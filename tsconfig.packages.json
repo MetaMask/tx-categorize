@@ -10,7 +10,8 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "composite": true,
-//    "strict": true, // Re-enable this in the future
+    "forceConsistentCasingInFileNames": true,
+    "noErrorTruncation": true,
     "paths": {
       "@codefi/*": ["../*/src"]
     }

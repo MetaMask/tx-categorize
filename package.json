@@ -1,5 +1,5 @@
 {
-  "name": "@MetaMask/monorepo",
+  "name": "@MetaMask/tx-categorize-monorepo",
   "version": "0.0.0",
   "description": "MetaFi Software Development Kit",
   "main": "index.ts",
