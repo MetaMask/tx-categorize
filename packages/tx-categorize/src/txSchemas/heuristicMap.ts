@@ -50,6 +50,29 @@ const determinants: DeterminantMap = {
       protocol: 'UNISWAP_V4',
     },
     {
+      addresses: [
+        // Uniswap v4 PositionManager — https://docs.uniswap.org/contracts/v4/deployments
+        '0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e', // Ethereum (1)
+        '0x4529a01c7a0410167c5740c487a8de60232617bf', // Unichain (130)
+        '0x3c3ea4b57a46241e54610e5f022e5c45859a1017', // Optimism (10)
+        '0x7c5f5a4bbd8fd63184577525326123b519429bdc', // Base (8453)
+        '0xd88f38f930b7952f2db2432cb002e7abbf3dd869', // Arbitrum One (42161)
+        '0x3fc79444f8eacc1894775493ff3fa41f1e35ce11', // Tempo (4217)
+        '0x1ec2ebf4f37e7363fdfe3551602425af0b3ceef9', // Polygon (137)
+        '0x4ad2f4cca2682cbb5b950d660dd458a1d3f1baad', // Blast (81457)
+        '0xf66c7b99e2040f0d9b326b3b7c152e9663543d63', // Zora (7777777)
+        '0xc585e0f504613b5fbf874f21af14c65260fb41fa', // Worldchain (480)
+        '0x1b35d13a2e2528f192637f14b05f0dc0e7deb566', // Ink (57073) & Soneium (1868) — same deployment address
+        '0xb74b1f14d2754acfcbbe1a221023a5cf50ab8acd', // Avalanche (43114)
+        '0x7a4a5c919ae2541aed11041a1aeee68f1287f95b', // BNB Smart Chain (56)
+        '0xf7965f3981e4d5bc383bfbcb61501763e9068ca9', // Celo (42220)
+        '0x5b7ec4a94ff9bedb700fb82ab09d5846972f4016', // Monad (143)
+        '0x9ae0921e981aaa7308f176f8d4f9129b9247c89d', // MegaETH (4326)
+      ],
+      name: 'UNISWAP_V4_POSITION_MANAGER',
+      protocol: 'UNISWAP_V4',
+    },
+    {
       addresses: ['0x2d8879046f1559e53eb052e949e9544bcb72f414'],
       name: 'ODOS_ROUTER',
       protocol: 'ODOS',
