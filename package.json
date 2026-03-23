@@ -28,6 +28,7 @@
     "prettier": "prettier --check '**/*.{js,ts}' .",
     "prettier:fix": "prettier --write '**/*.{js,ts}' .",
     "coverage:combined": "node ./scripts/aggregate-pkg-coverage.js && nyc merge .nyc_output coverage/merged-coverage.json && nyc report -t coverage --report-dir coverage/lcov-report --reporter=html --reporter=cobertura",
+    "categorize": "yarn workspace @metamask/tx-categorize run categorize",
     "tx-categorize": "yarn workspace @metamask/tx-categorize",
     "sync-workflows": "bash ./scripts/sync-workflows.sh"
   },
