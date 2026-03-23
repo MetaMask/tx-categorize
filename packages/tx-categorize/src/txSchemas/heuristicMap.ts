@@ -44,7 +44,6 @@ const determinants: DeterminantMap = {
         '0x851116d9223fabed8e56c0e6b8ad0c31d98b3507',
         '0x94b75331ae8d42c1b61065089b7d48fe14aa73b7',
         '0xeabbcb3e8e415306207ef514f660a3f820025be3',
-        '0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e',
       ],
       name: 'UNISWAP_V4_ROUTER',
       protocol: 'UNISWAP_V4',
