@@ -1,6 +1,7 @@
+import path from 'path'
+
 import axios from 'axios'
 import nock from 'nock'
-import path from 'path'
 
 import { ChainId } from './networks'
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
@@ -10,8 +11,6 @@ import { Language, determineTransactionMetadataV5, initializeI18next } from './i
 jest.setTimeout(30 * 1000)
 
 let isNockConfigured = false
-
-
 
 const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = ChainId.ETHEREUM) => {
   if (!isNockConfigured) {
@@ -39,6 +38,7 @@ const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = Ch
         },
       },
     )
+
     return data
   } finally {
     nockDone()
