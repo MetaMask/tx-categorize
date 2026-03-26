@@ -1,4 +1,6 @@
 import axios from 'axios'
+import nock from 'nock'
+import path from 'path'
 
 import { ChainId } from './networks'
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
@@ -7,27 +9,48 @@ import { Language, determineTransactionMetadataV5, initializeI18next } from './i
 
 jest.setTimeout(30 * 1000)
 
+let isNockConfigured = false
+
+
+
 const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = ChainId.ETHEREUM) => {
+  if (!isNockConfigured) {
+    console.log('Configuring nock' + path.join(__dirname, '..', 'test-fixtures', 'nock'))
+    nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
+    // Default to `record`: replay when fixture exists, otherwise call live API and persist fixture.
+    // Useful for local fixture growth without extra commands.
+    // For strict CI/no-network runs, set NOCK_BACK_MODE=lockdown.
+    // For force re-recording existing fixtures, set NOCK_BACK_MODE=update.
+    nock.back.setMode((process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'record')
+    isNockConfigured = true
+  }
+
   const regexForTxHash = /^0x[0-9a-fA-F]{64}$/
   if (!regexForTxHash.test(txHash)) {
     throw new Error(`Invalid txHash ${txHash} ~ ${chainId}`)
   }
-  const { data } = await axios.get(
-    `https://primitives.api.cx.metamask.io/v1/networks/${chainId}/transactions/${txHash}`,
-    {
-      params: {
-        includeLogs: true,
+  const fixtureName = `${chainId}-${txHash.toLowerCase()}.json`
+  const { nockDone, context } = await nock.back(fixtureName)
+  try {
+    const { data } = await axios.get(
+      `https://primitives.api.cx.metamask.io/v1/networks/${chainId}/transactions/${txHash}`,
+      {
+        params: {
+          includeLogs: true,
+        },
       },
-    },
-  )
-
-  return data
+    )
+    return data
+  } finally {
+    nockDone()
+    context.assertScopesFinished()
+  }
 }
 
 describe('#txCategorizeV2', () => {
   // initialize i18next
   beforeAll(async () => {
-    initializeI18next(Language.en)
+    await initializeI18next(Language.en)
   })
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
