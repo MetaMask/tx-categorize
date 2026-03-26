@@ -15,7 +15,6 @@ let isNockConfigured = false
 
 const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = ChainId.ETHEREUM) => {
   if (!isNockConfigured) {
-    console.log('Configuring nock' + path.join(__dirname, '..', 'test-fixtures', 'nock'))
     nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
     // Default to `record`: replay when fixture exists, otherwise call live API and persist fixture.
     // Useful for local fixture growth without extra commands.
