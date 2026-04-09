@@ -51,7 +51,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@types/eslint": "^8",
-    "@types/jest": "^27.4.1",
+    "@types/jest": "^30.0.0",
     "@types/qs": "^6.9.15",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",

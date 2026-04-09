@@ -1,4 +1,4 @@
-const { determineTransactionMetadataV5 } = require('../dist/txCategorizeV5');
+const { determineTransactionMetadataV6 } = require('../dist/txCategorizeV6')
 const { initializeI18next, Language } = require('../dist/localization/index.js')
 const axios = require('axios')
 
@@ -11,6 +11,7 @@ const getTxWithLogsFromPrimitives = async (txHash) => {
     {
       params: {
         includeLogs: true,
+        includeValueTransfers: true,
       },
     },
   )
@@ -25,7 +26,12 @@ const importTxData = async (txHash, chainId = 1) => {
   if (!txData || !txData.transaction) {
     throw new Error(`No transaction data found for address 'eip155:${chainId}:${txHash}'`)
   }
-  const categorizedTx = determineTransactionMetadataV5(txData, 'en', true, 49)
+  const categorizedTx = determineTransactionMetadataV6(
+    { ...txData, subjectAddress: `eip155:${chainId}:${txData.transaction.from}` },
+    'en',
+    true,
+    49,
+  )
   return categorizedTx
 }
 
