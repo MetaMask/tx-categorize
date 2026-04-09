@@ -69,9 +69,14 @@ describe('convertWeiToRoundedDecimalWithSigFigs', () => {
     expect(convertWeiToRoundedDecimalWithSigFigs('1999950000000000000', 18)).toBe('2')
   })
 
-  it('returns <0 style prefix when rounded fraction is all zeros', () => {
-    // 0.000049... -> <0 (rounded to 4 sig figs gives 0000)
-    expect(convertWeiToRoundedDecimalWithSigFigs('49000000000000', 18)).toBe('<0')
+  it('returns rounded first significant digit when whole is 0 and fraction rounds to all zeros', () => {
+    // 0.000049... -> 0.00005 (first significant digit 4 rounds up due to next digit 9)
+    expect(convertWeiToRoundedDecimalWithSigFigs('49000000000000', 18)).toBe('0.00005')
+  })
+
+  it('returns whole number when rounded fraction is all zeros and whole is non-zero', () => {
+    // 1.000001 USDC (6 decimals) -> 1 (not <1)
+    expect(convertWeiToRoundedDecimalWithSigFigs('1000001', 6)).toBe('1')
   })
 
   it('respects custom sigFigs parameter', () => {

@@ -60,7 +60,23 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
     return `${whole}.${incrementedStr}`
   }
   if (roundedFraction === '0'.repeat(sigFigs)) {
-    return `<${whole}`
+    if (whole !== '0') return whole
+    const firstNonZeroIndex = [...fraction].findIndex((d) => d !== '0')
+    if (firstNonZeroIndex === -1) return '0'
+
+    const digit = parseInt(fraction[firstNonZeroIndex], 10)
+    const nextDigit = firstNonZeroIndex + 1 < fraction.length ? parseInt(fraction[firstNonZeroIndex + 1], 10) : 0
+
+    if (nextDigit >= 5) {
+      const rounded = digit + 1
+      if (rounded >= 10) {
+        return firstNonZeroIndex === 0 ? '1' : `0.${'0'.repeat(firstNonZeroIndex - 1)}1`
+      }
+
+      return `0.${'0'.repeat(firstNonZeroIndex)}${rounded}`
+    }
+
+    return `0.${'0'.repeat(firstNonZeroIndex)}${digit}`
   }
   if (decimalValue.split('.')[1] !== roundedFraction) {
     return `${whole}.${roundedFraction}`

@@ -171,7 +171,7 @@ export const determineTransactionMetadataV6 = (
   const { transactionProtocol, transactionCategory, toAddressName } = txMetadata
 
   if (toAddressName === 'WETH') {
-    if (txMetadata.transactionCategory === 'WITHDRAW') {
+    if (txMetadata.transactionCategory === Action.WITHDRAW) {
       txMetadata.transactionCategory = Action.UNWRAP
     }
   }
