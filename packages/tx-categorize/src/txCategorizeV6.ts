@@ -317,31 +317,27 @@ export const determineTransactionMetadataV6 = (
     txMetadataPriorities.transactionCategory < 0 ||
     txMetadataPriorities.transactionProtocol < 0
   ) {
-    const txMetadata: TxMetadataV6 = {
+    const fallbackMetadata: TxMetadataV6 = {
       transactionType: 'GENERIC_CONTRACT_CALL',
       transactionCategory: Action.CONTRACT_CALL,
       readable: tV2(Action.CONTRACT_CALL),
     }
 
     if (!transaction.logs || !transaction.logs.length || !transaction.methodId) {
-      txMetadata.transactionType = 'STANDARD'
-      txMetadata.transactionCategory = Action.STANDARD
+      fallbackMetadata.transactionType = 'STANDARD'
+      fallbackMetadata.transactionCategory = Action.STANDARD
     }
     if (transaction.logs && transaction.logs.length > spamTransferThreshold) {
-      txMetadata.transactionType = 'SPAM_TOKEN_TRANSFER'
-      txMetadata.transactionCategory = Action.TRANSFER
-      txMetadata.transactionProtocol = 'SPAM_TOKEN'
+      fallbackMetadata.transactionType = 'SPAM_TOKEN_TRANSFER'
+      fallbackMetadata.transactionCategory = Action.TRANSFER
+      fallbackMetadata.transactionProtocol = 'SPAM_TOKEN'
     }
-    if (!txMetadata.transactionCategory) {
-      txMetadata.transactionCategory = Action.CONTRACT_CALL
-      return txMetadata
-    }
-    const fallbackTemplate = tV2(txMetadata.transactionCategory, {}, language ?? fallbackLngV2)
-    txMetadata.readable = txMetadata.transactionProtocol
-      ? `${titlecase(txMetadata.transactionProtocol)}: ${interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })}`
+    const fallbackTemplate = tV2(fallbackMetadata.transactionCategory, {}, language ?? fallbackLngV2)
+    fallbackMetadata.readable = fallbackMetadata.transactionProtocol
+      ? `${titlecase(fallbackMetadata.transactionProtocol)}: ${interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })}`
       : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })
 
-    return txMetadata
+    return fallbackMetadata
   }
 
   return txMetadata
