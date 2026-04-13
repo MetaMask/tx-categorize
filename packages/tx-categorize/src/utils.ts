@@ -57,7 +57,8 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
       return (BigInt(whole) + 1n).toString()
     }
 
-    return `${whole}.${incrementedStr}`
+    const strippedIncremented = incrementedStr.replace(/0+$/, '')
+    return strippedIncremented ? `${whole}.${strippedIncremented}` : whole
   }
   if (roundedFraction === '0'.repeat(sigFigs)) {
     if (whole !== '0') return whole
@@ -78,11 +79,8 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
 
     return `0.${'0'.repeat(firstNonZeroIndex)}${digit}`
   }
-  if (decimalValue.split('.')[1] !== roundedFraction) {
-    return `${whole}.${roundedFraction}`
-  }
-
-  return `${whole}.${roundedFraction}`
+  const strippedFraction = roundedFraction.replace(/0+$/, '')
+  return strippedFraction ? `${whole}.${strippedFraction}` : whole
 }
 
 // --- Enriched Transaction Template System ---
