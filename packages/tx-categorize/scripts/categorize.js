@@ -1,5 +1,6 @@
 const { determineTransactionMetadataV6 } = require('../dist/txCategorizeV6')
-const { initializeI18next, Language } = require('../dist/localization/index.js')
+const { initializeI18nextV2 } = require('../dist/localizationV2/index.js')
+const { Language } = require('../dist/localization/index.js')
 const axios = require('axios')
 
 const regexForTxHash = /^0x[0-9a-fA-F]{64}$/
@@ -19,7 +20,7 @@ const getTxWithLogsFromPrimitives = async (txHash) => {
 }
 
 const importTxData = async (txHash, chainId = 1) => {
-  await initializeI18next(Language.en)
+  await initializeI18nextV2(Language.en)
 
   const txData = await getTxWithLogsFromPrimitives(txHash, chainId)
   console.log('Categorized tx: ', txData)
