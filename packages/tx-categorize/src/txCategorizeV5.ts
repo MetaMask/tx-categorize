@@ -83,11 +83,6 @@ export const determineTransactionMetadataV5 = (
   transaction.topics = transaction.logs
     ?.map((log) => (log?.topics.length > 0 ? [...log.topics, `${log?.topics[0]}#${log?.topics?.length}`] : []))
     .flat()
-  // Inject a synthetic from-address topic so fromAddress can be matched against the topic hash map
-  if (transaction.fromAddress) {
-    const paddedFrom = `0x000000000000000000000000${transaction.fromAddress.slice(2).toLowerCase()}`
-    transaction.topics = [...(transaction.topics ?? []), `from:${paddedFrom}`]
-  }
   const txMetadata: TxMetadata = {}
   const txMetadataPriorities: TxMetadataPriority = {
     transactionProtocol: -100,
@@ -131,6 +126,7 @@ export const determineTransactionMetadataV5 = (
 
     // Two-pass topic scan:
     // Pass 1: evaluate topics without requiresAction, track all matched actions
+    //   - For each topic, prefer a fromAddress-qualified entry (@from:) over the generic entry
     // Pass 2: evaluate topics with requiresAction — matches if the required action was seen in pass 1
     const deferredTopics: Array<{ topic: string; name: string; protocol?: string; priority?: number }> = []
     const matchedActions = new Set<string>()
