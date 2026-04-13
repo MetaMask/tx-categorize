@@ -275,4 +275,22 @@ describe('#txCategorizeV6', () => {
     )
     expect(categorizedTxV5['readable']).toBe('Token: Transferred 0.0044 MKR')
   })
+  it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
+    const txHash = txTestCases['ERC_20_APPROVE']
+    if (!txHash) {
+      throw new Error('No txHash found for ERC_20_APPROVE test')
+    }
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    // Spender should be extracted from the Approval event log
+    expect(categorizedTxV5['readable']).toMatch(/Approved 0x[0-9a-f]+ to spend/)
+  })
 })

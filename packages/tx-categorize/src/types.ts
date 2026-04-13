@@ -20,6 +20,7 @@ export interface DeterminantMap {
     protocol?: string
     topicsLength?: string
     priority?: number
+    requiresAction?: Action
   }>
 }
 
@@ -52,6 +53,7 @@ export interface TopicHashMap {
     name: Action
     protocol?: string
     priority?: number
+    requiresAction?: Action
   }
 }
 

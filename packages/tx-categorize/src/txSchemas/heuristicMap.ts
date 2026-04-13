@@ -345,6 +345,7 @@ const determinants: DeterminantMap = {
       protocol: 'ROCKET_POOL',
       version: 'V1.2',
     },
+    { address: '0x48db9302bb52a97b6cc8a5d0695c487d76540159', name: 'RELAY', protocol: 'RELAY' },
   ],
   methodIds: [
     { id: '0xaf7060fd', name: EXCHANGE, priority: 1, protocol: 'LIFI' }, // lifi
@@ -421,6 +422,7 @@ const determinants: DeterminantMap = {
     { id: '0xf7ece0cf', name: PAYMENT, protocol: 'METAMASK_CARD', priority: 105 },
     { id: '0x07ed2379', name: EXCHANGE, priority: 1 },
     { id: '0xe21fd0e9', name: EXCHANGE, priority: 1 },
+    { id: '0xe9ae5c53', name: DEPOSIT, protocol: 'RELAY', priority: 2 },
   ],
   topics: [
     { hash: '0xe2cee3f6836059820b673943853afebd9b3026125dab0d774284e6f28a4855be', name: EXCHANGE, priority: 1 },
@@ -608,6 +610,27 @@ const determinants: DeterminantMap = {
       priority: 105,
     },
     {
+      hash: '0x00000000000000000000000048db9302bb52a97b6cc8a5d0695c487d76540159',
+      name: WITHDRAW,
+      protocol: 'RELAY',
+      priority: 100,
+    },
+    {
+      // Matched via synthetic from-address topic injection; beats the RELAY WITHDRAW match (priority 100)
+      hash: 'from:0x00000000000000000000000048db9302bb52a97b6cc8a5d0695c487d76540159',
+      name: DEPOSIT,
+      protocol: 'RELAY',
+      priority: 101,
+    },
+    {
+      // Internal fund movement event from Relay depository; only matches as EXCHANGE when a DEX swap event is also present
+      hash: '0xafbab204e8271965231d37baed9b1abca8725b7409c70314455f68bc89142b91',
+      name: EXCHANGE,
+      protocol: 'RELAY',
+      priority: 102,
+      requiresAction: EXCHANGE,
+    },
+    {
       hash: '0x2b627736bca15cd5381dcf80b0bf11fd197d01a037c52b927a881a10fb73ba61',
       name: DEPOSIT,
     },
@@ -643,16 +666,18 @@ const createMethodIdMap = (determinants: DeterminantMap) => {
 
 const createTopicHashMap = (determinants: DeterminantMap) => {
   return determinants.topics.reduce((map, item) => {
+    const entry = {
+      name: item.name,
+      protocol: item.protocol,
+      priority: item.priority,
+      ...(item.requiresAction && { requiresAction: item.requiresAction }),
+    }
     if (item.hash) {
-      map[item.topicsLength ? `${item.hash}#${item.topicsLength}` : item.hash] = {
-        name: item.name,
-        protocol: item.protocol,
-        priority: item.priority,
-      }
+      map[item.topicsLength ? `${item.hash}#${item.topicsLength}` : item.hash] = entry
     }
     if (item.hashes) {
       item.hashes.forEach((hash) => {
-        map[hash] = { name: item.name, protocol: item.protocol, priority: item.priority }
+        map[hash] = { ...entry }
       })
     }
 

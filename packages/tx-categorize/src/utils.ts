@@ -87,12 +87,17 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
 
 // --- Enriched Transaction Template System ---
 
-export interface TemplateContext {
+export interface BaseTemplateContext {
   sentAssets: ValueTransfer[]
   receivedAssets: ValueTransfer[]
-  spender?: string
-  approvedAssets?: ValueTransfer[]
 }
+
+export interface ApproveTemplateContext extends BaseTemplateContext {
+  spender: string
+  approvedAssets: ValueTransfer[]
+}
+
+export type TemplateContext = BaseTemplateContext | ApproveTemplateContext
 
 const resolveVariable = (varName: string, ctx: TemplateContext): string => {
   const match = varName.match(/^(sent_assets|received_assets|approved_assets)_(\d+)_(value|ticker)$/)
@@ -102,7 +107,7 @@ const resolveVariable = (varName: string, ctx: TemplateContext): string => {
     let assets: ValueTransfer[]
     if (group === 'sent_assets') assets = ctx.sentAssets
     else if (group === 'received_assets') assets = ctx.receivedAssets
-    else assets = ctx.approvedAssets ?? []
+    else assets = 'approvedAssets' in ctx ? ctx.approvedAssets : []
 
     const asset = assets[index]
     if (!asset) return ''
@@ -116,7 +121,7 @@ const resolveVariable = (varName: string, ctx: TemplateContext): string => {
       return asset.symbol ?? ''
     }
   }
-  if (varName === 'spender') return ctx.spender ?? ''
+  if (varName === 'spender') return 'spender' in ctx ? ctx.spender : ''
 
   return ''
 }
@@ -129,10 +134,11 @@ export const interpolateTemplate = (template: string, ctx: TemplateContext): str
 }
 
 export const refineActionForMultiAssets = (
-  action: Action,
+  action: Action | undefined,
   sentAssets: ValueTransfer[],
   receivedAssets: ValueTransfer[],
 ): Action => {
+  if (!action) return Action.STANDARD
   if (action === Action.EXCHANGE) {
     if (receivedAssets.length > 1) return Action.EXCHANGE_FOR_MULTI
     if (sentAssets.length > 1) return Action.EXCHANGE_FROM_MULTI

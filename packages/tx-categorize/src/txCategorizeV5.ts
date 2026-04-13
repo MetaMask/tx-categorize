@@ -83,6 +83,11 @@ export const determineTransactionMetadataV5 = (
   transaction.topics = transaction.logs
     ?.map((log) => (log?.topics.length > 0 ? [...log.topics, `${log?.topics[0]}#${log?.topics?.length}`] : []))
     .flat()
+  // Inject a synthetic from-address topic so fromAddress can be matched against the topic hash map
+  if (transaction.fromAddress) {
+    const paddedFrom = `0x000000000000000000000000${transaction.fromAddress.slice(2).toLowerCase()}`
+    transaction.topics = [...(transaction.topics ?? []), `from:${paddedFrom}`]
+  }
   const txMetadata: TxMetadata = {}
   const txMetadataPriorities: TxMetadataPriority = {
     transactionProtocol: -100,
@@ -123,15 +128,53 @@ export const determineTransactionMetadataV5 = (
     Object.values(txMetadataPriorities).some((priority) => priority < 0)
   ) {
     if (log) console.log('missing transaction category or protocol, using tx topics', transaction.topics)
+
+    // Two-pass topic scan:
+    // Pass 1: evaluate topics without requiresAction, track all matched actions
+    // Pass 2: evaluate topics with requiresAction — matches if the required action was seen in pass 1
+    const deferredTopics: Array<{ topic: string; name: string; protocol?: string; priority?: number }> = []
+    const matchedActions = new Set<string>()
+
     for (const topic of transaction.topics) {
-      const { name: topicName, protocol, priority } = topicHashMap[topic] || {}
+      const topicMeta = topicHashMap[topic]
+      if (!topicMeta) {
+        if (log) console.log('skipping topic', topic, 'due to no labeled topicName or protocol')
+        continue
+      }
+      const { name: topicName, protocol, priority, requiresAction } = topicMeta
       if (!topicName && !protocol) {
         if (log) console.log('skipping topic', topic, 'due to no labeled topicName or protocol')
         continue
       }
+      if (requiresAction) {
+        deferredTopics.push({ topic, name: topicName, protocol, priority })
+        continue
+      }
       if (log) console.log('not skipping topic. checking', topic, ' using category', topicName, 'protocol', protocol)
 
-      // rollingPriority = priority
+      if (topicName) {
+        matchedActions.add(topicName)
+        tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, protocol, priority)
+        tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, topicName, priority)
+      }
+    }
+
+    // Pass 2: evaluate deferred topics that require a specific action from pass 1
+    for (const { topic, name: topicName, protocol, priority } of deferredTopics) {
+      const { requiresAction } = topicHashMap[topic]
+      if (!matchedActions.has(requiresAction)) {
+        if (log)
+          console.log(
+            'skipping deferred topic',
+            topic,
+            'requires action',
+            requiresAction,
+            'which was not matched in pass 1',
+          )
+        continue
+      }
+      if (log) console.log('deferred topic matched', topic, 'using category', topicName, 'protocol', protocol)
+
       if (topicName) {
         tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, protocol, priority)
         tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, topicName, priority)

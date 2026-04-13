@@ -28,7 +28,7 @@ const maybeOverwriteProtocol = (protocol: string) => {
 const tryUpdateTransactionProtocol = (
   txMetadata: TxMetadataV6,
   txMetadataPriorities: TxMetadataPriority,
-  log: boolean,
+  log?: boolean,
   protocol?: string,
   priority = 0,
 ) => {
@@ -78,12 +78,70 @@ const tryUpdateTransactionCategory = (
   }
 }
 
+const APPROVAL_EVENT_TOPIC = '0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925'
+
+const findApprovalLog = (transaction: Transaction) => {
+  return transaction.logs?.find((log) => log.topics?.[0]?.toLowerCase() === APPROVAL_EVENT_TOPIC)
+}
+
 const extractSpender = (transaction: Transaction): string | undefined => {
   if (transaction.methodId !== '0x095ea7b3') return undefined
-  const input = transaction.input
-  if (!input || input.length < 138) return undefined
 
-  return '0x' + input.slice(34, 74)
+  // Try from input calldata
+  if (transaction.input && transaction.input.length >= 138) {
+    return '0x' + transaction.input.slice(34, 74)
+  }
+
+  // Fallback: extract from Approval event log
+  const approvalLog = findApprovalLog(transaction)
+  if (approvalLog?.topics?.[2]) {
+    return '0x' + approvalLog.topics[2].slice(26)
+  }
+
+  return undefined
+}
+
+const extractApprovedAssets = (transaction: Transaction): ValueTransfer[] => {
+  if (transaction.methodId !== '0x095ea7b3') return []
+
+  let rawAmount: string | undefined
+  let tokenContractAddress = transaction.toAddress
+
+  // Try from input calldata
+  if (transaction.input && transaction.input.length >= 138) {
+    rawAmount = BigInt('0x' + transaction.input.slice(74, 138)).toString()
+  }
+
+  // Fallback: extract from Approval event log
+  const approvalLog = findApprovalLog(transaction)
+  if (approvalLog) {
+    if (!rawAmount && approvalLog.data) {
+      rawAmount = BigInt(approvalLog.data).toString()
+    }
+    if (!tokenContractAddress) {
+      tokenContractAddress = approvalLog.address
+    }
+  }
+
+  if (!rawAmount) return []
+
+  // Look for token metadata in valueTransfers (backend may include Approval events)
+  const tokenMetadata = transaction.valueTransfers?.find(
+    (vt) => vt.contractAddress?.toLowerCase() === tokenContractAddress?.toLowerCase(),
+  )
+
+  return [
+    {
+      from: transaction.fromAddress ?? '',
+      to: extractSpender(transaction) ?? '',
+      tokenId: '',
+      contractAddress: tokenContractAddress ?? '',
+      transferType: 'erc20',
+      amount: tokenMetadata?.amount ?? rawAmount,
+      decimal: tokenMetadata?.decimal,
+      symbol: tokenMetadata?.symbol,
+    } as ValueTransfer,
+  ]
 }
 
 export const determineTransactionMetadataV6 = (
@@ -113,6 +171,11 @@ export const determineTransactionMetadataV6 = (
   transaction.topics = transaction.logs
     ?.map((log) => (log?.topics.length > 0 ? [...log.topics, `${log?.topics[0]}#${log?.topics?.length}`] : []))
     .flat()
+  // Inject a synthetic from-address topic so fromAddress can be matched against the topic hash map
+  if (transaction.fromAddress) {
+    const paddedFrom = `0x000000000000000000000000${transaction.fromAddress.slice(2).toLowerCase()}`
+    transaction.topics = [...(transaction.topics ?? []), `from:${paddedFrom}`]
+  }
   const txMetadata: TxMetadataV6 = {}
   const txMetadataPriorities: TxMetadataPriority = {
     transactionProtocol: -100,
@@ -120,7 +183,7 @@ export const determineTransactionMetadataV6 = (
     toAddressName: -100,
   }
 
-  const toAddressContractMeta = contractAddressMap[transaction.toAddress]
+  const toAddressContractMeta = transaction.toAddress ? contractAddressMap[transaction.toAddress] : undefined
   if (toAddressContractMeta) {
     if (log) console.log('writing toAddressName', toAddressContractMeta?.name)
     txMetadata.toAddressName = toAddressContractMeta?.name
@@ -128,7 +191,7 @@ export const determineTransactionMetadataV6 = (
 
     tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, toAddressContractMeta?.protocol, 0)
 
-    const methodIdMeta = methodIdMap[transaction.methodId]
+    const methodIdMeta = transaction.methodId && methodIdMap[transaction.methodId]
 
     if (methodIdMeta) {
       const priority = methodIdMeta?.priority
@@ -153,15 +216,57 @@ export const determineTransactionMetadataV6 = (
     Object.values(txMetadataPriorities).some((priority) => priority < 0)
   ) {
     if (log) console.log('missing transaction category or protocol, using tx topics', transaction.topics)
-    for (const topic of transaction.topics) {
-      const { name: topicName, protocol, priority } = topicHashMap[topic] || {}
+
+    // Two-pass topic scan:
+    // Pass 1: evaluate topics without requiresAction, track all matched actions
+    // Pass 2: evaluate topics with requiresAction — matches if the required action was seen in pass 1
+    const deferredTopics: Array<{ topic: string; name: Action; protocol?: string; priority?: number }> = []
+    const matchedActions = new Set<Action>()
+
+    for (const topic of transaction.topics ?? []) {
+      const topicMeta = topicHashMap[topic]
+      if (!topicMeta) {
+        if (log) console.log('skipping topic', topic, 'due to no labeled topicName or protocol')
+        continue
+      }
+      const { name: topicName, protocol, priority, requiresAction } = topicMeta
       if (!topicName && !protocol) {
         if (log) console.log('skipping topic', topic, 'due to no labeled topicName or protocol')
         continue
       }
+      if (requiresAction) {
+        deferredTopics.push({ topic, name: topicName, protocol, priority })
+        continue
+      }
       if (log) console.log('not skipping topic. checking', topic, ' using category', topicName, 'protocol', protocol)
 
-      // rollingPriority = priority
+      if (topicName) {
+        matchedActions.add(topicName)
+        tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, protocol, priority)
+        tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, topicName, priority)
+      }
+    }
+
+    // Pass 2: evaluate deferred topics that require a specific action from pass 1
+    for (const { topic, name: topicName, protocol, priority } of deferredTopics) {
+      const { requiresAction } = topicHashMap[topic]
+      if (!requiresAction) {
+        if (log) console.log('skipping deferred topic', topic, 'due to missing requiresAction')
+        continue
+      }
+      if (!matchedActions.has(requiresAction)) {
+        if (log)
+          console.log(
+            'skipping deferred topic',
+            topic,
+            'requires action',
+            requiresAction,
+            'which was not matched in pass 1',
+          )
+        continue
+      }
+      if (log) console.log('deferred topic matched', topic, 'using category', topicName, 'protocol', protocol)
+
       if (topicName) {
         tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, protocol, priority)
         tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, topicName, priority)
@@ -192,11 +297,18 @@ export const determineTransactionMetadataV6 = (
     const protocol = titlecase(transactionProtocolToUse)
     const templateKey = refinedAction
     const template = tV2(templateKey, {}, language ?? fallbackLngV2)
-    const ctx: TemplateContext = {
-      sentAssets,
-      receivedAssets,
-      spender: extractSpender(transaction),
-    }
+    const ctx: TemplateContext =
+      txMetadata.transactionCategory === Action.APPROVE
+        ? {
+            sentAssets,
+            receivedAssets,
+            spender: extractSpender(transaction) ?? '',
+            approvedAssets: extractApprovedAssets(transaction),
+          }
+        : {
+            sentAssets,
+            receivedAssets,
+          }
     const localizedReadable = `${protocol}${definingTrait && ` ${titlecase(definingTrait)}`}: ${interpolateTemplate(template, ctx)}`
 
     txMetadata.readable = localizedReadable
@@ -224,7 +336,10 @@ export const determineTransactionMetadataV6 = (
       txMetadata.transactionCategory = Action.TRANSFER
       txMetadata.transactionProtocol = 'SPAM_TOKEN'
     }
-
+    if (!txMetadata.transactionCategory) {
+      txMetadata.transactionCategory = Action.CONTRACT_CALL
+      return txMetadata
+    }
     const fallbackTemplate = tV2(txMetadata.transactionCategory, {}, language ?? fallbackLngV2)
     txMetadata.readable = txMetadata.transactionProtocol
       ? `${titlecase(txMetadata.transactionProtocol)}: ${interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })}`
