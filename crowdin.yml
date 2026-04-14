@@ -9,4 +9,8 @@ files: [
     "source": "/localization/locales/en/translation.json",
     "translation": "/localization/locales/%two_letters_code%/translation.json",
   }
+  {
+    "source": "/localizationV2/locales/en/translation.json",
+    "translation": "/localizationV2/locales/%two_letters_code%/translation.json",
+  }
 ]
