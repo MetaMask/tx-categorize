@@ -108,13 +108,7 @@ export const determineTransactionMetadataV5 = (
   if (!toAddressContractMeta && transaction.methodId) {
     const methodIdMeta = methodIdMap[transaction.methodId]
     if (methodIdMeta) {
-      tryUpdateTransactionProtocol(
-        txMetadata,
-        txMetadataPriorities,
-        log,
-        methodIdMeta.protocol,
-        methodIdMeta.priority,
-      )
+      tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, methodIdMeta.protocol, methodIdMeta.priority)
       tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, methodIdMeta?.name, methodIdMeta?.priority)
     }
   }
