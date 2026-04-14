@@ -303,8 +303,9 @@ const determinants: DeterminantMap = {
         '0x1a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d',
         '0x9eda81c21c273a82be9bbc19b6a6182212068101',
       ],
-      name: 'AAVE_V3_STAKE_TOKEN',
+      name: 'AAVE_STAKE_TOKEN',
       protocol: 'AAVE',
+      version: 'V3',
     },
     {
       address: '0xcf50b810e57ac33b91dcf525c6ddd9881b139332',
