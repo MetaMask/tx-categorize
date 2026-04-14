@@ -740,17 +740,17 @@ const determinants: DeterminantMap = {
     {
       hashes: ['0x8d3ee0df6a4b7e82a7f20a763f1c6826e6176323e655af64f32318827d2112d4'],
       name: BRIDGE_OUT,
-      protocol: 'STARGATE',
+      protocol: 'STARGATE_V1',
     },
     {
       hashes: ['0x2bd2d8a84b748439fd50d79a49502b4eb5faa25b864da6a9ab5c150704be9a4d'],
       name: BRIDGE_IN,
-      protocol: 'STARGATE',
+      protocol: 'STARGATE_V1',
     },
     {
       hashes: ['0x85496b760a4b7f8d66384b9df21b381f5d1b1e79f229a47aaf4c232edc2fe59a'],
       name: BRIDGE_OUT,
-      protocol: 'STARGATE',
+      protocol: 'STARGATE_V2',
     },
     {
       hashes: [
@@ -758,7 +758,7 @@ const determinants: DeterminantMap = {
         '0xefed6d3500546b29533b128a29e3a94d70788727f0507505ac12eaf2e578fd9c',
       ],
       name: BRIDGE_IN,
-      protocol: 'STARGATE',
+      protocol: 'STARGATE_V2',
     },
     {
       hashes: ['0x7e50569d26be643bda7757722291ec66b1be66d8283474ae3fab5a98f878a7a2'],
