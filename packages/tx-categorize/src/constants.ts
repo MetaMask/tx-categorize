@@ -38,7 +38,7 @@ export const getSchemaByChainId = (chainId: ChainId) => {
   return chainIdToSchemaMap[chainId]
 }
 
-export const titlecaseExceptions = {
+export const titlecaseExceptions: Record<string, string> = {
   METAMASK: 'MetaMask',
   SUSHISWAP: 'SushiSwap',
   OPENSEA: 'OpenSea',

@@ -1,24 +1,48 @@
 import path from 'path'
 
 import axios from 'axios'
+import { type CaipAccountId } from '@metamask/utils'
 import nock from 'nock'
 
 import { ChainId } from './networks'
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
+import { determineTransactionMetadataV6 } from './txCategorizeV6'
+import { initializeI18nextV2 } from './localizationV2'
 
-import { Language, determineTransactionMetadataV5, initializeI18next } from './index'
+import { Language, Log, ValueTransfer, determineTransactionMetadataV5, initializeI18next } from './index'
 
 jest.setTimeout(30 * 1000)
 
+interface Tx {
+  logs?: Log[]
+  to: string
+  from: string
+  input?: string
+  methodId?: string
+  topics?: string[]
+  hash?: string
+  valueTransfers: ValueTransfer[]
+}
+
+interface SingleTransactionResponse {
+  txHash: string
+  chainId: number
+  count: number
+  data: Tx | undefined
+}
+
+const createAccountId = (address: string, chainId: number): CaipAccountId => {
+  return `eip155:${chainId}:${address.toLowerCase()}`
+}
+
 let isNockConfigured = false
 
-const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = ChainId.ETHEREUM) => {
+const getTxWithLogsFromPrimitives = async (
+  txHash: string,
+  chainId: ChainId = ChainId.ETHEREUM,
+): Promise<SingleTransactionResponse> => {
   if (!isNockConfigured) {
     nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
-    // Default to `record`: replay when fixture exists, otherwise call live API and persist fixture.
-    // Useful for local fixture growth without extra commands.
-    // For strict CI/no-network runs, set NOCK_BACK_MODE=lockdown.
-    // For force re-recording existing fixtures, set NOCK_BACK_MODE=update.
     nock.back.setMode((process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'record')
     isNockConfigured = true
   }
@@ -30,11 +54,12 @@ const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = Ch
   const fixtureName = `${chainId}-${txHash.toLowerCase()}.json`
   const { nockDone, context } = await nock.back(fixtureName)
   try {
-    const { data } = await axios.get(
+    const { data } = await axios.get<SingleTransactionResponse>(
       `https://primitives.api.cx.metamask.io/v1/networks/${chainId}/transactions/${txHash}`,
       {
         params: {
           includeLogs: true,
+          includeValueTransfers: true,
         },
       },
     )
@@ -49,7 +74,7 @@ const getTxWithLogsFromPrimitives = async (txHash: string, chainId: ChainId = Ch
 describe('#txCategorizeV2', () => {
   // initialize i18next
   beforeAll(async () => {
-    await initializeI18next(Language.en)
+    initializeI18next(Language.en)
   })
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
@@ -143,5 +168,129 @@ describe('#txCategorizeV2', () => {
       49,
     )
     expect(categorizedTxV5['readable']).toBe('Token: Transfer')
+  })
+})
+
+describe('#txCategorizeV6', () => {
+  // initialize i18next V2 for enriched templates
+  beforeAll(async () => {
+    await initializeI18nextV2(Language.en)
+  })
+  it('categorizes an ethereum tx correctly', async () => {
+    for (const [txCategory, txHash] of Object.entries(txTestCases)) {
+      const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+
+      const categorizedTxV5 = determineTransactionMetadataV6(
+        {
+          transaction: data,
+          subjectAddress: createAccountId(data.from, chainId),
+        },
+        Language.en,
+        true,
+        49,
+      )
+      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
+    }
+  })
+  it('categorizes a linea tx correctly', async () => {
+    for (const [txCategory, txHash] of Object.entries(lineaTxTestCases)) {
+      const { data, chainId } = await getTxWithLogsFromPrimitives(txHash, ChainId.LINEA)
+      const categorizedTxV5 = determineTransactionMetadataV6(
+        {
+          transaction: data,
+          subjectAddress: createAccountId(data.from, chainId),
+        },
+        Language.en,
+        true,
+        49,
+      )
+      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
+    }
+  })
+  it('properly attaches a label to a GENERIC_CONTRACT_CALL tx', async () => {
+    const txHash = txTestCases['GENERIC_CONTRACT_CALL']
+    if (!txHash) {
+      throw new Error('No txHash found for GENERIC_CONTRACT_CALL test')
+    }
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    expect(categorizedTxV5['readable']).toBe('Unidentified Transaction')
+  })
+  it('properly attaches a label to a STANDARD tx', async () => {
+    const txHash = txTestCases['STANDARD']
+    if (!txHash) {
+      throw new Error('No txHash found for STANDARD test')
+    }
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    expect(categorizedTxV5['readable']).toContain('Transferred')
+  })
+  it('properly attaches a spam transfer label to a tx', async () => {
+    const txHash = txTestCases['SPAM_TOKEN_TRANSFER']
+    if (!txHash) {
+      throw new Error('No txHash found for SPAM_TOKEN_TRANSFER test')
+    }
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    expect(categorizedTxV5['readable']).toBe('Spam Token: Transferred')
+  })
+  it('properly relables ERC20 transfers as Token Transfer', async () => {
+    const txHash = txTestCases['ERC_20_TRANSFER']
+    if (!txHash) {
+      throw new Error('No txHash found for ERC_20_TRANSFER test')
+    }
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    expect(categorizedTxV5['readable']).toBe('Token: Transferred 0.0044 MKR')
+  })
+  it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
+    const txHash = txTestCases['ERC_20_APPROVE']
+    if (!txHash) {
+      throw new Error('No txHash found for ERC_20_APPROVE test')
+    }
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    // Spender should be extracted from the Approval event log
+    expect(categorizedTxV5['readable']).toMatch(/Approved 0x[0-9a-f]+ to spend/)
   })
 })

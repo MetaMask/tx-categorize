@@ -1,3 +1,5 @@
+import { CaipAccountId } from '@metamask/utils'
+
 import { Action } from './enums'
 import { ChainId } from './networks'
 
@@ -18,12 +20,21 @@ export interface DeterminantMap {
     protocol?: string
     topicsLength?: string
     priority?: number
+    requiresAction?: Action
   }>
 }
 
 export interface TxMetadata {
   transactionType?: string
   transactionCategory?: string
+  transactionProtocol?: string
+  toAddressName?: string
+  readable?: string
+}
+
+export interface TxMetadataV6 {
+  transactionType?: string
+  transactionCategory?: Action
   transactionProtocol?: string
   toAddressName?: string
   readable?: string
@@ -42,6 +53,7 @@ export interface TopicHashMap {
     name: Action
     protocol?: string
     priority?: number
+    requiresAction?: Action
   }
 }
 
@@ -100,12 +112,16 @@ enum TransferType {
   erc20 = 'erc20',
 }
 
-interface ValueTransfer {
+export interface ValueTransfer {
   from: string
   to: string
   tokenId: string
   contractAddress: string
   transferType: TransferType
+  amount?: string
+  decimal?: number
+  name?: string
+  symbol?: string
 }
 
 export interface Transaction {
@@ -121,6 +137,10 @@ export interface Transaction {
 
 export interface DetermineTransactionMetadataInputV5 {
   transaction: Transaction
+}
+export interface DetermineTransactionMetadataInputV6 {
+  transaction: Transaction
+  subjectAddress: CaipAccountId
 }
 
 export interface DetermineTransactionMetadataInput {

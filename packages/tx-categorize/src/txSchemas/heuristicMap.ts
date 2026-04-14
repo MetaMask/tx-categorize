@@ -820,16 +820,18 @@ const createMethodIdMap = (determinants: DeterminantMap) => {
 
 const createTopicHashMap = (determinants: DeterminantMap) => {
   return determinants.topics.reduce((map, item) => {
+    const entry = {
+      name: item.name,
+      protocol: item.protocol,
+      priority: item.priority,
+      ...(item.requiresAction && { requiresAction: item.requiresAction }),
+    }
     if (item.hash) {
-      map[item.topicsLength ? `${item.hash}#${item.topicsLength}` : item.hash] = {
-        name: item.name,
-        protocol: item.protocol,
-        priority: item.priority,
-      }
+      map[item.topicsLength ? `${item.hash}#${item.topicsLength}` : item.hash] = entry
     }
     if (item.hashes) {
       item.hashes.forEach((hash) => {
-        map[hash] = { name: item.name, protocol: item.protocol, priority: item.priority }
+        map[hash] = { ...entry }
       })
     }
 
