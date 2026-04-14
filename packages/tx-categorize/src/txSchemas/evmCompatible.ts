@@ -1006,7 +1006,7 @@ export const evmCompatibleSchemas: Array<TransactionSchema<SchemaV2>> = [
     },
     meta: {
       name: 'CURVE_POOL_ADD_LIQUIDITY',
-      priority: 16,
+      priority: 14,
       type: 'DEPOSIT',
       protocol: '',
     },

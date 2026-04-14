@@ -449,11 +449,7 @@ const determinants: DeterminantMap = {
     { id: '0xfc6f7865', name: WITHDRAW },
     { id: '0xac9650d8', name: EXCHANGE, priority: 1 },
     { id: '0x88316456', name: DEPOSIT },
-    {
-      id: '0x80ed71e4',
-      name: DEPOSIT,
-      priority: 20,
-    }, // deposit(uint256,bool,address) — Convex CRV Depositor; pair with CONVEX_CRV_DEPOSITOR contract
+    { id: '0x80ed71e4', name: DEPOSIT }, // deposit(uint256,bool,address) — Convex CRV Depositor; pair with CONVEX_CRV_DEPOSITOR contract
     { id: '0xf7a16963', name: DOMAIN_REGISTER },
     { id: '0x18cbafe5', name: EXCHANGE, priority: 1 },
     { id: '0xc804c39a', name: CLAIM },
@@ -500,7 +496,6 @@ const determinants: DeterminantMap = {
       name: EXCHANGE,
     },
     { hash: '0xac1020908b5f7134d59c1580838eba6fc42dd8c28bae65bf345676bba1913f8e', name: STAKE, priority: 10 },
-    // mmi-defi-adapters `userEvent.topic0` (non–ERC20 Transfer). Example emitters from adapters-library:
     // MetaMask pooled staking pool: 0x4FEF9D741011476750A243aC70b9789a63dd47Df (Ethereum)
     {
       hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c', // Deposited — MetamaskPooledStakingAdapter; topic0 alone is not protocol-specific
@@ -547,7 +542,7 @@ const determinants: DeterminantMap = {
     {
       hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
       name: DEPOSIT,
-      priority: 16,
+      priority: 14,
     },
     { hash: '0x936c2ca3b35d2d0b24057b0675c459e4515f48fe132d138e213ae59ffab7f53e', name: BRIDGE_OUT },
     { hash: '0x1e77446728e5558aa1b7e81e0cdab9cc1b075ba893b740600c76a315c2caa553', name: BORROW },
