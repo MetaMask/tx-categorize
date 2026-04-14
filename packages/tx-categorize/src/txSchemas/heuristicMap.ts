@@ -47,8 +47,9 @@ const determinants: DeterminantMap = {
         '0x94b75331ae8d42c1b61065089b7d48fe14aa73b7',
         '0xeabbcb3e8e415306207ef514f660a3f820025be3',
       ],
-      name: 'UNISWAP_V4_ROUTER',
-      protocol: 'UNISWAP_V4',
+      name: 'UNISWAP_ROUTER',
+      protocol: 'UNISWAP',
+      version: 'V4',
     },
     {
       addresses: [
@@ -70,8 +71,9 @@ const determinants: DeterminantMap = {
         '0x5b7ec4a94ff9bedb700fb82ab09d5846972f4016', // Monad (143)
         '0x9ae0921e981aaa7308f176f8d4f9129b9247c89d', // MegaETH (4326)
       ],
-      name: 'UNISWAP_V4_POSITION_MANAGER',
-      protocol: 'UNISWAP_V4',
+      name: 'UNISWAP_POSITION_MANAGER',
+      protocol: 'UNISWAP',
+      version: 'V4',
     },
     {
       addresses: ['0x2d8879046f1559e53eb052e949e9544bcb72f414'],
@@ -185,7 +187,7 @@ const determinants: DeterminantMap = {
     },
     {
       address: '0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45',
-      name: 'UNISWAP_V3_ROUTER_2',
+      name: 'UNISWAP_ROUTER_2',
       protocol: 'UNISWAP',
       version: 'V3',
     },
@@ -233,9 +235,24 @@ const determinants: DeterminantMap = {
       protocol: 'WETH',
     },
     { address: '0x745daa146934b27e3f0b6bff1a6e36b9b90fb131', name: 'DEX_AG_PROXY', protocol: 'DEX_AG' },
-    { address: '0xdef1c0ded9bec7f1a1670819833240f027b25eff', name: '0X_EXCHANGE_PROXY', protocol: '0X_V3' },
-    { address: '0x11111112542d85b3ef69ae05771c2dccff4faa26', name: '1INCH_V3_EXCHANGE_PROXY', protocol: '1INCH_V3' },
-    { address: '0x398ec7346dcd622edc5ae82352f02be94c62d119', name: 'AAVE_LENDING_POOL_V1', protocol: 'AAVE_V1' },
+    {
+      address: '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
+      name: '0X_EXCHANGE_PROXY',
+      protocol: '0X',
+      version: 'V3',
+    },
+    {
+      address: '0x11111112542d85b3ef69ae05771c2dccff4faa26',
+      name: '1INCH_EXCHANGE_PROXY',
+      protocol: '1INCH',
+      version: 'V3',
+    },
+    {
+      address: '0x398ec7346dcd622edc5ae82352f02be94c62d119',
+      name: 'AAVE_LENDING_POOL',
+      protocol: 'AAVE',
+      version: 'V1',
+    },
     { address: '0x4dbd4fc535ac27206064b68ffcf827b0a60bab3f', name: 'ARBITRUM_INBOX', protocol: 'ARBITRUM' },
     { address: '0x760723cd2e632826c38fef8cd438a4cc7e7e1a40', name: 'ARBITRUM_OUTBOX', protocol: 'ARBITRUM' },
     { address: '0x6d19b2bf3a36a61530909ae65445a906d98a2fa8', name: 'BALANCER_DISTRIBUTOR', protocol: 'BALANCER' },
@@ -263,7 +280,7 @@ const determinants: DeterminantMap = {
     { address: '0xde3e5a990bce7fc60a6f017e7c4a95fc4939299e', name: 'GITCOIN_DISTRIBUTOR', protocol: 'GITCOIN' },
     {
       address: '0x82e0b8cdd80af5930c4452c684e71c861148ec8a',
-      name: 'METAMASK_BRIDGE_V1',
+      name: 'METAMASK_BRIDGE',
       protocol: 'METAMASK',
       definingTrait: 'BRIDGE',
       version: 'V1',
@@ -280,14 +297,14 @@ const determinants: DeterminantMap = {
         '0x29106d08382d3c73bF477A94333C61Db1142E1B6', //avalanche c-chain
         '0xE3d0d2607182Af5B24f5C3C2E4990A053aDd64e3', //linea
       ],
-      name: 'METAMASK_BRIDGE_V2',
+      name: 'METAMASK_BRIDGE',
       protocol: 'METAMASK',
       definingTrait: 'BRIDGE',
       version: 'V2',
     },
     {
       addresses: ['0xf256f3cbefc7abbce953635f5d700a98c4b45277', '0xDc71aFFC862fceB6aD32BE58E098423A7727bEbd'],
-      name: 'METAMASK_STAKE_V1',
+      name: 'METAMASK_STAKE',
       protocol: 'METAMASK',
       definingTrait: 'STAKE',
       version: 'V1',
@@ -314,8 +331,9 @@ const determinants: DeterminantMap = {
     },
     {
       address: '0x72a19342e8f1838460ebfccef09f6585e32db86e',
-      name: 'CONVEX_CVX_LOCKER_V2',
+      name: 'CONVEX_CVX_LOCKER',
       protocol: 'CONVEX',
+      version: 'V2',
     },
     {
       address: '0x8014595f2ab54cd7c604b00e9fb932176fdc86ae',
@@ -334,8 +352,9 @@ const determinants: DeterminantMap = {
         '0x9dda6ef3d919c9bc8885d5560999a3640431e8e6',
         '0xf504c1fe13d14df615e66dcd0abf39e60c697f34',
       ],
-      name: 'METAMASK_V1_ROUTER',
-      protocol: 'METAMASK_V1',
+      name: 'METAMASK_ROUTER',
+      protocol: 'METAMASK',
+      version: 'V1',
     },
     { address: '0xce16f69375520ab01377ce7b88f5ba8c48f8d666', name: 'SQUID_ROUTER', protocol: 'SQUID' },
     { address: '0xa5409ec958c83c3f309868babaca7c86dcb077c1', name: 'OPENSEA_REGISTRY', protocol: 'OPENSEA' },
@@ -343,8 +362,9 @@ const determinants: DeterminantMap = {
     { address: '0x7f268357a8c2552623316e2562d90e642bb538e5', name: 'OPENSEA_EXCHANGE_2', protocol: 'OPENSEA' },
     {
       address: '0x1bd435f3c054b6e901b7b108a0ab7617c808677b',
-      name: 'PARASWAP_V4_EXCHANGE_PROXY',
-      protocol: 'PARASWAP_V4',
+      name: 'PARASWAP_EXCHANGE_PROXY',
+      protocol: 'PARASWAP',
+      version: 'V4',
     },
     {
       addresses: [
@@ -354,8 +374,9 @@ const determinants: DeterminantMap = {
         '0xb89a6778d1efe7a5b7096757a21b810cc2886fa1',
         '0xdaee41e335322c85ff2c5a6745c98e1351806e98',
       ],
-      name: 'PANCAKESWAP_V2_ROUTER',
-      protocol: 'PANCAKESWAP_V2',
+      name: 'PANCAKESWAP_ROUTER',
+      protocol: 'PANCAKESWAP',
+      version: 'V2',
     },
     { address: '0xa0c68c638235ee32657e8f720a23cec1bfc77c77', name: 'POLYGON_BRIDGE', protocol: 'POLYGON' },
     {
@@ -365,8 +386,18 @@ const determinants: DeterminantMap = {
     },
     { address: '0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f', name: 'SUSHISWAP_ROUTER', protocol: 'SUSHISWAP' },
     { address: '0x090d4613473dee047c3f2706764f49e0821d256e', name: 'UNISWAP_DISTRIBUTOR', protocol: 'UNISWAP' },
-    { address: '0x7a250d5630b4cf539739df2c5dacb4c659f2488d', name: 'UNISWAP_V2_ROUTER', protocol: 'UNISWAP_V2' },
-    { address: '0xe592427a0aece92de3edee1f18e0157c05861564', name: 'UNISWAP_V3_ROUTER', protocol: 'UNISWAP_V3' },
+    {
+      address: '0x7a250d5630b4cf539739df2c5dacb4c659f2488d',
+      name: 'UNISWAP_ROUTER',
+      protocol: 'UNISWAP',
+      version: 'V2',
+    },
+    {
+      address: '0xe592427a0aece92de3edee1f18e0157c05861564',
+      name: 'UNISWAP_ROUTER',
+      protocol: 'UNISWAP',
+      version: 'V3',
+    },
     { address: '0x8fd00f170fdf3772c5ebdcd90bf257316c69ba45', name: 'SPARKPOOL_MINING_PAYOUT', protocol: 'SPARKPOOL' },
     {
       address: '0x3ecef08d0e2dad803847e052249bb4f8bff2d5bb',
@@ -381,8 +412,18 @@ const determinants: DeterminantMap = {
     },
     { address: '0x3a9fff453d50d4ac52a6890647b823379ba36b9e', name: 'SHUFFLE_MONSTER_V3', protocol: 'ERC_20' },
     { address: '0x26946ada5ecb57f3a1f91605050ce45c482c9eb1', name: 'BITCOINSOV', protocol: 'ERC_20' },
-    { address: '0x722122df12d4e14e13ac3b6895a86e84145b6967', name: 'TORNADO_CASH', protocol: 'TORNADO_CASH_V1' },
-    { address: '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5', name: 'ENS_V1', protocol: 'ENS_V1' },
+    {
+      address: '0x722122df12d4e14e13ac3b6895a86e84145b6967',
+      name: 'TORNADO_CASH',
+      protocol: 'TORNADO_CASH',
+      version: 'V1',
+    },
+    {
+      address: '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5',
+      name: 'ENS_V1',
+      protocol: 'ENS',
+      version: 'V1',
+    },
     { address: '0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e', name: 'ENS', protocol: 'ENS' },
     { address: '0xebfb47a7ad0fd6e57323c8a42b2e5a6a4f68fc1a', name: 'POOLTOGETHER', protocol: 'POOLTOGETHER' },
     { address: '0xa0fa0e79342884a9c84f42fafa28f051b1efaec9', name: 'DS_PROXY', protocol: 'BALANCER' },
@@ -395,13 +436,13 @@ const determinants: DeterminantMap = {
     },
     {
       address: '0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2',
-      name: 'AAVE_LENDING_POOL_V3',
+      name: 'AAVE_LENDING_POOL',
       protocol: 'AAVE',
       version: 'V3',
     },
     {
       address: '0xdd3f50f8a6cafbe9b31a427582963f465e745af8',
-      name: 'ROCKET_POOL_V1.2',
+      name: 'ROCKET_POOL',
       protocol: 'ROCKET_POOL',
       version: 'V1.2',
     },
@@ -413,7 +454,7 @@ const determinants: DeterminantMap = {
     { id: '0x9871efa4', name: EXCHANGE, priority: 1 },
     { id: '0xca350aa6', name: WITHDRAW, protocol: 'COINBASE' },
     { id: '0x1a1da075', name: WITHDRAW, protocol: 'COINBASE' },
-    { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE_V1' },
+    { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE', version: 'V1' },
     { id: '0x98a128c5', name: CLAIM },
     { id: '0xdeff4b24', name: BRIDGE_IN },
     { id: '0xfb0f3ee1', name: TRANSFER },
@@ -625,6 +666,8 @@ const determinants: DeterminantMap = {
     {
       hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01',
       name: COLLECT,
+      protocol: 'UNISWAP',
+      version: 'V3',
       priority: 45,
     },
     // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager increase/decrease liquidity
@@ -634,12 +677,16 @@ const determinants: DeterminantMap = {
         '0x26f6a048ee9138f2c0ce266f322cb99228e8d619ae2bff30c67f8dcf9d2377b4',
       ],
       name: MODIFY_LIQUIDITY,
+      protocol: 'UNISWAP',
+      version: 'V3',
       priority: 45,
     },
     // pool ModifyLiquidity (Uniswap V4 and forks)
     {
       hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec',
       name: MODIFY_LIQUIDITY,
+      protocol: 'UNISWAP',
+      version: 'V4',
       priority: 45,
     },
     { hash: '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65', name: UNWRAP, priority: -1 },
@@ -699,17 +746,20 @@ const determinants: DeterminantMap = {
     {
       hashes: ['0x8d3ee0df6a4b7e82a7f20a763f1c6826e6176323e655af64f32318827d2112d4'],
       name: BRIDGE_OUT,
-      protocol: 'STARGATE_V1',
+      protocol: 'STARGATE',
+      version: 'V1',
     },
     {
       hashes: ['0x2bd2d8a84b748439fd50d79a49502b4eb5faa25b864da6a9ab5c150704be9a4d'],
       name: BRIDGE_IN,
-      protocol: 'STARGATE_V1',
+      protocol: 'STARGATE',
+      version: 'V1',
     },
     {
       hashes: ['0x85496b760a4b7f8d66384b9df21b381f5d1b1e79f229a47aaf4c232edc2fe59a'],
       name: BRIDGE_OUT,
-      protocol: 'STARGATE_V2',
+      protocol: 'STARGATE',
+      version: 'V2',
     },
     {
       hashes: [
@@ -717,7 +767,8 @@ const determinants: DeterminantMap = {
         '0xefed6d3500546b29533b128a29e3a94d70788727f0507505ac12eaf2e578fd9c',
       ],
       name: BRIDGE_IN,
-      protocol: 'STARGATE_V2',
+      protocol: 'STARGATE',
+      version: 'V2',
     },
     {
       hashes: ['0x7e50569d26be643bda7757722291ec66b1be66d8283474ae3fab5a98f878a7a2'],
@@ -758,11 +809,21 @@ const determinants: DeterminantMap = {
 const createMethodIdMap = (determinants: DeterminantMap) => {
   return determinants.methodIds.reduce((map, item) => {
     if (item.id) {
-      map[item.id] = { name: item.name, protocol: item.protocol, priority: item.priority }
+      map[item.id] = {
+        name: item.name,
+        protocol: item.protocol,
+        version: item.version,
+        priority: item.priority,
+      }
     }
     if (item.ids) {
       item.ids.forEach((id) => {
-        map[id] = { name: item.name, protocol: item.protocol, priority: item.priority }
+        map[id] = {
+          name: item.name,
+          protocol: item.protocol,
+          version: item.version,
+          priority: item.priority,
+        }
       })
     }
 
@@ -776,12 +837,18 @@ const createTopicHashMap = (determinants: DeterminantMap) => {
       map[item.topicsLength ? `${item.hash}#${item.topicsLength}` : item.hash] = {
         name: item.name,
         protocol: item.protocol,
+        version: item.version,
         priority: item.priority,
       }
     }
     if (item.hashes) {
       item.hashes.forEach((hash) => {
-        map[hash] = { name: item.name, protocol: item.protocol, priority: item.priority }
+        map[hash] = {
+          name: item.name,
+          protocol: item.protocol,
+          version: item.version,
+          priority: item.priority,
+        }
       })
     }
 

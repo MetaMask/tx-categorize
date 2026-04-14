@@ -10,12 +10,20 @@ export interface DeterminantMap {
     version?: string
     definingTrait?: string
   }>
-  methodIds: Array<{ id?: string; ids?: string[]; name: Action; protocol?: string; priority?: number }>
+  methodIds: Array<{
+    id?: string
+    ids?: string[]
+    name: Action
+    protocol?: string
+    version?: string
+    priority?: number
+  }>
   topics: Array<{
     hash?: string
     hashes?: string[]
     name: Action
     protocol?: string
+    version?: string
     topicsLength?: string
     priority?: number
   }>
@@ -25,6 +33,8 @@ export interface TxMetadata {
   transactionType?: string
   transactionCategory?: string
   transactionProtocol?: string
+  /** Suffix for transactionType / readable when version is not part of `transactionProtocol`. */
+  protocolVersion?: string
   toAddressName?: string
   readable?: string
 }
@@ -33,6 +43,7 @@ export interface MethodIdMap {
   [methodId: string]: {
     name: Action
     protocol?: string
+    version?: string
     priority?: number
   }
 }
@@ -41,6 +52,7 @@ export interface TopicHashMap {
   [topicHash: string]: {
     name: Action
     protocol?: string
+    version?: string
     priority?: number
   }
 }
