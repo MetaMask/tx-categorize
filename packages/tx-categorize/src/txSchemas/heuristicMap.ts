@@ -454,7 +454,7 @@ const determinants: DeterminantMap = {
     { id: '0x9871efa4', name: EXCHANGE, priority: 1 },
     { id: '0xca350aa6', name: WITHDRAW, protocol: 'COINBASE' },
     { id: '0x1a1da075', name: WITHDRAW, protocol: 'COINBASE' },
-    { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE' },
+    { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE_V1' },
     { id: '0x98a128c5', name: CLAIM },
     { id: '0xdeff4b24', name: BRIDGE_IN },
     { id: '0xfb0f3ee1', name: TRANSFER },
@@ -666,7 +666,6 @@ const determinants: DeterminantMap = {
     {
       hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01',
       name: COLLECT,
-      protocol: 'UNISWAP',
       priority: 45,
     },
     // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager increase/decrease liquidity
@@ -676,14 +675,12 @@ const determinants: DeterminantMap = {
         '0x26f6a048ee9138f2c0ce266f322cb99228e8d619ae2bff30c67f8dcf9d2377b4',
       ],
       name: MODIFY_LIQUIDITY,
-      protocol: 'UNISWAP',
       priority: 45,
     },
     // pool ModifyLiquidity (Uniswap V4 and forks)
     {
       hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec',
       name: MODIFY_LIQUIDITY,
-      protocol: 'UNISWAP',
       priority: 45,
     },
     { hash: '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65', name: UNWRAP, priority: -1 },
@@ -744,19 +741,16 @@ const determinants: DeterminantMap = {
       hashes: ['0x8d3ee0df6a4b7e82a7f20a763f1c6826e6176323e655af64f32318827d2112d4'],
       name: BRIDGE_OUT,
       protocol: 'STARGATE',
-      version: 'V1',
     },
     {
       hashes: ['0x2bd2d8a84b748439fd50d79a49502b4eb5faa25b864da6a9ab5c150704be9a4d'],
       name: BRIDGE_IN,
       protocol: 'STARGATE',
-      version: 'V1',
     },
     {
       hashes: ['0x85496b760a4b7f8d66384b9df21b381f5d1b1e79f229a47aaf4c232edc2fe59a'],
       name: BRIDGE_OUT,
       protocol: 'STARGATE',
-      version: 'V2',
     },
     {
       hashes: [
@@ -765,7 +759,6 @@ const determinants: DeterminantMap = {
       ],
       name: BRIDGE_IN,
       protocol: 'STARGATE',
-      version: 'V2',
     },
     {
       hashes: ['0x7e50569d26be643bda7757722291ec66b1be66d8283474ae3fab5a98f878a7a2'],
@@ -806,21 +799,11 @@ const determinants: DeterminantMap = {
 const createMethodIdMap = (determinants: DeterminantMap) => {
   return determinants.methodIds.reduce((map, item) => {
     if (item.id) {
-      map[item.id] = {
-        name: item.name,
-        protocol: item.protocol,
-        version: item.version,
-        priority: item.priority,
-      }
+      map[item.id] = { name: item.name, protocol: item.protocol, priority: item.priority }
     }
     if (item.ids) {
       item.ids.forEach((id) => {
-        map[id] = {
-          name: item.name,
-          protocol: item.protocol,
-          version: item.version,
-          priority: item.priority,
-        }
+        map[id] = { name: item.name, protocol: item.protocol, priority: item.priority }
       })
     }
 
@@ -834,18 +817,12 @@ const createTopicHashMap = (determinants: DeterminantMap) => {
       map[item.topicsLength ? `${item.hash}#${item.topicsLength}` : item.hash] = {
         name: item.name,
         protocol: item.protocol,
-        version: item.version,
         priority: item.priority,
       }
     }
     if (item.hashes) {
       item.hashes.forEach((hash) => {
-        map[hash] = {
-          name: item.name,
-          protocol: item.protocol,
-          version: item.version,
-          priority: item.priority,
-        }
+        map[hash] = { name: item.name, protocol: item.protocol, priority: item.priority }
       })
     }
 
