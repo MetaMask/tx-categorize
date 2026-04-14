@@ -58,6 +58,7 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
     }
 
     const strippedIncremented = incrementedStr.replace(/0+$/, '')
+
     return strippedIncremented ? `${whole}.${strippedIncremented}` : whole
   }
   if (roundedFraction === '0'.repeat(sigFigs)) {
@@ -80,6 +81,7 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
     return `0.${'0'.repeat(firstNonZeroIndex)}${digit}`
   }
   const strippedFraction = roundedFraction.replace(/0+$/, '')
+
   return strippedFraction ? `${whole}.${strippedFraction}` : whole
 }
 
