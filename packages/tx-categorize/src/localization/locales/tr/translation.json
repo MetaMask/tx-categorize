@@ -33,7 +33,7 @@
   "WITHDRAW_TOKEN": "Withdraw Token",
   "RECLAIM": "Reclaim",
   "PAYMENT": "Payment",
-  "MODIFY_LIQUIDITY": "Modify liquidity",
+  "MODIFY_LIQUIDITY": "Modify Liquidity",
   "CONTRACT_CALL": "Unidentified Transaction",
   "STANDARD": "Native Transfer"
 }
