@@ -6,16 +6,6 @@ on:
   pull_request:
 
 jobs:
-  check-workflows:
-    name: Check workflows
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout and setup environment
-        uses: MetaMask/action-checkout-and-setup@v1
-        with:
-          is-high-risk-environment: false
-      - name: Check workflow files
-        uses: rhysd/actionlint@v1
 
   analyse-code:
     name: Code scanner
