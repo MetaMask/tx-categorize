@@ -454,7 +454,7 @@ const determinants: DeterminantMap = {
     { id: '0x9871efa4', name: EXCHANGE, priority: 1 },
     { id: '0xca350aa6', name: WITHDRAW, protocol: 'COINBASE' },
     { id: '0x1a1da075', name: WITHDRAW, protocol: 'COINBASE' },
-    { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE', version: 'V1' },
+    { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE' },
     { id: '0x98a128c5', name: CLAIM },
     { id: '0xdeff4b24', name: BRIDGE_IN },
     { id: '0xfb0f3ee1', name: TRANSFER },
@@ -667,7 +667,6 @@ const determinants: DeterminantMap = {
       hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01',
       name: COLLECT,
       protocol: 'UNISWAP',
-      version: 'V3',
       priority: 45,
     },
     // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager increase/decrease liquidity
@@ -678,7 +677,6 @@ const determinants: DeterminantMap = {
       ],
       name: MODIFY_LIQUIDITY,
       protocol: 'UNISWAP',
-      version: 'V3',
       priority: 45,
     },
     // pool ModifyLiquidity (Uniswap V4 and forks)
@@ -686,7 +684,6 @@ const determinants: DeterminantMap = {
       hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec',
       name: MODIFY_LIQUIDITY,
       protocol: 'UNISWAP',
-      version: 'V4',
       priority: 45,
     },
     { hash: '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65', name: UNWRAP, priority: -1 },

@@ -25,7 +25,6 @@ export const determineTransactionMetadata = (input: DetermineTransactionMetadata
   if (toAddressContractMeta) {
     txMetadata.toAddressName = toAddressContractMeta?.name
     txMetadata.transactionProtocol = toAddressContractMeta?.protocol
-    txMetadata.protocolVersion = toAddressContractMeta?.version
 
     const methodIdMeta = methodIdMap[transaction.methodId]
 
@@ -38,14 +37,13 @@ export const determineTransactionMetadata = (input: DetermineTransactionMetadata
     if (methodIdMeta) {
       txMetadata.transactionProtocol = methodIdMeta.protocol
       txMetadata.transactionCategory = methodIdMeta?.name
-      txMetadata.protocolVersion = methodIdMeta.version
     }
   }
 
   // If we still don't have a transaction category, check the topics
   if (!txMetadata.transactionCategory || !txMetadata.transactionProtocol) {
     for (const topic of transaction.topics) {
-      const { name: topicName, protocol, version: topicVersion } = topicHashMap[topic] || {}
+      const { name: topicName, protocol } = topicHashMap[topic] || {}
 
       if (topicName) {
         txMetadata.transactionCategory = topicName
@@ -53,7 +51,6 @@ export const determineTransactionMetadata = (input: DetermineTransactionMetadata
 
       if (txMetadata.transactionCategory && !txMetadata.transactionProtocol) {
         txMetadata.transactionProtocol = protocol
-        txMetadata.protocolVersion = topicVersion
       }
     }
   }
@@ -68,8 +65,8 @@ export const determineTransactionMetadata = (input: DetermineTransactionMetadata
   if (transactionProtocol && transactionCategory) {
     const definingTrait = toAddressContractMeta?.definingTrait ?? ''
     const trait = definingTrait ? `${definingTrait}_` : ''
-    const rawVersion = txMetadata.protocolVersion || ''
-    const version = rawVersion ? `${rawVersion}_` : ''
+    const rawVersion = toAddressContractMeta?.version || ''
+    const version = toAddressContractMeta?.version ? toAddressContractMeta?.version + '_' : ''
 
     txMetadata.transactionType = `${transactionProtocol}_${trait}${version}${txMetadata.transactionCategory}`
 

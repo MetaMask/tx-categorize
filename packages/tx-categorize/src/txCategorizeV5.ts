@@ -27,7 +27,6 @@ const tryUpdateTransactionProtocol = (
   log: boolean,
   protocol?: string,
   priority = 0,
-  protocolVersion?: string,
 ) => {
   if (!protocol) return
   if (txMetadataPriorities.transactionProtocol < priority) {
@@ -35,7 +34,6 @@ const tryUpdateTransactionProtocol = (
       console.log('writing transactionProtocol', protocol)
     }
     txMetadata.transactionProtocol = protocol
-    txMetadata.protocolVersion = protocolVersion
     txMetadataPriorities.transactionProtocol = priority
   }
 }
@@ -98,14 +96,7 @@ export const determineTransactionMetadataV5 = (
     txMetadata.toAddressName = toAddressContractMeta?.name
     txMetadataPriorities.toAddressName = 0
 
-    tryUpdateTransactionProtocol(
-      txMetadata,
-      txMetadataPriorities,
-      log,
-      toAddressContractMeta?.protocol,
-      0,
-      toAddressContractMeta?.version,
-    )
+    tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, toAddressContractMeta?.protocol, 0)
 
     const methodIdMeta = methodIdMap[transaction.methodId]
 
@@ -123,7 +114,6 @@ export const determineTransactionMetadataV5 = (
         log,
         methodIdMeta.protocol,
         methodIdMeta.priority,
-        methodIdMeta.version,
       )
       tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, methodIdMeta?.name, methodIdMeta?.priority)
     }
@@ -140,7 +130,7 @@ export const determineTransactionMetadataV5 = (
   ) {
     if (log) console.log('missing transaction category or protocol, using tx topics', transaction.topics)
     for (const topic of transaction.topics) {
-      const { name: topicName, protocol, priority, version: topicProtocolVersion } = topicHashMap[topic] || {}
+      const { name: topicName, protocol, priority } = topicHashMap[topic] || {}
       if (!topicName && !protocol) {
         if (log) console.log('skipping topic', topic, 'due to no labeled topicName or protocol')
         continue
@@ -149,14 +139,7 @@ export const determineTransactionMetadataV5 = (
 
       // rollingPriority = priority
       if (topicName) {
-        tryUpdateTransactionProtocol(
-          txMetadata,
-          txMetadataPriorities,
-          log,
-          protocol,
-          priority,
-          topicProtocolVersion,
-        )
+        tryUpdateTransactionProtocol(txMetadata, txMetadataPriorities, log, protocol, priority)
         tryUpdateTransactionCategory(txMetadata, txMetadataPriorities, log, topicName, priority)
       }
     }
@@ -174,15 +157,12 @@ export const determineTransactionMetadataV5 = (
   if (transactionProtocol && transactionCategory) {
     const definingTrait = toAddressContractMeta?.definingTrait ?? ''
     const trait = definingTrait ? `${definingTrait}_` : ''
-    const version =
-      txMetadata.protocolVersion != null && txMetadata.protocolVersion !== ''
-        ? `${txMetadata.protocolVersion}_`
-        : ''
+    const version = toAddressContractMeta?.version ? toAddressContractMeta?.version + '_' : ''
 
     txMetadata.transactionType = `${transactionProtocol}_${trait}${version}${txMetadata.transactionCategory}`
 
     if (isI18nextInitialized(language ?? fallbackLng)) {
-      const rawVersion = txMetadata.protocolVersion || ''
+      const rawVersion = toAddressContractMeta?.version || ''
       const transactionProtocolToUse = maybeOverwriteProtocol(transactionProtocol)
       const protocol = titlecase(transactionProtocolToUse)
       const localizedReadable = `${protocol}${definingTrait && ` ${titlecase(definingTrait)}`}${
