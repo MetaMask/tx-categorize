@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Bridge Deposit",
   "BRIDGE_OUT": "Bridge Penarikan",
   "CLAIM": "Klaim",
+  "COLLECT": "Kumpulkan",
   "DOMAIN_TRANSFER": "Transfer Domain",
   "DOMAIN_REGISTER": "Daftarkan Domain",
   "DOMAIN_RESOLVER_SET": "Atur Resolusi Nama Domain",
@@ -32,6 +33,7 @@
   "WITHDRAW_TOKEN": "Tarik Token",
   "RECLAIM": "Klaim kembali",
   "PAYMENT": "Pembayaran",
+  "MODIFY_LIQUIDITY": "Ubah likuiditas",
   "CONTRACT_CALL": "Transaksi Tak Teridentifikasi",
   "STANDARD": "Transfer Asli"
 }

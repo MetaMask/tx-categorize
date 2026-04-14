@@ -9,6 +9,7 @@ const {
   BRIDGE_OUT,
   CANCEL_ORDER,
   CLAIM,
+  COLLECT,
   DEPOSIT,
   DOMAIN_REGISTER,
   EXCHANGE,
@@ -19,6 +20,7 @@ const {
   VOTE,
   REPAY,
   MINT,
+  MODIFY_LIQUIDITY,
   UNWRAP,
   DEPOSIT_TOKEN,
   DOMAIN_RENEW,
@@ -535,7 +537,26 @@ const determinants: DeterminantMap = {
     { hash: '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1', name: DEPOSIT },
     { hash: '0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde', name: DEPOSIT },
     { hash: '0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67', name: EXCHANGE, priority: 1 },
-    { hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01', name: WITHDRAW },
+    {
+      hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01', // Collect(uint256,address,uint256,uint256) — Uniswap V3 NonfungiblePositionManager
+      name: COLLECT,
+      protocol: 'UNISWAP_V3',
+      priority: 45,
+    },
+    {
+      hashes: [
+        '0x3067048beee31b25b2f1681f88dac838c8bba36af25bfb2b7cf7473a5847e35f', // IncreaseLiquidity (Uniswap V3 NonfungiblePositionManager)
+        '0x26f6a048ee9138f2c0ce266f322cb99228e8d619ae2bff30c67f8dcf9d2377b4', // DecreaseLiquidity (Uniswap V3 NonfungiblePositionManager)
+      ],
+      name: MODIFY_LIQUIDITY,
+      protocol: 'UNISWAP_V3',
+      priority: 45,
+    },
+    {
+      hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec', // ModifyLiquidity — same signature on Uniswap V4 and forks; no protocol here
+      name: MODIFY_LIQUIDITY,
+      priority: 45,
+    },
     { hash: '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65', name: UNWRAP, priority: -1 },
     { hash: '0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c', name: WRAP, priority: -1 },
     { hash: '0xde16772e5c4365a3057b0336ad2eef600c1aad8cd2b5b3146aded1c20da71866', name: WITHDRAW },

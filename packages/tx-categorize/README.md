@@ -212,7 +212,7 @@ Use the debugging script to test your new category:
 yarn categorize <tx_hash> <chain_id>
 
 # Example:
-yarn categorize 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef 1
+yarn categorize 0xf389bf1c4258ebb4b57c51444db204848c85be9de5e400fe2bd6fccfbffff951 1
 ```
 
 ### Step 6: Add Test Cases

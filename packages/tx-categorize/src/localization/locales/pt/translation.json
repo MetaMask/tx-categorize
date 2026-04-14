@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Depósito ponte",
   "BRIDGE_OUT": "Saque ponte",
   "CLAIM": "Reivindicar",
+  "COLLECT": "Coletar",
   "DOMAIN_TRANSFER": "Transferir domínio",
   "DOMAIN_REGISTER": "Registrar domínio",
   "DOMAIN_RESOLVER_SET": "Definir resolução de nome de domínio",
@@ -32,6 +33,7 @@
   "WITHDRAW_TOKEN": "Sacar token",
   "RECLAIM": "Recuperar",
   "PAYMENT": "Pagamento",
+  "MODIFY_LIQUIDITY": "Modificar liquidez",
   "CONTRACT_CALL": "Transação não identificada",
   "STANDARD": "Transferência nativa"
 }

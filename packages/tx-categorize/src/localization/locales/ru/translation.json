@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Депозит для моста",
   "BRIDGE_OUT": "Отмена моста",
   "CLAIM": "Получить",
+  "COLLECT": "Сбор",
   "DOMAIN_TRANSFER": "Передать домен",
   "DOMAIN_REGISTER": "Зарегистрировать домен",
   "DOMAIN_RESOLVER_SET": "Установить разрешение доменного имени",
@@ -32,6 +33,7 @@
   "WITHDRAW_TOKEN": "Вывести токен",
   "RECLAIM": "Вернуть",
   "PAYMENT": "Платеж",
+  "MODIFY_LIQUIDITY": "Изменение ликвидности",
   "CONTRACT_CALL": "Неидентифицированная транзакция",
   "STANDARD": "Нативный перевод"
 }
