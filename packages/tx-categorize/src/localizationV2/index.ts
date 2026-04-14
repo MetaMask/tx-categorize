@@ -4,6 +4,7 @@ import { TFunction, TOptionsBase, createInstance } from 'i18next'
 import Backend from 'i18next-fs-backend'
 
 import { Language } from '../localization'
+
 import enTranslations from './locales/en/translation.json'
 
 interface $Dictionary<T = unknown> {
