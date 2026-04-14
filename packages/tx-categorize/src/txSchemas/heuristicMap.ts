@@ -449,7 +449,7 @@ const determinants: DeterminantMap = {
     { id: '0xfc6f7865', name: WITHDRAW },
     { id: '0xac9650d8', name: EXCHANGE, priority: 1 },
     { id: '0x88316456', name: DEPOSIT },
-    { id: '0x80ed71e4', name: DEPOSIT }, // deposit(uint256,bool,address) — Convex CRV Depositor; pair with CONVEX_CRV_DEPOSITOR contract
+    { id: '0x80ed71e4', name: DEPOSIT }, // deposit(uint256,bool,address) — Convex CRV Depositor
     { id: '0xf7a16963', name: DOMAIN_REGISTER },
     { id: '0x18cbafe5', name: EXCHANGE, priority: 1 },
     { id: '0xc804c39a', name: CLAIM },

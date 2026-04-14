@@ -7,7 +7,6 @@ import {
   balancerDistributor,
   compoundCToken,
   compoundComptroller,
-  convexCrvDepositor,
   dappnodeDistributor,
   ensRegistrar,
   ensTokenContract,
@@ -47,7 +46,6 @@ export const ethereumSchemas: Array<TransactionSchema<SchemaV2>> = [
   arbitrumOutbox,
   balancerDistributor,
   compoundComptroller,
-  convexCrvDepositor,
   dappnodeDistributor,
   ensRegistrar,
   ensTokenContract,
@@ -165,20 +163,6 @@ export const ethereumSchemas: Array<TransactionSchema<SchemaV2>> = [
       priority: 40,
       type: 'STAKE',
       protocol: 'METAMASK_STAKE',
-    },
-  },
-  {
-    schema: {
-      key: 'methodId',
-      type: 'methodId',
-      methodId: ['0x80ed71e4'],
-      and: ['TO_CONVEX_CRV_DEPOSITOR'],
-    },
-    meta: {
-      name: 'CONVEX_CRV_DEPOSITOR_DEPOSIT',
-      priority: 40,
-      type: 'DEPOSIT',
-      protocol: 'CONVEX',
     },
   },
   {
