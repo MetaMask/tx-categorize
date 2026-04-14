@@ -496,49 +496,49 @@ const determinants: DeterminantMap = {
       name: EXCHANGE,
     },
     { hash: '0xac1020908b5f7134d59c1580838eba6fc42dd8c28bae65bf345676bba1913f8e', name: STAKE, priority: 10 },
-    // MetaMask pooled staking pool: 0x4FEF9D741011476750A243aC70b9789a63dd47Df (Ethereum)
+    // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking
     {
-      hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c', // Deposited — MetamaskPooledStakingAdapter; topic0 alone is not protocol-specific
+      hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
       name: STAKE,
       priority: 14,
     },
-    // Aave V3 stake tokens, e.g. stkAAVE 0x4da27a545c0c5B758a6BA100e3a049001de870f5, stkGHO 0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d, stkAAVEwstETHBPTv2 0x9eDA81C21C273a82Be9Bbc19B6A6182212068101 (Ethereum)
+    // 0x4da27a545c0c5B758a6BA100e3a049001de870f5 stkAAVE
     {
-      hash: '0x6c86f3fd5118b3aa8bb4f389a617046de0a3d3d477de1a1673d227f802f616dc', // Staked — AaveV3StakingAdapter; topic0 alone is not protocol-specific
+      hash: '0x6c86f3fd5118b3aa8bb4f389a617046de0a3d3d477de1a1673d227f802f616dc',
       name: STAKE,
       priority: 14,
     },
-    // Convex staked CVX pool: 0xCF50b810E57Ac33B91dCF525C6ddd9881B139332 (Ethereum); same topic on sidechain per-pool reward contracts
+    // 0xCF50b810E57Ac33B91dCF525C6ddd9881B139332 Convex staked CVX
     {
-      hash: '0x9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d', // Staked — ConvexStakedCvxAdapter / ConvexSidechainStakingAdapter; topic0 alone is not protocol-specific
+      hash: '0x9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d',
       name: STAKE,
       priority: 14,
     },
-    // CvxLockerV2: 0x72a19342e8F1838460eBFCCEf09F6585e32db86E (Ethereum)
+    // 0x72a19342e8F1838460eBFCCEf09F6585e32db86E CvxLockerV2 Staked
     {
-      hash: '0x9cfd25589d1eb8ad71e342a86a8524e83522e3936c0803048c08f6d9ad974f40', // Staked — ConvexLockedCvxAdapter; topic0 alone is not protocol-specific
+      hash: '0x9cfd25589d1eb8ad71e342a86a8524e83522e3936c0803048c08f6d9ad974f40',
       name: STAKE,
       priority: 14,
     },
-    // CvxLockerV2: 0x72a19342e8F1838460eBFCCEf09F6585e32db86E (Ethereum)
+    // 0x72a19342e8F1838460eBFCCEf09F6585e32db86E CvxLockerV2 RewardPaid
     {
-      hash: '0x540798df468d7b23d11f156fdb954cb19ad414d150722a7b6d55ba369dea792e', // RewardPaid(address,address,uint256) — CvxLockerV2; topic0 alone is not protocol-specific
+      hash: '0x540798df468d7b23d11f156fdb954cb19ad414d150722a7b6d55ba369dea792e',
       name: CLAIM,
       priority: 14,
     },
-    // RewardPaid(address,uint256) — Convex reward pools / cvxCRV reward hook / booster-style contracts (not locker). Example log: https://etherscan.io/tx/0x0284cd0f82bdc578fb568783854de62ef8acfa0b1ea0845d27416686f9611277#eventlog
+    // Convex reward pool RewardPaid
     {
       hash: '0xe2403640ba68fed3a2f88b7557551d1993f84b99bb10ff833f0cf8db0c5e0486',
       name: CLAIM,
       priority: 14,
     },
-    // veBAL VotingEscrow: 0xC128a9954e6c874eA3d62ce62B468bA073093F25 (Ethereum)
+    // 0xC128a9954e6c874eA3d62ce62B468bA073093F25 veBAL VotingEscrow
     {
-      hash: '0x4566dfc29f6f11d13a418c26a02bef7c28bae749d4de47e4e6a7cddea6730d59', // Deposit — BalancerV2VestingAdapter; topic0 alone is not protocol-specific
+      hash: '0x4566dfc29f6f11d13a418c26a02bef7c28bae749d4de47e4e6a7cddea6730d59',
       name: STAKE,
       priority: 14,
     },
-    // AddLiquidity(address,uint256[2],uint256,uint256,uint256) — Curve crypto pools (e.g. Twocrypto NG); log address = pool. Example pool: 0x8a4fc4A9Bc8Ea6a7d26fAc88F2c75A4262457500
+    // 0x8a4fc4A9Bc8Ea6a7d26fAc88F2c75A4262457500 Curve pool AddLiquidity
     {
       hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
       name: DEPOSIT,
@@ -620,23 +620,26 @@ const determinants: DeterminantMap = {
     { hash: '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1', name: DEPOSIT },
     { hash: '0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde', name: DEPOSIT },
     { hash: '0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67', name: EXCHANGE, priority: 1 },
+    // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager Collect
     {
-      hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01', // Collect(uint256,address,uint256,uint256) — Uniswap V3 NonfungiblePositionManager
+      hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01',
       name: COLLECT,
       protocol: 'UNISWAP_V3',
       priority: 45,
     },
+    // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager increase/decrease liquidity
     {
       hashes: [
-        '0x3067048beee31b25b2f1681f88dac838c8bba36af25bfb2b7cf7473a5847e35f', // IncreaseLiquidity (Uniswap V3 NonfungiblePositionManager)
-        '0x26f6a048ee9138f2c0ce266f322cb99228e8d619ae2bff30c67f8dcf9d2377b4', // DecreaseLiquidity (Uniswap V3 NonfungiblePositionManager)
+        '0x3067048beee31b25b2f1681f88dac838c8bba36af25bfb2b7cf7473a5847e35f',
+        '0x26f6a048ee9138f2c0ce266f322cb99228e8d619ae2bff30c67f8dcf9d2377b4',
       ],
       name: MODIFY_LIQUIDITY,
       protocol: 'UNISWAP_V3',
       priority: 45,
     },
+    // pool ModifyLiquidity (Uniswap V4 and forks)
     {
-      hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec', // ModifyLiquidity — same signature on Uniswap V4 and forks; no protocol here
+      hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec',
       name: MODIFY_LIQUIDITY,
       priority: 45,
     },

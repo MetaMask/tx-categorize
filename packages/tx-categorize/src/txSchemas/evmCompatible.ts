@@ -864,7 +864,7 @@ export const evmCompatibleSchemas: Array<TransactionSchema<SchemaV2>> = [
     schema: {
       key: 'topics',
       type: 'topics',
-      topics: ['0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01'], // Collect (NPM); not pool Burn
+      topics: ['0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01'],
     },
     meta: {
       name: 'UNISWAP_V3_WITHDRAW',
