@@ -98,6 +98,11 @@ const determinants: DeterminantMap = {
     { address: '0xb8901acb165ed027e32754e0ffe830802919727f', name: 'HOP_PROTOCOL', protocol: 'HOP' },
     { address: '0xba12222222228d8ba445958a75a0704d566bf2c8', name: 'BALANCER_VAULT', protocol: 'BALANCER' },
     {
+      address: '0x8a4fc4a9bc8ea6a7d26fac88f2c75a4262457500',
+      name: 'CURVE_POOL',
+      protocol: 'CURVE',
+    },
+    {
       address: '0x80a64c6d7f12c47b7c66c5b4e20e72bc1fcd5d9e',
       name: 'MAESTRO_ROUTER',
       protocol: 'MAESTRO',
@@ -488,7 +493,8 @@ const determinants: DeterminantMap = {
     { id: '0x40c10f19', name: MINT, protocol: 'ERC_20', priority: 100 },
     { id: '0xa9059cbb', name: TRANSFER, protocol: 'ERC_20', priority: 99 },
     { id: '0x38ed1739', name: EXCHANGE, priority: 1 },
-    { id: '0xfc6f7865', name: WITHDRAW },
+    { id: '0xfc6f7865', name: COLLECT },
+    { id: '0x0c49ccbe', name: WITHDRAW },
     { id: '0xac9650d8', name: EXCHANGE, priority: 1 },
     { id: '0x88316456', name: DEPOSIT },
     { id: '0x80ed71e4', name: DEPOSIT }, // deposit(uint256,bool,address) — Convex CRV Depositor
@@ -580,10 +586,11 @@ const determinants: DeterminantMap = {
       name: STAKE,
       priority: 14,
     },
-    // 0x8a4fc4A9Bc8Ea6a7d26fAc88F2c75A4262457500 Curve pool AddLiquidity
+    // AddLiquidity at pool 0x8a4fc4a9bc8ea6a7d26fac88f2c75a4262457500; protocol beats ERC_20 Transfer in topic pass
     {
       hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
       name: DEPOSIT,
+      protocol: 'CURVE',
       priority: 14,
     },
     { hash: '0x936c2ca3b35d2d0b24057b0675c459e4515f48fe132d138e213ae59ffab7f53e', name: BRIDGE_OUT },
