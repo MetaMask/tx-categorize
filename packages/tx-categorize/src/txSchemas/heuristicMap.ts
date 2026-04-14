@@ -293,6 +293,40 @@ const determinants: DeterminantMap = {
       version: 'V1',
     },
     {
+      address: '0x4fef9d741011476750a243ac70b9789a63dd47df',
+      name: 'METAMASK_POOLED_STAKING',
+      protocol: 'METAMASK_STAKE',
+    },
+    {
+      addresses: [
+        '0x4da27a545c0c5b758a6ba100e3a049001de870f5',
+        '0x1a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d',
+        '0x9eda81c21c273a82be9bbc19b6a6182212068101',
+      ],
+      name: 'AAVE_V3_STAKE_TOKEN',
+      protocol: 'AAVE',
+    },
+    {
+      address: '0xcf50b810e57ac33b91dcf525c6ddd9881b139332',
+      name: 'CONVEX_STAKED_CVX_POOL',
+      protocol: 'CONVEX',
+    },
+    {
+      address: '0x72a19342e8f1838460ebfccef09f6585e32db86e',
+      name: 'CONVEX_CVX_LOCKER_V2',
+      protocol: 'CONVEX',
+    },
+    {
+      address: '0x8014595f2ab54cd7c604b00e9fb932176fdc86ae',
+      name: 'CONVEX_CRV_DEPOSITOR',
+      protocol: 'CONVEX',
+    },
+    {
+      address: '0xc128a9954e6c874ea3d62ce62b468ba073093f25',
+      name: 'BALANCER_VE_BAL',
+      protocol: 'BALANCER',
+    },
+    {
       addresses: [
         '0x881d40237659c251811cec9c364ef91dc08d300c',
         '0x1a1ec25DC08e98e5E93F1104B5e5cdD298707d31',
@@ -415,6 +449,11 @@ const determinants: DeterminantMap = {
     { id: '0xfc6f7865', name: WITHDRAW },
     { id: '0xac9650d8', name: EXCHANGE, priority: 1 },
     { id: '0x88316456', name: DEPOSIT },
+    {
+      id: '0x80ed71e4',
+      name: DEPOSIT,
+      priority: 20,
+    }, // deposit(uint256,bool,address) — Convex CRV Depositor; pair with CONVEX_CRV_DEPOSITOR contract
     { id: '0xf7a16963', name: DOMAIN_REGISTER },
     { id: '0x18cbafe5', name: EXCHANGE, priority: 1 },
     { id: '0xc804c39a', name: CLAIM },
@@ -461,6 +500,55 @@ const determinants: DeterminantMap = {
       name: EXCHANGE,
     },
     { hash: '0xac1020908b5f7134d59c1580838eba6fc42dd8c28bae65bf345676bba1913f8e', name: STAKE, priority: 10 },
+    // mmi-defi-adapters `userEvent.topic0` (non–ERC20 Transfer). Example emitters from adapters-library:
+    // MetaMask pooled staking pool: 0x4FEF9D741011476750A243aC70b9789a63dd47Df (Ethereum)
+    {
+      hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c', // Deposited — MetamaskPooledStakingAdapter; topic0 alone is not protocol-specific
+      name: STAKE,
+      priority: 14,
+    },
+    // Aave V3 stake tokens, e.g. stkAAVE 0x4da27a545c0c5B758a6BA100e3a049001de870f5, stkGHO 0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d, stkAAVEwstETHBPTv2 0x9eDA81C21C273a82Be9Bbc19B6A6182212068101 (Ethereum)
+    {
+      hash: '0x6c86f3fd5118b3aa8bb4f389a617046de0a3d3d477de1a1673d227f802f616dc', // Staked — AaveV3StakingAdapter; topic0 alone is not protocol-specific
+      name: STAKE,
+      priority: 14,
+    },
+    // Convex staked CVX pool: 0xCF50b810E57Ac33B91dCF525C6ddd9881B139332 (Ethereum); same topic on sidechain per-pool reward contracts
+    {
+      hash: '0x9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d', // Staked — ConvexStakedCvxAdapter / ConvexSidechainStakingAdapter; topic0 alone is not protocol-specific
+      name: STAKE,
+      priority: 14,
+    },
+    // CvxLockerV2: 0x72a19342e8F1838460eBFCCEf09F6585e32db86E (Ethereum)
+    {
+      hash: '0x9cfd25589d1eb8ad71e342a86a8524e83522e3936c0803048c08f6d9ad974f40', // Staked — ConvexLockedCvxAdapter; topic0 alone is not protocol-specific
+      name: STAKE,
+      priority: 14,
+    },
+    // CvxLockerV2: 0x72a19342e8F1838460eBFCCEf09F6585e32db86E (Ethereum)
+    {
+      hash: '0x540798df468d7b23d11f156fdb954cb19ad414d150722a7b6d55ba369dea792e', // RewardPaid(address,address,uint256) — CvxLockerV2; topic0 alone is not protocol-specific
+      name: CLAIM,
+      priority: 14,
+    },
+    // RewardPaid(address,uint256) — Convex reward pools / cvxCRV reward hook / booster-style contracts (not locker). Example log: https://etherscan.io/tx/0x0284cd0f82bdc578fb568783854de62ef8acfa0b1ea0845d27416686f9611277#eventlog
+    {
+      hash: '0xe2403640ba68fed3a2f88b7557551d1993f84b99bb10ff833f0cf8db0c5e0486',
+      name: CLAIM,
+      priority: 14,
+    },
+    // veBAL VotingEscrow: 0xC128a9954e6c874eA3d62ce62B468bA073093F25 (Ethereum)
+    {
+      hash: '0x4566dfc29f6f11d13a418c26a02bef7c28bae749d4de47e4e6a7cddea6730d59', // Deposit — BalancerV2VestingAdapter; topic0 alone is not protocol-specific
+      name: STAKE,
+      priority: 14,
+    },
+    // AddLiquidity(address,uint256[2],uint256,uint256,uint256) — Curve crypto pools (e.g. Twocrypto NG); log address = pool. Example pool: 0x8a4fc4A9Bc8Ea6a7d26fAc88F2c75A4262457500
+    {
+      hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
+      name: DEPOSIT,
+      priority: 16,
+    },
     { hash: '0x936c2ca3b35d2d0b24057b0675c459e4515f48fe132d138e213ae59ffab7f53e', name: BRIDGE_OUT },
     { hash: '0x1e77446728e5558aa1b7e81e0cdab9cc1b075ba893b740600c76a315c2caa553', name: BORROW },
     { hash: '0xc12c57b1c73a2c3a2ea4613e9476abb3d8d146857aab7329e24243fb59710c82', name: DEPOSIT },

@@ -899,7 +899,116 @@ export const evmCompatibleSchemas: Array<TransactionSchema<SchemaV2>> = [
       name: 'V4_POOL_MODIFY_LIQUIDITY',
       priority: 45,
       type: 'MODIFY_LIQUIDITY',
-      protocol: 'V4_POOL',
+      protocol: '',
+    },
+  },
+  // Example contract: MetaMask pooled staking 0x4FEF9D741011476750A243aC70b9789a63dd47Df (Ethereum) — protocol on `METAMASK_POOLED_STAKING` in heuristicMap contracts
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c'],
+    },
+    meta: {
+      name: 'METAMASK_POOLED_STAKING_DEPOSITED',
+      priority: 14,
+      type: 'STAKE',
+      protocol: '',
+    },
+  },
+  // Example: stkAAVE / stkGHO / stkAAVEwstETHBPTv2 — protocol on `AAVE_V3_STAKE_TOKEN` in heuristicMap contracts
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x6c86f3fd5118b3aa8bb4f389a617046de0a3d3d477de1a1673d227f802f616dc'],
+    },
+    meta: {
+      name: 'AAVE_STAKED_STAKE_TOKEN',
+      priority: 14,
+      type: 'STAKE',
+      protocol: '',
+    },
+  },
+  // Example: Convex staked CVX pool / locker / veBAL — protocol on `CONVEX_*` / `BALANCER_VE_BAL` in heuristicMap contracts
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d'],
+    },
+    meta: {
+      name: 'CONVEX_REWARD_POOL_STAKED',
+      priority: 14,
+      type: 'STAKE',
+      protocol: '',
+    },
+  },
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x9cfd25589d1eb8ad71e342a86a8524e83522e3936c0803048c08f6d9ad974f40'],
+    },
+    meta: {
+      name: 'CONVEX_LOCKER_STAKED',
+      priority: 14,
+      type: 'STAKE',
+      protocol: '',
+    },
+  },
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x540798df468d7b23d11f156fdb954cb19ad414d150722a7b6d55ba369dea792e'],
+    },
+    meta: {
+      name: 'CONVEX_LOCKER_REWARD_PAID',
+      priority: 14,
+      type: 'CLAIM',
+      protocol: '',
+    },
+  },
+  // RewardPaid(address,uint256) — ConvexRewardPool / cvxCRV reward etc.; e.g. https://etherscan.io/tx/0x0284cd0f82bdc578fb568783854de62ef8acfa0b1ea0845d27416686f9611277#eventlog
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0xe2403640ba68fed3a2f88b7557551d1993f84b99bb10ff833f0cf8db0c5e0486'],
+    },
+    meta: {
+      name: 'CONVEX_POOL_REWARD_PAID',
+      priority: 14,
+      type: 'CLAIM',
+      protocol: '',
+    },
+  },
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x4566dfc29f6f11d13a418c26a02bef7c28bae749d4de47e4e6a7cddea6730d59'],
+    },
+    meta: {
+      name: 'BALANCER_V2_VE_DEPOSIT',
+      priority: 14,
+      type: 'STAKE',
+      protocol: '',
+    },
+  },
+  // AddLiquidity(address,uint256[2],uint256,uint256,uint256) — Curve crypto pool; e.g. https://etherscan.io/tx/0xa0051bc2323b729274c4be4e0bf9d51c9a406725dcc3d6b654b281dd762873e4#eventlog
+  {
+    schema: {
+      key: 'topics',
+      type: 'topics',
+      topics: ['0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9'],
+    },
+    meta: {
+      name: 'CURVE_POOL_ADD_LIQUIDITY',
+      priority: 16,
+      type: 'DEPOSIT',
+      protocol: '',
     },
   },
   {

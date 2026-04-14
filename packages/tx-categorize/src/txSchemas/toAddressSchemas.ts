@@ -276,6 +276,21 @@ export const metamaskThirdPartyStake: TransactionSchema<SchemaV2> = {
   },
 }
 
+export const convexCrvDepositor: TransactionSchema<SchemaV2> = {
+  schema: {
+    key: 'toAddress',
+    type: 'addresses',
+    addresses: ['0x8014595f2ab54cd7c604b00e9fb932176fdc86ae'],
+  },
+  meta: {
+    name: 'TO_CONVEX_CRV_DEPOSITOR',
+    priority: 20,
+    type: 'TO',
+    protocol: 'CONVEX',
+    excludeFromBuild: true,
+  },
+}
+
 const getMetamaskSwapRouterByContractAddress = (
   address: string,
   version: 'V1' | 'V2' = 'V1',
