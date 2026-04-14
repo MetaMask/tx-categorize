@@ -24,7 +24,7 @@ export const resetI18nextV2 = () => {
   i18nInstancesV2 = {}
 }
 
-export const initializeI18nextV2 = (language: Language = fallbackLngV2) => {
+export const initializeI18nextV2 = async (language: Language = fallbackLngV2) => {
   if (isI18nextV2Initialized(language)) {
     console.warn('i18next V2 is already initialized')
 
