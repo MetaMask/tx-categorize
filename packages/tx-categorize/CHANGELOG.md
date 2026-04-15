@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0]
+
 ## [1.0.0]
 
 ### Uncategorized
@@ -41,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/MetaMask/tx-categorize/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/MetaMask/tx-categorize/releases/tag/v0.1.0
