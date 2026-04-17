@@ -59,7 +59,7 @@ const getTxWithLogsFromPrimitives = async (
 ): Promise<SingleTransactionResponse> => {
   if (!isNockConfigured) {
     nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
-    nock.back.setMode((process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'record')
+    nock.back.setMode((process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'lockdown')
     isNockConfigured = true
   }
 
@@ -236,7 +236,7 @@ describe('#txCategorizeV6', () => {
           subjectAddress: createAccountId(data.from, chainId),
         },
         Language.en,
-        true,
+        false,
         49,
       )
       expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
@@ -251,7 +251,7 @@ describe('#txCategorizeV6', () => {
           subjectAddress: createAccountId(data.from, chainId),
         },
         Language.en,
-        true,
+        false,
         49,
       )
       expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
@@ -269,7 +269,7 @@ describe('#txCategorizeV6', () => {
           subjectAddress: createAccountId(data.from, chainId),
         },
         Language.en,
-        true,
+        false,
         49,
       )
       expect(`${categorizedTx['readable']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
@@ -287,7 +287,7 @@ describe('#txCategorizeV6', () => {
           subjectAddress: createAccountId(data.from, chainId),
         },
         Language.en,
-        true,
+        false,
         49,
       )
       expect(`${categorizedTx['readable']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
