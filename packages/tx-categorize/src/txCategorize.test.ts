@@ -86,7 +86,7 @@ const pickCategorizationForSnapshot = (meta: {
   readable: meta.readable,
 })
 
-type CategorizationSnapshotRow = {
+interface CategorizationSnapshotRow {
   txHash: string
   v5: ReturnType<typeof pickCategorizationForSnapshot>
   v6: ReturnType<typeof pickCategorizationForSnapshot>
@@ -109,6 +109,7 @@ const buildV5V6SnapshotForCases = async (
       v6: pickCategorizationForSnapshot(v6),
     }
   }
+
   return out
 }
 
