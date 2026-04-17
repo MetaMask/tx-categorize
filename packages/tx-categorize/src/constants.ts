@@ -38,8 +38,6 @@ export const getSchemaByChainId = (chainId: ChainId) => {
   return chainIdToSchemaMap[chainId]
 }
 
-export const DEFAULT_SIGNIFICANT_FIGURES = 5
-
 export const titlecaseExceptions: Record<string, string> = {
   METAMASK: 'MetaMask',
   SUSHISWAP: 'SushiSwap',

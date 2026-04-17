@@ -154,6 +154,17 @@ describe('formatCompactNumber', () => {
     expect(formatCompactNumber('42')).toBe('42')
     expect(formatCompactNumber('999')).toBe('999')
   })
+
+  it('promotes to next tier when rounding crosses a boundary', () => {
+    // K → M boundary: 999999.5 / 1000 = 999.9995, toFixed(2) → "1000.00"
+    expect(formatCompactNumber('999999.5')).toBe('1M')
+    // M → B boundary
+    expect(formatCompactNumber('999999500')).toBe('1B')
+    // B → T boundary
+    expect(formatCompactNumber('999999500000')).toBe('1T')
+    // sub-K → K boundary: 999.99999 toFixed(4) → "1000.0000"
+    expect(formatCompactNumber('999.99999')).toBe('1K')
+  })
 })
 
 describe('interpolateTemplate', () => {

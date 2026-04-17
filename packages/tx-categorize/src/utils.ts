@@ -56,12 +56,25 @@ export const formatCompactNumber = (decimalValue: string): string => {
   for (const [threshold, suffix] of COMPACT_SUFFIXES) {
     if (absNum >= threshold) {
       const scaled = absNum / threshold
+      const rounded = parseFloat(scaled.toFixed(2))
 
-      return `${parseFloat(scaled.toFixed(2))}${suffix}`
+      // If rounding pushed us across a tier boundary (e.g. 999.9995 K → 1000 K),
+      // re-format the rounded-up absolute value so the correct suffix is chosen.
+      if (rounded >= 1000) {
+        return formatCompactNumber((rounded * threshold).toString())
+      }
+
+      return `${rounded}${suffix}`
     }
   }
 
-  return parseFloat(absNum.toFixed(4)).toString()
+  // For values < 1000 that round up to 1000, promote to K tier
+  const rounded = parseFloat(absNum.toFixed(4))
+  if (rounded >= 1000) {
+    return formatCompactNumber(rounded.toString())
+  }
+
+  return rounded.toString()
 }
 
 export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: number) => {
