@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0]
+
+## [1.0.0]
+
+### Uncategorized
+
+- fix: lint
+- APIPLAT-2189 - feat: interpolation for asset symbol/quantity readable labels ([#22](https://github.com/MetaMask/tx-categorize/pull/22))
+- fix: mark async fn as async
+- feat: add uniswap v4 position manager addresses ([#20](https://github.com/MetaMask/tx-categorize/pull/20))
+- fix: strip trailing zeroes
+- fix: requested changes
+- fix: updated
+- fix: clean up
+- feat: adding some new handling in v6 for compound categories
+- chore: clean up utils
+- chore: clean up
+- feat: interpolation for asset symbol/quantity readable labels
+- feat: record and replay tx-categorize API fixtures with nock ([#21](https://github.com/MetaMask/tx-categorize/pull/21))
+
 ## [0.1.0]
 
 ### Uncategorized
@@ -23,5 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/MetaMask/tx-categorize/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/MetaMask/tx-categorize/releases/tag/v0.1.0
