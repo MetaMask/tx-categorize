@@ -7,11 +7,22 @@ import nock from 'nock'
 import { ChainId } from './networks'
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
 import { determineTransactionMetadataV6 } from './txCategorizeV6'
-import { initializeI18nextV2 } from './localizationV2'
 
-import { Language, Log, ValueTransfer, determineTransactionMetadataV5, initializeI18next } from './index'
+import {
+  Language,
+  Log,
+  ValueTransfer,
+  determineTransactionMetadataV5,
+  initializeI18next,
+  initializeI18nextV2,
+} from './index'
 
 jest.setTimeout(30 * 1000)
+
+beforeAll(async () => {
+  await Promise.resolve(initializeI18next(Language.en))
+  await initializeI18nextV2(Language.en)
+})
 
 interface Tx {
   logs?: Log[]
@@ -114,10 +125,6 @@ const buildV5V6SnapshotForCases = async (
 }
 
 describe('#txCategorizeV2', () => {
-  // initialize i18next
-  beforeAll(async () => {
-    initializeI18next(Language.en)
-  })
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const { data } = await getTxWithLogsFromPrimitives(txHash)
@@ -214,10 +221,6 @@ describe('#txCategorizeV2', () => {
 })
 
 describe('#txCategorizeV6', () => {
-  // initialize i18next V2 for enriched templates
-  beforeAll(async () => {
-    await initializeI18nextV2(Language.en)
-  })
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
