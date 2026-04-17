@@ -7,11 +7,22 @@ import nock from 'nock'
 import { ChainId } from './networks'
 import { lineaTxTestCases, txTestCases } from './testCases.mock'
 import { determineTransactionMetadataV6 } from './txCategorizeV6'
-import { initializeI18nextV2 } from './localizationV2'
 
-import { Language, Log, ValueTransfer, determineTransactionMetadataV5, initializeI18next } from './index'
+import {
+  Language,
+  Log,
+  ValueTransfer,
+  determineTransactionMetadataV5,
+  initializeI18next,
+  initializeI18nextV2,
+} from './index'
 
 jest.setTimeout(30 * 1000)
+
+beforeAll(async () => {
+  await Promise.resolve(initializeI18next(Language.en))
+  await initializeI18nextV2(Language.en)
+})
 
 interface Tx {
   logs?: Log[]
@@ -71,11 +82,49 @@ const getTxWithLogsFromPrimitives = async (
   }
 }
 
+/** Serializable slice of metadata for snapshot visibility (V5 vs V6). */
+const pickCategorizationForSnapshot = (meta: {
+  transactionType?: string
+  transactionCategory?: string
+  transactionProtocol?: string
+  toAddressName?: string
+  readable?: string
+}) => ({
+  transactionType: meta.transactionType,
+  transactionCategory: meta.transactionCategory,
+  transactionProtocol: meta.transactionProtocol,
+  toAddressName: meta.toAddressName,
+  readable: meta.readable,
+})
+
+interface CategorizationSnapshotRow {
+  txHash: string
+  v5: ReturnType<typeof pickCategorizationForSnapshot>
+  v6: ReturnType<typeof pickCategorizationForSnapshot>
+}
+
+const buildV5V6SnapshotForCases = async (
+  cases: Record<string, string>,
+  chainId: ChainId,
+): Promise<Record<string, CategorizationSnapshotRow>> => {
+  const out: Record<string, CategorizationSnapshotRow> = {}
+  const sorted = Object.entries(cases).sort(([a], [b]) => a.localeCompare(b))
+  for (const [category, txHash] of sorted) {
+    const { data, chainId: responseChainId } = await getTxWithLogsFromPrimitives(txHash, chainId)
+    const subjectAddress = createAccountId(data.from, responseChainId)
+    const v5 = determineTransactionMetadataV5({ transaction: data }, Language.en, false, 49)
+    const v6 = determineTransactionMetadataV6({ transaction: data, subjectAddress }, Language.en, false, 49)
+    out[category] = {
+      txHash,
+      v5: pickCategorizationForSnapshot(v5),
+      v6: pickCategorizationForSnapshot(v6),
+    }
+  }
+
+  return out
+}
+
 describe('#txCategorizeV2', () => {
-  // initialize i18next
-  beforeAll(async () => {
-    initializeI18next(Language.en)
-  })
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const { data } = await getTxWithLogsFromPrimitives(txHash)
@@ -172,10 +221,6 @@ describe('#txCategorizeV2', () => {
 })
 
 describe('#txCategorizeV6', () => {
-  // initialize i18next V2 for enriched templates
-  beforeAll(async () => {
-    await initializeI18nextV2(Language.en)
-  })
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
@@ -292,5 +337,15 @@ describe('#txCategorizeV6', () => {
     )
     // Spender should be extracted from the Approval event log
     expect(categorizedTxV5['readable']).toMatch(/Approved 0x[0-9a-f]+ to spend/)
+  })
+})
+
+describe('V5 / V6 categorization snapshots (alongside nock HTTP fixtures)', () => {
+  it('matches snapshot for all ethereum txTestCases', async () => {
+    expect(await buildV5V6SnapshotForCases(txTestCases, ChainId.ETHEREUM)).toMatchSnapshot()
+  })
+
+  it('matches snapshot for all lineaTxTestCases', async () => {
+    expect(await buildV5V6SnapshotForCases(lineaTxTestCases, ChainId.LINEA)).toMatchSnapshot()
   })
 })
