@@ -90,7 +90,7 @@ describe('localizationV2 interpolation', () => {
           makeValueTransfer({ symbol: 'USDC', amount: '1000000000', decimal: 6 }),
         ],
       })
-      expect(result).toBe('Swapped 1 ETH for 2000 DAI and 1000 USDC')
+      expect(result).toBe('Swapped 1 ETH for 2K DAI and 1K USDC')
     })
   })
 

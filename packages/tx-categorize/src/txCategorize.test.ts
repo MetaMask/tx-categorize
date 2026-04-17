@@ -5,7 +5,12 @@ import { type CaipAccountId } from '@metamask/utils'
 import nock from 'nock'
 
 import { ChainId } from './networks'
-import { lineaTxTestCases, txTestCases } from './testCases.mock'
+import {
+  lineaTxTestCaseReadableLabels,
+  lineaTxTestCases,
+  txTestCaseReadableLabels,
+  txTestCases,
+} from './testCases.mock'
 import { determineTransactionMetadataV6 } from './txCategorizeV6'
 
 import {
@@ -252,6 +257,50 @@ describe('#txCategorizeV6', () => {
       expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
+  it('produces correct readable labels for ethereum txs', async () => {
+    for (const [txCategory, txHash] of Object.entries(txTestCases)) {
+      const expectedReadable = txTestCaseReadableLabels[txCategory]
+      if (!expectedReadable) continue
+
+      const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+      const categorizedTx = determineTransactionMetadataV6(
+        {
+          transaction: data,
+          subjectAddress: createAccountId(data.from, chainId),
+        },
+        Language.en,
+        true,
+        49,
+      )
+      expect(`${categorizedTx['readable']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
+    }
+  })
+  it('produces correct readable labels for linea txs', async () => {
+    for (const [txCategory, txHash] of Object.entries(lineaTxTestCases)) {
+      const expectedReadable = lineaTxTestCaseReadableLabels[txCategory]
+      if (!expectedReadable) continue
+
+      const { data, chainId } = await getTxWithLogsFromPrimitives(txHash, ChainId.LINEA)
+      const categorizedTx = determineTransactionMetadataV6(
+        {
+          transaction: data,
+          subjectAddress: createAccountId(data.from, chainId),
+        },
+        Language.en,
+        true,
+        49,
+      )
+      expect(`${categorizedTx['readable']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
+    }
+  })
+  it('has readable label entries for all ethereum test cases', () => {
+    const missingLabels = Object.keys(txTestCases).filter((key) => !(key in txTestCaseReadableLabels))
+    expect(missingLabels).toEqual([])
+  })
+  it('has readable label entries for all linea test cases', () => {
+    const missingLabels = Object.keys(lineaTxTestCases).filter((key) => !(key in lineaTxTestCaseReadableLabels))
+    expect(missingLabels).toEqual([])
+  })
   it('properly attaches a label to a GENERIC_CONTRACT_CALL tx', async () => {
     const txHash = txTestCases['GENERIC_CONTRACT_CALL']
     if (!txHash) {
@@ -333,7 +382,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Token: Sent 0.00436 MKR')
+    expect(categorizedTxV5['readable']).toBe('Token: Sent 0.0044 MKR')
   })
   it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
     const txHash = txTestCases['ERC_20_APPROVE']
