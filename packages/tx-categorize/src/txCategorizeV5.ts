@@ -1,3 +1,4 @@
+import { DUST_THRESHOLD_WEI } from './constants'
 import { Language, fallbackLng, isI18nextInitialized, t } from './localization'
 import { contractAddressMap, methodIdMap, topicHashMap } from './txSchemas/heuristicMap'
 import { DetermineTransactionMetadataInputV5, TxMetadata } from './types'
@@ -225,7 +226,6 @@ export const determineTransactionMetadataV5 = (
       txMetadata.readable = `${t('STANDARD', {}, language)}`
     }
     // Dust native transfers (< 0.0001 ETH) are likely spam
-    const DUST_THRESHOLD_WEI = BigInt('100000000000000') // 0.0001 ETH
     if (
       txMetadata.transactionCategory === 'STANDARD' &&
       transaction.value &&

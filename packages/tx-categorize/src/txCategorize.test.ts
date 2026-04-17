@@ -299,7 +299,7 @@ describe('#txCategorizeV6', () => {
       49,
     )
     expect(categorizedTxV5['transactionType']).toBe('SPAM_TRANSFER')
-    expect(categorizedTxV5['readable']).toMatch(/^Spam:/)
+    expect(categorizedTxV5['readable']).toBe('Dust Attack')
   })
   it('properly attaches a spam transfer label to a tx', async () => {
     const txHash = txTestCases['SPAM_TOKEN_TRANSFER']
@@ -316,7 +316,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Spam Token: Transferred')
+    expect(categorizedTxV5['readable']).toBe('Dust Attack')
   })
   it('properly relables ERC20 transfers as Token Transfer', async () => {
     const txHash = txTestCases['ERC_20_TRANSFER']
@@ -333,7 +333,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Token: Transferred 0.00436 MKR')
+    expect(categorizedTxV5['readable']).toBe('Token: Sent 0.00436 MKR')
   })
   it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
     const txHash = txTestCases['ERC_20_APPROVE']

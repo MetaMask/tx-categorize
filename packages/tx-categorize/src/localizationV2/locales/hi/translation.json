@@ -27,6 +27,8 @@
   "WITHDRAW": "Withdrew $received_assets_0_value $received_assets_0_ticker",
   "WITHDRAW_MULTI": "Withdrew $received_assets_0_value $received_assets_0_ticker and $received_assets_1_value $received_assets_1_ticker",
   "TRANSFER": "Transferred $sent_assets_0_value $sent_assets_0_ticker",
+  "TRANSFER_SENT": "Sent $sent_assets_0_value $sent_assets_0_ticker",
+  "TRANSFER_RECEIVED": "Received $received_assets_0_value $received_assets_0_ticker",
   "NFT_EXCHANGE": "Exchanged NFT",
   "NFT_APPROVE": "Approved NFT",
   "NFT_TRANSFER": "Transferred NFT",
@@ -39,5 +41,6 @@
   "CONTRACT_CALL": "Unidentified Transaction",
   "STANDARD": "Transferred $sent_assets_0_value $sent_assets_0_ticker",
   "STANDARD_SENT": "Sent $sent_assets_0_value $sent_assets_0_ticker",
-  "STANDARD_RECEIVED": "Received $received_assets_0_value $received_assets_0_ticker"
+  "STANDARD_RECEIVED": "Received $received_assets_0_value $received_assets_0_ticker",
+  "DUST_ATTACK": "डस्ट अटैक"
 }
