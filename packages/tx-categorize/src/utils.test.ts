@@ -55,18 +55,18 @@ describe('convertWeiToRoundedDecimalWithSigFigs', () => {
   })
 
   it('truncates fraction to sigFigs without rounding up', () => {
-    // 1.123449... -> 1.1234 (5th digit is 4, no round up)
-    expect(convertWeiToRoundedDecimalWithSigFigs('1123440000000000000', 18)).toBe('1.1234')
+    // 1.123444... -> 1.12344 (6th digit is 4, no round up)
+    expect(convertWeiToRoundedDecimalWithSigFigs('1123444000000000000', 18)).toBe('1.12344')
   })
 
-  it('rounds up fraction when 5th digit >= 5', () => {
-    // 1.123450... -> 1.1235
-    expect(convertWeiToRoundedDecimalWithSigFigs('1123450000000000000', 18)).toBe('1.1235')
+  it('rounds up fraction when 6th digit >= 5', () => {
+    // 1.123445... -> 1.12345
+    expect(convertWeiToRoundedDecimalWithSigFigs('1123445000000000000', 18)).toBe('1.12345')
   })
 
   it('carries over to whole part when fraction rounds up to 1', () => {
-    // 1.999950... -> 2 (rounds 9999 + 1 = 10000, length > sigFigs)
-    expect(convertWeiToRoundedDecimalWithSigFigs('1999950000000000000', 18)).toBe('2')
+    // 1.999995... -> 2 (rounds 99999 + 1 = 100000, length > sigFigs)
+    expect(convertWeiToRoundedDecimalWithSigFigs('1999995000000000000', 18)).toBe('2')
   })
 
   it('returns rounded first significant digit when whole is 0 and fraction rounds to all zeros', () => {
@@ -86,6 +86,11 @@ describe('convertWeiToRoundedDecimalWithSigFigs', () => {
 
   it('returns whole number string when no decimal part', () => {
     expect(convertWeiToRoundedDecimalWithSigFigs('2000000000000000000', 18)).toBe('2')
+  })
+
+  it('returns <0.0001 for dust amounts where first significant digit is beyond sigFigs', () => {
+    // 10 wei = 0.00000000000000001 ETH — first non-zero at index 16, beyond sigFigs=5
+    expect(convertWeiToRoundedDecimalWithSigFigs('10', 18)).toBe('<0.0001')
   })
 })
 

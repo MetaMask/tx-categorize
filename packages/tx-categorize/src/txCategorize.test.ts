@@ -269,7 +269,7 @@ describe('#txCategorizeV6', () => {
     )
     expect(categorizedTxV5['readable']).toBe('Unidentified Transaction')
   })
-  it('properly attaches a label to a STANDARD tx', async () => {
+  it('properly attaches a "Sent" label to a STANDARD tx from sender perspective', async () => {
     const txHash = txTestCases['STANDARD']
     if (!txHash) {
       throw new Error('No txHash found for STANDARD test')
@@ -284,7 +284,22 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toContain('Transferred')
+    expect(categorizedTxV5['readable']).toMatch(/^Sent/)
+  })
+  it('properly attaches a spam label to a dust native transfer', async () => {
+    const txHash = '0xeda92a5cf7dc7e329ed123d85df969c075707758a853e0c5f0f77c1cf772b3bc'
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const categorizedTxV5 = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.to, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    expect(categorizedTxV5['transactionType']).toBe('SPAM_TRANSFER')
+    expect(categorizedTxV5['readable']).toMatch(/^Spam:/)
   })
   it('properly attaches a spam transfer label to a tx', async () => {
     const txHash = txTestCases['SPAM_TOKEN_TRANSFER']
@@ -318,7 +333,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Token: Transferred 0.0044 MKR')
+    expect(categorizedTxV5['readable']).toBe('Token: Transferred 0.00436 MKR')
   })
   it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
     const txHash = txTestCases['ERC_20_APPROVE']

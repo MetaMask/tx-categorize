@@ -224,6 +224,23 @@ export const determineTransactionMetadataV5 = (
       txMetadata.transactionCategory = 'STANDARD'
       txMetadata.readable = `${t('STANDARD', {}, language)}`
     }
+    // Dust native transfers (< 0.0001 ETH) are likely spam
+    const DUST_THRESHOLD_WEI = BigInt('100000000000000') // 0.0001 ETH
+    if (
+      txMetadata.transactionCategory === 'STANDARD' &&
+      transaction.value &&
+      BigInt(transaction.value) > 0n &&
+      BigInt(transaction.value) < DUST_THRESHOLD_WEI
+    ) {
+      txMetadata.transactionType = 'SPAM_TRANSFER'
+      txMetadata.transactionCategory = 'TRANSFER'
+      txMetadata.transactionProtocol = 'SPAM'
+      txMetadata.readable = `${titlecase(txMetadata.transactionProtocol)}: ${t(
+        txMetadata.transactionCategory,
+        {},
+        language,
+      )}`
+    }
     if (transaction.logs && transaction.logs.length > spamTransferThreshold) {
       txMetadata.transactionType = 'SPAM_TOKEN_TRANSFER'
       txMetadata.transactionCategory = 'TRANSFER'

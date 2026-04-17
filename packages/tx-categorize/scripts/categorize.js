@@ -19,7 +19,7 @@ const getTxWithLogsFromPrimitives = async (txHash) => {
   return { transaction: data.data }
 }
 
-const importTxData = async (txHash, chainId = 1) => {
+const importTxData = async (txHash, chainId = 1, subjectAddress = null) => {
   await initializeI18nextV2(Language.en)
 
   const txData = await getTxWithLogsFromPrimitives(txHash, chainId)
@@ -27,8 +27,9 @@ const importTxData = async (txHash, chainId = 1) => {
   if (!txData || !txData.transaction) {
     throw new Error(`No transaction data found for address 'eip155:${chainId}:${txHash}'`)
   }
+  const subject = subjectAddress || txData.transaction.from
   const categorizedTx = determineTransactionMetadataV6(
-    { ...txData, subjectAddress: `eip155:${chainId}:${txData.transaction.from}` },
+    { ...txData, subjectAddress: `eip155:${chainId}:${subject}` },
     'en',
     true,
     49,
@@ -39,11 +40,14 @@ const importTxData = async (txHash, chainId = 1) => {
 // get value from cli and call importTxData
 const txHash = process.argv[2]
 const chainId = process.argv[3] || 1
+const subjectAddress = process.argv[4] || process.env.SUBJECT_ADDRESS || null
 if (!regexForTxHash.test(txHash)) {
-  console.error('Invalid txHash: ' + txHash)
+  console.error('Usage: yarn categorize <txHash> [chainId] [subjectAddress]')
+  console.error('  Or set SUBJECT_ADDRESS env var')
+  console.error('  Defaults to transaction.from if no subject address provided')
   process.exit(1)
 }
-importTxData(txHash, chainId)
+importTxData(txHash, chainId, subjectAddress)
   .then((categorizedTx) => {
     console.log('Categorized Type: ', categorizedTx)
   })

@@ -327,12 +327,30 @@ export const determineTransactionMetadataV6 = (
       fallbackMetadata.transactionType = 'STANDARD'
       fallbackMetadata.transactionCategory = Action.STANDARD
     }
+    // Dust native transfers (< 0.0001 ETH) are likely spam
+    const DUST_THRESHOLD_WEI = BigInt('100000000000000') // 0.0001 ETH
+    if (
+      fallbackMetadata.transactionCategory === Action.STANDARD &&
+      transaction.value &&
+      BigInt(transaction.value) > 0n &&
+      BigInt(transaction.value) < DUST_THRESHOLD_WEI
+    ) {
+      fallbackMetadata.transactionType = 'SPAM_TRANSFER'
+      fallbackMetadata.transactionCategory = Action.TRANSFER
+      fallbackMetadata.transactionProtocol = 'SPAM'
+    }
     if (transaction.logs && transaction.logs.length > spamTransferThreshold) {
       fallbackMetadata.transactionType = 'SPAM_TOKEN_TRANSFER'
       fallbackMetadata.transactionCategory = Action.TRANSFER
       fallbackMetadata.transactionProtocol = 'SPAM_TOKEN'
     }
-    const fallbackTemplate = tV2(fallbackMetadata.transactionCategory, {}, language ?? fallbackLngV2)
+    let templateKey: string = fallbackMetadata.transactionCategory
+    if (fallbackMetadata.transactionCategory === Action.STANDARD) {
+      templateKey = receivedAssets.length > 0 && sentAssets.length === 0
+        ? Action.STANDARD_RECEIVED
+        : Action.STANDARD_SENT
+    }
+    const fallbackTemplate = tV2(templateKey, {}, language ?? fallbackLngV2)
     fallbackMetadata.readable = fallbackMetadata.transactionProtocol
       ? `${titlecase(fallbackMetadata.transactionProtocol)}: ${interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })}`
       : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })

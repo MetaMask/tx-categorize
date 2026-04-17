@@ -132,6 +132,7 @@ export interface Transaction {
   methodId?: string
   topics?: string[]
   hash?: string
+  value?: string
   valueTransfers?: ValueTransfer[]
 }
 

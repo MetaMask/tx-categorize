@@ -1,4 +1,4 @@
-import { titlecaseExceptions } from './constants'
+import { DEFAULT_SIGNIFICANT_FIGURES, titlecaseExceptions } from './constants'
 import { Action } from './enums'
 import { ValueTransfer } from './types'
 
@@ -37,7 +37,7 @@ export const convertUnits = (amount: bigint, decimals: number): string => {
   return `${wholePart}.${fractionalStr}`
 }
 
-export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: number, sigFigs = 4) => {
+export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: number, sigFigs = DEFAULT_SIGNIFICANT_FIGURES) => {
   const valueBn = BigInt(amount)
   const decimalValue = convertUnits(valueBn, decimals)
   const [whole, fraction = ''] = decimalValue.split('.')
@@ -65,6 +65,7 @@ export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: 
     if (whole !== '0') return whole
     const firstNonZeroIndex = [...fraction].findIndex((d) => d !== '0')
     if (firstNonZeroIndex === -1) return '0'
+    if (firstNonZeroIndex >= sigFigs) return '<0.0001'
 
     const digit = parseInt(fraction[firstNonZeroIndex], 10)
     const nextDigit = firstNonZeroIndex + 1 < fraction.length ? parseInt(fraction[firstNonZeroIndex + 1], 10) : 0
