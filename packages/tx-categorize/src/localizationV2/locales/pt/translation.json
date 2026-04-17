@@ -1,5 +1,5 @@
 {
-  "APPROVE": "Approved $spender to spend $approved_assets_0_value $approved_assets_0_ticker",
+  "APPROVE": "Approved $approved_assets_0_value $approved_assets_0_ticker for spend",
   "BORROW": "Borrowed $received_assets_0_value $received_assets_0_ticker",
   "UNWRAP": "Unwrapped $sent_assets_0_value $sent_assets_0_ticker for $received_assets_0_value $received_assets_0_ticker",
   "DOMAIN_RENEW": "Renewed Domain",

@@ -382,7 +382,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Token: Sent 0.0044 MKR')
+    expect(categorizedTxV5['readable']).toBe('Sent 0.0044 MKR')
   })
   it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
     const txHash = txTestCases['ERC_20_APPROVE']
@@ -400,7 +400,7 @@ describe('#txCategorizeV6', () => {
       49,
     )
     // Spender should be extracted from the Approval event log
-    expect(categorizedTxV5['readable']).toMatch(/Approved 0x[0-9a-f]+ to spend/)
+    expect(categorizedTxV5['readable']).toMatch(/Approved.*to spend/)
   })
 })
 

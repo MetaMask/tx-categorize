@@ -14,18 +14,6 @@ interface TxMetadataPriority {
   toAddressName: number
 }
 
-const maybeOverwriteProtocol = (protocol: string) => {
-  switch (protocol) {
-    case 'ERC_1155':
-    case 'ERC_20':
-      return 'TOKEN'
-    case 'ERC_721':
-      return 'NFT'
-    default:
-      return protocol
-  }
-}
-
 const tryUpdateTransactionProtocol = (
   txMetadata: TxMetadataV6,
   txMetadataPriorities: TxMetadataPriority,
@@ -290,11 +278,14 @@ export const determineTransactionMetadataV6 = (
     // Use the refined action only for readable template selection, not for transactionType/transactionCategory
     const refinedAction = refineActionForMultiAssets(txMetadata.transactionCategory, sentAssets, receivedAssets)
 
-    const transactionProtocolToUse = maybeOverwriteProtocol(transactionProtocol)
-    const protocol = titlecase(transactionProtocolToUse)
     let templateKey: string = refinedAction
-    // For TRANSFER, use subject-address-aware sent/received templates
-    if (refinedAction === Action.TRANSFER) {
+    // Try protocol-specific template key first (e.g., METAMASK_CARD_PAYMENT)
+    const protocolQualifiedKey = `${transactionProtocol}_${refinedAction}`
+    const protocolTemplate = tV2(protocolQualifiedKey, {}, language ?? fallbackLngV2)
+    if (protocolTemplate !== protocolQualifiedKey) {
+      templateKey = protocolQualifiedKey
+    } else if (refinedAction === Action.TRANSFER) {
+      // For TRANSFER, use subject-address-aware sent/received templates
       templateKey = receivedAssets.length > 0 && sentAssets.length === 0 ? 'TRANSFER_RECEIVED' : 'TRANSFER_SENT'
     }
     const template = tV2(templateKey, {}, language ?? fallbackLngV2)
@@ -310,7 +301,8 @@ export const determineTransactionMetadataV6 = (
             sentAssets,
             receivedAssets,
           }
-    const localizedReadable = `${protocol}${definingTrait && ` ${titlecase(definingTrait)}`}: ${interpolateTemplate(template, ctx)}`
+    const definingTraitLabel = definingTrait ? `${titlecase(definingTrait)}: ` : ''
+    const localizedReadable = `${definingTraitLabel}${interpolateTemplate(template, ctx)}`
 
     txMetadata.readable = localizedReadable
   }
@@ -356,9 +348,7 @@ export const determineTransactionMetadataV6 = (
     const fallbackTemplate = tV2(templateKey, {}, language ?? fallbackLngV2)
     fallbackMetadata.readable = fallbackMetadata.transactionProtocol?.startsWith('SPAM')
       ? tV2('DUST_ATTACK', {}, language ?? fallbackLngV2)
-      : fallbackMetadata.transactionProtocol
-        ? `${titlecase(fallbackMetadata.transactionProtocol)}: ${interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })}`
-        : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })
+      : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })
 
     return fallbackMetadata
   }
