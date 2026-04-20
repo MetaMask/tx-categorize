@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1]
+
+### Uncategorized
+
+- Feat: Added claim bonus txs ([#31](https://github.com/MetaMask/tx-categorize/pull/31))
+- chore: some improvements for standard txs ([#30](https://github.com/MetaMask/tx-categorize/pull/30))
+- feat: increase test coverage ([#29](https://github.com/MetaMask/tx-categorize/pull/29))
+
 ## [2.0.0]
 
 ## [1.0.0]
@@ -43,7 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/MetaMask/tx-categorize/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/MetaMask/tx-categorize/releases/tag/v0.1.0
