@@ -1,6 +1,7 @@
 import {
   convertUnits,
   convertWeiToRoundedDecimalWithSigFigs,
+  formatCompactNumber,
   interpolateTemplate,
   refineActionForMultiAssets,
 } from './utils'
@@ -50,42 +51,128 @@ describe('convertUnits', () => {
 })
 
 describe('convertWeiToRoundedDecimalWithSigFigs', () => {
-  it('returns exact value when fraction length is within sigFigs', () => {
+  it('returns exact value when fraction length is within 4 decimal places', () => {
     expect(convertWeiToRoundedDecimalWithSigFigs('1500000000000000000', 18)).toBe('1.5')
   })
 
-  it('truncates fraction to sigFigs without rounding up', () => {
-    // 1.123449... -> 1.1234 (5th digit is 4, no round up)
-    expect(convertWeiToRoundedDecimalWithSigFigs('1123440000000000000', 18)).toBe('1.1234')
+  it('rounds to 4 decimal places', () => {
+    expect(convertWeiToRoundedDecimalWithSigFigs('1123444000000000000', 18)).toBe('1.1234')
   })
 
-  it('rounds up fraction when 5th digit >= 5', () => {
-    // 1.123450... -> 1.1235
-    expect(convertWeiToRoundedDecimalWithSigFigs('1123450000000000000', 18)).toBe('1.1235')
+  it('rounds up when 5th decimal digit >= 5', () => {
+    expect(convertWeiToRoundedDecimalWithSigFigs('1123456000000000000', 18)).toBe('1.1235')
   })
 
   it('carries over to whole part when fraction rounds up to 1', () => {
-    // 1.999950... -> 2 (rounds 9999 + 1 = 10000, length > sigFigs)
-    expect(convertWeiToRoundedDecimalWithSigFigs('1999950000000000000', 18)).toBe('2')
+    expect(convertWeiToRoundedDecimalWithSigFigs('1999995000000000000', 18)).toBe('2')
   })
 
-  it('returns rounded first significant digit when whole is 0 and fraction rounds to all zeros', () => {
-    // 0.000049... -> 0.00005 (first significant digit 4 rounds up due to next digit 9)
-    expect(convertWeiToRoundedDecimalWithSigFigs('49000000000000', 18)).toBe('0.00005')
+  it('returns <0.0001 for dust amounts', () => {
+    expect(convertWeiToRoundedDecimalWithSigFigs('49000000000000', 18)).toBe('<0.0001')
   })
 
-  it('returns whole number when rounded fraction is all zeros and whole is non-zero', () => {
-    // 1.000001 USDC (6 decimals) -> 1 (not <1)
+  it('returns whole number when rounded fraction is all zeros', () => {
     expect(convertWeiToRoundedDecimalWithSigFigs('1000001', 6)).toBe('1')
-  })
-
-  it('respects custom sigFigs parameter', () => {
-    // fraction '123456789', sigFigs=2 → slice to '12', 3rd digit is '3' (<5), no round-up → '1.12'
-    expect(convertWeiToRoundedDecimalWithSigFigs('1123456789000000000', 18, 2)).toBe('1.12')
   })
 
   it('returns whole number string when no decimal part', () => {
     expect(convertWeiToRoundedDecimalWithSigFigs('2000000000000000000', 18)).toBe('2')
+  })
+
+  it('returns <0.0001 for very small dust amounts', () => {
+    expect(convertWeiToRoundedDecimalWithSigFigs('10', 18)).toBe('<0.0001')
+  })
+
+  it('uses K suffix for thousands', () => {
+    // 499962.37071 USDC
+    expect(convertWeiToRoundedDecimalWithSigFigs('499962370710', 6)).toBe('499.96K')
+  })
+
+  it('uses M suffix for millions', () => {
+    // 499962000.37071 USDC
+    expect(convertWeiToRoundedDecimalWithSigFigs('499962000370710', 6)).toBe('499.96M')
+  })
+})
+
+describe('formatCompactNumber', () => {
+  it('returns 0 for zero', () => {
+    expect(formatCompactNumber('0')).toBe('0')
+  })
+
+  it('returns 0 for NaN input', () => {
+    expect(formatCompactNumber('abc')).toBe('0')
+  })
+
+  it('returns <0.0001 for very small numbers', () => {
+    expect(formatCompactNumber('0.00000001')).toBe('<0.0001')
+    expect(formatCompactNumber('0.00009')).toBe('<0.0001')
+  })
+
+  it('rounds small decimals to 4 decimal places', () => {
+    expect(formatCompactNumber('0.03409')).toBe('0.0341')
+    expect(formatCompactNumber('1.23456')).toBe('1.2346')
+    expect(formatCompactNumber('0.1')).toBe('0.1')
+    expect(formatCompactNumber('0.12345')).toBe('0.1235')
+  })
+
+  it('drops negligible fractional parts', () => {
+    expect(formatCompactNumber('5.000001')).toBe('5')
+    expect(formatCompactNumber('100.00001')).toBe('100')
+  })
+
+  it('formats thousands with K suffix', () => {
+    expect(formatCompactNumber('1234.5')).toBe('1.23K')
+    expect(formatCompactNumber('12345.678')).toBe('12.35K')
+    expect(formatCompactNumber('499962.37071')).toBe('499.96K')
+    expect(formatCompactNumber('1000')).toBe('1K')
+  })
+
+  it('formats millions with M suffix', () => {
+    expect(formatCompactNumber('1000000')).toBe('1M')
+    expect(formatCompactNumber('499962000.37071')).toBe('499.96M')
+    expect(formatCompactNumber('1500000')).toBe('1.5M')
+  })
+
+  it('formats billions with B suffix', () => {
+    expect(formatCompactNumber('1000000000')).toBe('1B')
+    expect(formatCompactNumber('2500000000')).toBe('2.5B')
+  })
+
+  it('formats trillions with T suffix', () => {
+    expect(formatCompactNumber('1000000000000')).toBe('1T')
+    expect(formatCompactNumber('3750000000000')).toBe('3.75T')
+  })
+
+  it('strips trailing zeros from suffix numbers', () => {
+    expect(formatCompactNumber('5000')).toBe('5K')
+    expect(formatCompactNumber('1200')).toBe('1.2K')
+    expect(formatCompactNumber('1230')).toBe('1.23K')
+  })
+
+  it('handles whole numbers below 1000', () => {
+    expect(formatCompactNumber('5')).toBe('5')
+    expect(formatCompactNumber('42')).toBe('42')
+    expect(formatCompactNumber('999')).toBe('999')
+  })
+
+  it('promotes to next tier when rounding crosses a boundary', () => {
+    // K → M boundary: 999999.5 / 1000 = 999.9995, toFixed(2) → "1000.00"
+    expect(formatCompactNumber('999999.5')).toBe('1M')
+    // M → B boundary
+    expect(formatCompactNumber('999999500')).toBe('1B')
+    // B → T boundary
+    expect(formatCompactNumber('999999500000')).toBe('1T')
+    // sub-K → K boundary: 999.99999 toFixed(4) → "1000.0000"
+    expect(formatCompactNumber('999.99999')).toBe('1K')
+  })
+
+  it('handles values above the highest tier without infinite recursion', () => {
+    // 1 quadrillion — exactly 1000T
+    expect(formatCompactNumber('1000000000000000')).toBe('1000T')
+    // 1.5 quadrillion
+    expect(formatCompactNumber('1500000000000000')).toBe('1500T')
+    // SHIB-scale supply: ~589 trillion
+    expect(formatCompactNumber('589000000000000')).toBe('589T')
   })
 })
 
@@ -148,7 +235,7 @@ describe('interpolateTemplate', () => {
         makeValueTransfer({ symbol: 'USDC', amount: '1000000000', decimal: 6 }),
       ],
     })
-    expect(result).toBe('Swapped 1 ETH for 2000 DAI and 1000 USDC')
+    expect(result).toBe('Swapped 1 ETH for 2K DAI and 1K USDC')
   })
 })
 

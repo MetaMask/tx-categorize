@@ -37,52 +37,53 @@ export const convertUnits = (amount: bigint, decimals: number): string => {
   return `${wholePart}.${fractionalStr}`
 }
 
-export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: number, sigFigs = 4) => {
-  const valueBn = BigInt(amount)
-  const decimalValue = convertUnits(valueBn, decimals)
-  const [whole, fraction = ''] = decimalValue.split('.')
+const COMPACT_SUFFIXES: Array<[number, string]> = [
+  [1e12, 'T'],
+  [1e9, 'B'],
+  [1e6, 'M'],
+  [1e3, 'K'],
+]
 
-  if (fraction.length <= sigFigs) {
-    return decimalValue
-  }
+export const formatCompactNumber = (decimalValue: string): string => {
+  const num = parseFloat(decimalValue)
 
-  const roundedFraction = fraction.slice(0, sigFigs)
-  const lastDigit = parseInt(fraction[sigFigs], 10)
+  if (isNaN(num) || num === 0) return '0'
 
-  if (lastDigit >= 5) {
-    const incremented = BigInt(roundedFraction) + 1n
-    const incrementedStr = incremented.toString().padStart(sigFigs, '0')
+  const absNum = Math.abs(num)
 
-    if (incrementedStr.length > sigFigs) {
-      return (BigInt(whole) + 1n).toString()
-    }
+  if (absNum < 0.0001) return '<0.0001'
 
-    const strippedIncremented = incrementedStr.replace(/0+$/, '')
+  for (let i = 0; i < COMPACT_SUFFIXES.length; i++) {
+    const [threshold, suffix] = COMPACT_SUFFIXES[i]
+    if (absNum >= threshold) {
+      const scaled = absNum / threshold
+      const rounded = parseFloat(scaled.toFixed(2))
 
-    return strippedIncremented ? `${whole}.${strippedIncremented}` : whole
-  }
-  if (roundedFraction === '0'.repeat(sigFigs)) {
-    if (whole !== '0') return whole
-    const firstNonZeroIndex = [...fraction].findIndex((d) => d !== '0')
-    if (firstNonZeroIndex === -1) return '0'
-
-    const digit = parseInt(fraction[firstNonZeroIndex], 10)
-    const nextDigit = firstNonZeroIndex + 1 < fraction.length ? parseInt(fraction[firstNonZeroIndex + 1], 10) : 0
-
-    if (nextDigit >= 5) {
-      const rounded = digit + 1
-      if (rounded >= 10) {
-        return firstNonZeroIndex === 0 ? '1' : `0.${'0'.repeat(firstNonZeroIndex - 1)}1`
+      // If rounding pushed us across a tier boundary (e.g. 999.9995 K → 1000 K),
+      // re-format the rounded-up absolute value so the correct suffix is chosen.
+      // But if we're already at the highest tier, just display as-is to avoid infinite recursion.
+      if (rounded >= 1000 && i > 0) {
+        return formatCompactNumber((rounded * threshold).toString())
       }
 
-      return `0.${'0'.repeat(firstNonZeroIndex)}${rounded}`
+      return `${rounded}${suffix}`
     }
-
-    return `0.${'0'.repeat(firstNonZeroIndex)}${digit}`
   }
-  const strippedFraction = roundedFraction.replace(/0+$/, '')
 
-  return strippedFraction ? `${whole}.${strippedFraction}` : whole
+  // For values < 1000 that round up to 1000, promote to K tier
+  const rounded = parseFloat(absNum.toFixed(4))
+  if (rounded >= 1000) {
+    return formatCompactNumber(rounded.toString())
+  }
+
+  return rounded.toString()
+}
+
+export const convertWeiToRoundedDecimalWithSigFigs = (amount: string, decimals: number) => {
+  const valueBn = BigInt(amount)
+  const decimalValue = convertUnits(valueBn, decimals)
+
+  return formatCompactNumber(decimalValue)
 }
 
 // --- Enriched Transaction Template System ---
