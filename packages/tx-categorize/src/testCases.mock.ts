@@ -243,3 +243,22 @@ export const lineaTxTestCaseReadableLabels: Record<string, string> = {
   ODOS_EXCHANGE: 'Swapped <0.0001 WBTC and 1.07K FOXY for 0.0044 ankrETH',
   METAMASK_CLAIM_BONUS: 'Claimed 0.8477 mUSD Bonus',
 }
+
+/**
+ * V6 readable labels for Linea test cases (from sender perspective).
+ * Maps category key → expected human-readable label produced by determineTransactionMetadataV6.
+ */
+export const lineaTxTestCaseReadableLabels: Record<string, string> = {
+  METAMASK_CARD_PAYMENT: 'MetaMask Card Payment',
+  METAMASK_CARD_APPROVE: 'MetaMask Card Spend Approved',
+  LIFI_EXCHANGE: 'Swapped 0.002 ETH for 3.9535 USDC',
+  LIFI_BRIDGE_OUT: 'Withdrew <0.0001 ETH',
+  METAMASK_V1_EXCHANGE: 'Swapped 28.7793 USDT for 28.5178 USDC',
+  METAMASK_BRIDGE_V2_BRIDGE_OUT: 'Bridge: Withdrew',
+  IZUMI_FINANCE_EXCHANGE: 'Swapped 19.8053 USDC for 0.0099 ETH',
+  COINBACK_CLAIM: 'Claimed 100 SOULS',
+  ACROSS_BRIDGE_IN: 'Deposited 2.09K USDC to bridge',
+  SPAM_TOKEN_TRANSFER: 'Dust Attack',
+  PANCAKESWAP_V2_EXCHANGE: 'Swapped 56.1995 USDC and 24.0855 USDC for 0.0399 ETH',
+  ODOS_EXCHANGE: 'Swapped <0.0001 WBTC and 1.07K FOXY for 0.0044 ankrETH',
+}
