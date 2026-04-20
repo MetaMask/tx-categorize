@@ -59,7 +59,9 @@ const getTxWithLogsFromPrimitives = async (
 ): Promise<SingleTransactionResponse> => {
   if (!isNockConfigured) {
     nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
-    nock.back.setMode((process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'lockdown')
+    nock.back.setMode(
+      (process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'lockdown',
+    )
     isNockConfigured = true
   }
 

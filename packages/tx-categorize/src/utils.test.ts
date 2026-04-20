@@ -165,6 +165,15 @@ describe('formatCompactNumber', () => {
     // sub-K → K boundary: 999.99999 toFixed(4) → "1000.0000"
     expect(formatCompactNumber('999.99999')).toBe('1K')
   })
+
+  it('handles values above the highest tier without infinite recursion', () => {
+    // 1 quadrillion — exactly 1000T
+    expect(formatCompactNumber('1000000000000000')).toBe('1000T')
+    // 1.5 quadrillion
+    expect(formatCompactNumber('1500000000000000')).toBe('1500T')
+    // SHIB-scale supply: ~589 trillion
+    expect(formatCompactNumber('589000000000000')).toBe('589T')
+  })
 })
 
 describe('interpolateTemplate', () => {

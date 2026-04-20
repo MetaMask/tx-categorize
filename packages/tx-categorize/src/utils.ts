@@ -53,14 +53,16 @@ export const formatCompactNumber = (decimalValue: string): string => {
 
   if (absNum < 0.0001) return '<0.0001'
 
-  for (const [threshold, suffix] of COMPACT_SUFFIXES) {
+  for (let i = 0; i < COMPACT_SUFFIXES.length; i++) {
+    const [threshold, suffix] = COMPACT_SUFFIXES[i]
     if (absNum >= threshold) {
       const scaled = absNum / threshold
       const rounded = parseFloat(scaled.toFixed(2))
 
       // If rounding pushed us across a tier boundary (e.g. 999.9995 K → 1000 K),
       // re-format the rounded-up absolute value so the correct suffix is chosen.
-      if (rounded >= 1000) {
+      // But if we're already at the highest tier, just display as-is to avoid infinite recursion.
+      if (rounded >= 1000 && i > 0) {
         return formatCompactNumber((rounded * threshold).toString())
       }
 
