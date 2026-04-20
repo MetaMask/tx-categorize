@@ -9,31 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.1]
 
-### Uncategorized
+### Added
 
-- Feat: Added claim bonus txs ([#31](https://github.com/MetaMask/tx-categorize/pull/31))
-- chore: some improvements for standard txs ([#30](https://github.com/MetaMask/tx-categorize/pull/30))
-- feat: increase test coverage ([#29](https://github.com/MetaMask/tx-categorize/pull/29))
+- Added claim bonus txs ([#31](https://github.com/MetaMask/tx-categorize/pull/31))
+- Increase test coverage ([#29](https://github.com/MetaMask/tx-categorize/pull/29))
+
+### Changed
+- Improvements for standard txs ([#30](https://github.com/MetaMask/tx-categorize/pull/30))
 
 ## [2.0.0]
 
 ## [1.0.0]
 
-### Uncategorized
+### Added
 
-- fix: lint
-- APIPLAT-2189 - feat: interpolation for asset symbol/quantity readable labels ([#22](https://github.com/MetaMask/tx-categorize/pull/22))
-- fix: mark async fn as async
-- feat: add uniswap v4 position manager addresses ([#20](https://github.com/MetaMask/tx-categorize/pull/20))
-- fix: strip trailing zeroes
-- fix: requested changes
-- fix: updated
-- fix: clean up
-- feat: adding some new handling in v6 for compound categories
-- chore: clean up utils
-- chore: clean up
-- feat: interpolation for asset symbol/quantity readable labels
-- feat: record and replay tx-categorize API fixtures with nock ([#21](https://github.com/MetaMask/tx-categorize/pull/21))
+- APIPLAT-2189 - Interpolation for asset symbol/quantity readable labels ([#22](https://github.com/MetaMask/tx-categorize/pull/22))
+- Add uniswap v4 position manager addresses ([#20](https://github.com/MetaMask/tx-categorize/pull/20))
+- Record and replay tx-categorize API fixtures with nock ([#21](https://github.com/MetaMask/tx-categorize/pull/21))
 
 ## [0.1.0]
 
