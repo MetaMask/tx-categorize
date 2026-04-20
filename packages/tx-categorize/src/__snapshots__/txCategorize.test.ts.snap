@@ -1795,7 +1795,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
   "METAMASK_CLAIM_BONUS": {
     "txHash": "0x11de8eb3169a55fdd358fe62a2c747518d53bd1e62cf2fd09588b6f556f43c7b",
     "v5": {
-      "readable": "MetaMask: CLAIM_BONUS",
+      "readable": "MetaMask: Claim Bonus",
       "toAddressName": "METAMASK_BONUS",
       "transactionCategory": "CLAIM_BONUS",
       "transactionProtocol": "METAMASK",
