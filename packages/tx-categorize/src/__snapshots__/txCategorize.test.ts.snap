@@ -1792,6 +1792,23 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_CARD_PAYMENT",
     },
   },
+  "METAMASK_CLAIM_BONUS": {
+    "txHash": "0x11de8eb3169a55fdd358fe62a2c747518d53bd1e62cf2fd09588b6f556f43c7b",
+    "v5": {
+      "readable": "MetaMask: CLAIM_BONUS",
+      "toAddressName": "METAMASK_BONUS",
+      "transactionCategory": "CLAIM_BONUS",
+      "transactionProtocol": "METAMASK",
+      "transactionType": "METAMASK_CLAIM_BONUS",
+    },
+    "v6": {
+      "readable": "Claimed 0.8477 mUSD Bonus",
+      "toAddressName": "METAMASK_BONUS",
+      "transactionCategory": "CLAIM_BONUS",
+      "transactionProtocol": "METAMASK",
+      "transactionType": "METAMASK_CLAIM_BONUS",
+    },
+  },
   "METAMASK_V1_EXCHANGE": {
     "txHash": "0x8a8c95dd7e7c30a7a7bda4d7944b856fb5147df8c349bfb6d5a8e2512c0db650",
     "v5": {
