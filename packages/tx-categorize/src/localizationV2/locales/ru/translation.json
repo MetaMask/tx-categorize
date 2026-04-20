@@ -13,6 +13,7 @@
   "BRIDGE_IN": "Deposited $sent_assets_0_value $sent_assets_0_ticker to bridge",
   "BRIDGE_OUT": "Withdrew $received_assets_0_value $received_assets_0_ticker",
   "CLAIM": "Claimed $received_assets_0_value $received_assets_0_ticker",
+  "CLAIM_BONUS": "Claimed $received_assets_0_value $received_assets_0_ticker Bonus ",
   "DOMAIN_TRANSFER": "Transferred Domain",
   "DOMAIN_REGISTER": "Registered Domain",
   "DOMAIN_RESOLVER_SET": "Set Domain Name Resolution",

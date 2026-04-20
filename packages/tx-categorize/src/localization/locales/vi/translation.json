@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Nạp qua cầu nối",
   "BRIDGE_OUT": "Rút qua cầu nối",
   "CLAIM": "Nhận",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Chuyển tên miền",
   "DOMAIN_REGISTER": "Đăng ký tên miền",
   "DOMAIN_RESOLVER_SET": "Thiết lập phân giải tên miền",
