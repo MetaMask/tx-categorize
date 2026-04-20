@@ -228,8 +228,8 @@ export const lineaTxTestCases = {
  * Maps category key → expected human-readable label produced by determineTransactionMetadataV6.
  */
 export const lineaTxTestCaseReadableLabels: Record<string, string> = {
-  METAMASK_CARD_PAYMENT: 'MetaMask Card payment',
-  METAMASK_CARD_APPROVE: 'MetaMask Card approved spend',
+  METAMASK_CARD_PAYMENT: 'MetaMask Card Payment',
+  METAMASK_CARD_APPROVE: 'MetaMask Card Spend Approved',
   LIFI_EXCHANGE: 'Swapped 0.002 ETH for 3.9535 USDC',
   LIFI_BRIDGE_OUT: 'Withdrew <0.0001 ETH',
   METAMASK_V1_EXCHANGE: 'Swapped 28.7793 USDT for 28.5178 USDC',
