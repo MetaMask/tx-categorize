@@ -12,7 +12,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "0X_V3_EXCHANGE",
     },
     "v6": {
-      "readable": "0x: Swapped 0.0264 ETH for 3036316.5728 Bonk",
+      "readable": "Swapped 0.0264 ETH for 3.04M Bonk",
       "toAddressName": "0X_EXCHANGE_PROXY",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "0X_V3",
@@ -29,7 +29,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "1INCH_V3_EXCHANGE",
     },
     "v6": {
-      "readable": "1inch: Swapped 13512.536 FXF for 5185.446 USDT",
+      "readable": "Swapped 13.51K FXF for 5.19K USDT",
       "toAddressName": "1INCH_V3_EXCHANGE_PROXY",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "1INCH_V3",
@@ -46,7 +46,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "1INCH_V4_EXCHANGE",
     },
     "v6": {
-      "readable": "1inch: Swapped 0.0544 ETH for 136.7496 USDT",
+      "readable": "Swapped 0.0544 ETH for 136.7496 USDT",
       "toAddressName": "1INCH_AGGREGATION_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "1INCH",
@@ -63,7 +63,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "1INCH_V5_EXCHANGE",
     },
     "v6": {
-      "readable": "1inch: Swapped 0.0099 ETH for 1042664.566 WOLF",
+      "readable": "Swapped 0.0099 ETH for 1.04M WOLF",
       "toAddressName": "1INCH_AGGREGATION_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "1INCH",
@@ -80,7 +80,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "1INCH_V6_EXCHANGE",
     },
     "v6": {
-      "readable": "1inch: Swapped 20100.7678 btc for 1012.0677 MNTA",
+      "readable": "Swapped 20.1K btc for 1.01K MNTA",
       "toAddressName": "1INCH_AGGREGATION_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "1INCH",
@@ -97,7 +97,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V1_BORROW",
     },
     "v6": {
-      "readable": "Aave: Borrowed 498.5975 USDC",
+      "readable": "Borrowed 498.5975 USDC",
       "toAddressName": "AAVE_LENDING_POOL_V1",
       "transactionCategory": "BORROW",
       "transactionProtocol": "AAVE_V1",
@@ -114,7 +114,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V1_DEPOSIT",
     },
     "v6": {
-      "readable": "Aave: Deposited 0.1016 ETH",
+      "readable": "Deposited 0.1016 ETH",
       "toAddressName": "AAVE_LENDING_POOL_V1",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "AAVE_V1",
@@ -131,7 +131,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V1_REPAY",
     },
     "v6": {
-      "readable": "Aave: Repaid 3989.1893 USDT",
+      "readable": "Repaid 3.99K USDT",
       "toAddressName": "AAVE_LENDING_POOL_V1",
       "transactionCategory": "REPAY",
       "transactionProtocol": "AAVE_V1",
@@ -148,7 +148,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_BORROW",
     },
     "v6": {
-      "readable": "Aave: Borrowed 300 variableDebtEthUSDC",
+      "readable": "Borrowed 300 variableDebtEthUSDC",
       "toAddressName": "AAVE_LENDING_POOL_V3",
       "transactionCategory": "BORROW",
       "transactionProtocol": "AAVE",
@@ -165,7 +165,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_DEPOSIT",
     },
     "v6": {
-      "readable": "Aave: Deposited 0.0104 WBTC",
+      "readable": "Deposited 0.0104 WBTC",
       "toAddressName": "AAVE_LENDING_POOL_V3",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "AAVE",
@@ -182,7 +182,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_REPAY",
     },
     "v6": {
-      "readable": "Aave: Repaid 499962.3707 variableDebtEthUSDe",
+      "readable": "Repaid 499.96K variableDebtEthUSDe",
       "toAddressName": "AAVE_LENDING_POOL_V3",
       "transactionCategory": "REPAY",
       "transactionProtocol": "AAVE",
@@ -199,7 +199,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_WITHDRAW",
     },
     "v6": {
-      "readable": "Aave: Withdrew 5 USDT",
+      "readable": "Withdrew 5 USDT",
       "toAddressName": "AAVE_LENDING_POOL_V3",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "AAVE",
@@ -216,7 +216,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ACROSS_BRIDGE_IN",
     },
     "v6": {
-      "readable": "Across: Deposited 0.0198 WETH to bridge",
+      "readable": "Deposited 0.0198 WETH to bridge",
       "toAddressName": "ACROSS",
       "transactionCategory": "BRIDGE_IN",
       "transactionProtocol": "ACROSS",
@@ -233,7 +233,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ARBITRUM_BRIDGE_IN",
     },
     "v6": {
-      "readable": "Arbitrum: Deposited 0.68 ETH to bridge",
+      "readable": "Deposited 0.68 ETH to bridge",
       "toAddressName": "ARBITRUM_INBOX",
       "transactionCategory": "BRIDGE_IN",
       "transactionProtocol": "ARBITRUM",
@@ -250,7 +250,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ARBITRUM_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "Arbitrum: Withdrew 0.763 ETH",
+      "readable": "Withdrew 0.763 ETH",
       "toAddressName": "ARBITRUM_OUTBOX",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "ARBITRUM",
@@ -267,7 +267,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_CLAIM",
     },
     "v6": {
-      "readable": "Balancer: Claimed 3.9169 BAL",
+      "readable": "Claimed 3.9169 BAL",
       "toAddressName": "BALANCER_DISTRIBUTOR",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "BALANCER",
@@ -284,7 +284,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_DEPOSIT",
     },
     "v6": {
-      "readable": "Balancer: Deposited 0.0041 DAI",
+      "readable": "Deposited 0.0041 DAI",
       "toAddressName": "DS_PROXY",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "BALANCER",
@@ -301,7 +301,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_EXCHANGE",
     },
     "v6": {
-      "readable": "Balancer: Swapped 70 DAI for 604829.3956 yTrump",
+      "readable": "Swapped 70 DAI for 604.83K yTrump",
       "toAddressName": "POOL_TOKEN",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "BALANCER",
@@ -318,7 +318,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_WITHDRAW",
     },
     "v6": {
-      "readable": "Balancer: Withdrew 108.3346 DAI and 0.0001 YFI",
+      "readable": "Withdrew 108.3346 DAI and <0.0001 YFI",
       "toAddressName": "POOL_TOKEN",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "BALANCER",
@@ -335,7 +335,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COINBASE_WITHDRAW",
     },
     "v6": {
-      "readable": "Coinbase: Withdrew",
+      "readable": "Withdrew",
       "toAddressName": undefined,
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "COINBASE",
@@ -352,7 +352,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_CLAIM",
     },
     "v6": {
-      "readable": "Compound: Claimed 2.5091 COMP",
+      "readable": "Claimed 2.5091 COMP",
       "toAddressName": "COMPOUND_COMPTROLLER",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "COMPOUND",
@@ -369,7 +369,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_APPROVE",
     },
     "v6": {
-      "readable": "Compound: Approved 0x1111111254eeb25477b68fb85ed929f73a960582 to spend",
+      "readable": "Approved 0x1111111254eeb25477b68fb85ed929f73a960582 to spend",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "COMPOUND",
@@ -386,7 +386,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_BORROW",
     },
     "v6": {
-      "readable": "Compound: Borrowed 100 DAI",
+      "readable": "Borrowed 100 DAI",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "BORROW",
       "transactionProtocol": "COMPOUND",
@@ -403,7 +403,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_REPAY",
     },
     "v6": {
-      "readable": "Compound: Repaid 1499997.6361 DAI",
+      "readable": "Repaid 1.5M DAI",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "REPAY",
       "transactionProtocol": "COMPOUND",
@@ -420,7 +420,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_WITHDRAW",
     },
     "v6": {
-      "readable": "Compound: Withdrew 571345.7439 DAI",
+      "readable": "Withdrew 571.35K DAI",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "COMPOUND",
@@ -437,7 +437,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "DAPPNODE_CLAIM",
     },
     "v6": {
-      "readable": "Dappnode: Claimed 197.3094 NODE",
+      "readable": "Claimed 197.3094 NODE",
       "toAddressName": "DAPPNODE_DISTRIBUTOR",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "DAPPNODE",
@@ -454,7 +454,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "DEX_AG_EXCHANGE",
     },
     "v6": {
-      "readable": "Dex Ag: Swapped 0.000000000000000001 ETH for 281.8652 WAX",
+      "readable": "Swapped <0.0001 ETH for 281.8652 WAX",
       "toAddressName": "DEX_AG_PROXY",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "DEX_AG",
@@ -471,7 +471,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_CLAIM",
     },
     "v6": {
-      "readable": "ENS: Claimed 197.2923 ENS",
+      "readable": "Claimed 197.2923 ENS",
       "toAddressName": "ENS_TOKEN_CONTRACT",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "ENS",
@@ -488,7 +488,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_DOMAIN_APPROVE",
     },
     "v6": {
-      "readable": "ENS Domain: Approved to spend",
+      "readable": "Domain: Approved to spend",
       "toAddressName": "ENS_REGISTRAR",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ENS",
@@ -505,7 +505,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_DOMAIN_RECLAIM",
     },
     "v6": {
-      "readable": "ENS Domain: Reclaimed",
+      "readable": "Domain: Reclaimed",
       "toAddressName": "ENS_REGISTRAR",
       "transactionCategory": "RECLAIM",
       "transactionProtocol": "ENS",
@@ -522,7 +522,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_DOMAIN_RENEW",
     },
     "v6": {
-      "readable": "ENS: Renewed Domain",
+      "readable": "Renewed Domain",
       "toAddressName": "ENS_REGISTRAR",
       "transactionCategory": "DOMAIN_RENEW",
       "transactionProtocol": "ENS",
@@ -539,7 +539,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_DOMAIN_RESOLVER_SET",
     },
     "v6": {
-      "readable": "ENS: Set Domain Name Resolution",
+      "readable": "Set Domain Name Resolution",
       "toAddressName": "ENS",
       "transactionCategory": "DOMAIN_RESOLVER_SET",
       "transactionProtocol": "ENS",
@@ -556,7 +556,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_DOMAIN_TRANSFER",
     },
     "v6": {
-      "readable": "ENS Domain: Transferred",
+      "readable": "Domain: Sent",
       "toAddressName": "ENS_REGISTRAR",
       "transactionCategory": "TRANSFER",
       "transactionProtocol": "ENS",
@@ -573,7 +573,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_V1_DOMAIN_REGISTER",
     },
     "v6": {
-      "readable": "ENS: Registered Domain",
+      "readable": "Registered Domain",
       "toAddressName": "ENS_V1",
       "transactionCategory": "DOMAIN_REGISTER",
       "transactionProtocol": "ENS_V1",
@@ -590,7 +590,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_V1_DOMAIN_RENEW",
     },
     "v6": {
-      "readable": "ENS: Renewed Domain",
+      "readable": "Renewed Domain",
       "toAddressName": "ENS_V1",
       "transactionCategory": "DOMAIN_RENEW",
       "transactionProtocol": "ENS_V1",
@@ -607,7 +607,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_20_APPROVE",
     },
     "v6": {
-      "readable": "Token: Approved 0x881d40237659c251811cec9c364ef91dc08d300c to spend",
+      "readable": "Approved 0x881d40237659c251811cec9c364ef91dc08d300c to spend",
       "toAddressName": undefined,
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ERC_20",
@@ -624,7 +624,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_20_MINT",
     },
     "v6": {
-      "readable": "Token: Minted Token",
+      "readable": "Minted Token",
       "toAddressName": undefined,
       "transactionCategory": "MINT",
       "transactionProtocol": "ERC_20",
@@ -641,7 +641,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_20_TRANSFER",
     },
     "v6": {
-      "readable": "Token: Transferred 0.0044 MKR",
+      "readable": "Sent 0.0044 MKR",
       "toAddressName": undefined,
       "transactionCategory": "TRANSFER",
       "transactionProtocol": "ERC_20",
@@ -658,7 +658,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_721_APPROVE",
     },
     "v6": {
-      "readable": "Nft: Approved to spend",
+      "readable": "Approved to spend",
       "toAddressName": undefined,
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ERC_721",
@@ -675,7 +675,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_721_MINT",
     },
     "v6": {
-      "readable": "Nft: Minted Token",
+      "readable": "Minted Token",
       "toAddressName": undefined,
       "transactionCategory": "MINT",
       "transactionProtocol": "ERC_721",
@@ -692,7 +692,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_721_TRANSFER",
     },
     "v6": {
-      "readable": "Nft: Transferred PLSR",
+      "readable": "Sent PLSR",
       "toAddressName": undefined,
       "transactionCategory": "TRANSFER",
       "transactionProtocol": "ERC_721",
@@ -709,7 +709,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ETHER_DELTA_WITHDRAW",
     },
     "v6": {
-      "readable": "Ether Delta: Withdrew 0.0163 ETH",
+      "readable": "Withdrew 0.0163 ETH",
       "toAddressName": "ETHER_DELTA_2",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "ETHER_DELTA",
@@ -726,7 +726,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ETHER_DELTA_WITHDRAW_TOKEN",
     },
     "v6": {
-      "readable": "Ether Delta: Withdrew Token",
+      "readable": "Withdrew Token",
       "toAddressName": "ETHER_DELTA_2",
       "transactionCategory": "WITHDRAW_TOKEN",
       "transactionProtocol": "ETHER_DELTA",
@@ -743,7 +743,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "FUTURESWAP_GOVERNANCE_VOTE",
     },
     "v6": {
-      "readable": "Futureswap Governance: Voted",
+      "readable": "Governance: Voted",
       "toAddressName": "FUTURESWAP_GOVERNANCE",
       "transactionCategory": "VOTE",
       "transactionProtocol": "FUTURESWAP",
@@ -777,7 +777,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "GITCOIN_CLAIM",
     },
     "v6": {
-      "readable": "Gitcoin: Claimed 16.492 GTC",
+      "readable": "Claimed 16.492 GTC",
       "toAddressName": "GITCOIN_DISTRIBUTOR",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "GITCOIN",
@@ -794,7 +794,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "GNOSIS_SAFE_DEPOSIT",
     },
     "v6": {
-      "readable": "Gnosis Safe: Deposited 0.2828 ETH",
+      "readable": "Deposited 0.2828 ETH",
       "toAddressName": undefined,
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "GNOSIS_SAFE",
@@ -811,7 +811,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "GNOSIS_SAFE_WITHDRAW",
     },
     "v6": {
-      "readable": "Gnosis Safe: Withdrew",
+      "readable": "Withdrew",
       "toAddressName": undefined,
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "GNOSIS_SAFE",
@@ -828,7 +828,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "HOP_BRIDGE_IN",
     },
     "v6": {
-      "readable": "Hop: Deposited to bridge",
+      "readable": "Deposited to bridge",
       "toAddressName": undefined,
       "transactionCategory": "BRIDGE_IN",
       "transactionProtocol": "HOP",
@@ -845,7 +845,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "IDEX_DEPOSIT",
     },
     "v6": {
-      "readable": "Idex: Deposited 0.0034 ETH",
+      "readable": "Deposited 0.0034 ETH",
       "toAddressName": "IDEX_STAKING",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "IDEX",
@@ -862,7 +862,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "IDEX_DEPOSIT_TOKEN",
     },
     "v6": {
-      "readable": "Idex: Deposited 18000 SERC20",
+      "readable": "Deposited 18K SERC20",
       "toAddressName": "IDEX_STAKING",
       "transactionCategory": "DEPOSIT_TOKEN",
       "transactionProtocol": "IDEX",
@@ -879,7 +879,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "IDEX_WITHDRAW",
     },
     "v6": {
-      "readable": "Idex: Withdrew 364.2416 AURA",
+      "readable": "Withdrew 364.2416 AURA",
       "toAddressName": "IDEX_STAKING",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "IDEX",
@@ -896,7 +896,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "KYBERSWAP_V2_EXCHANGE",
     },
     "v6": {
-      "readable": "Kyberswap: Swapped 11944.1549 RLB for 0.3144 ETH",
+      "readable": "Swapped 11.94K RLB for 0.3144 ETH",
       "toAddressName": "KYBERSWAP_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "KYBERSWAP",
@@ -913,7 +913,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "LIFI_EXCHANGE",
     },
     "v6": {
-      "readable": "Lifi: Swapped 189.8622 USDC for",
+      "readable": "Swapped 189.8622 USDC for",
       "toAddressName": "LIFI",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "LIFI",
@@ -930,7 +930,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "MAESTRO_V2_EXCHANGE",
     },
     "v6": {
-      "readable": "Maestro: Swapped 9984877561.8425 Ghibli for 0.3644 ETH",
+      "readable": "Swapped 9.98B Ghibli for 0.3644 ETH",
       "toAddressName": "MAESTRO_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "MAESTRO",
@@ -947,7 +947,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V1_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "MetaMask Bridge: Withdrew",
+      "readable": "Bridge: Withdrew",
       "toAddressName": "METAMASK_BRIDGE_V1",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "METAMASK",
@@ -964,7 +964,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "MetaMask Bridge: Withdrew",
+      "readable": "Bridge: Withdrew",
       "toAddressName": "METAMASK_BRIDGE_V2",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "METAMASK",
@@ -981,7 +981,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_STAKE_V1_CLAIM",
     },
     "v6": {
-      "readable": "MetaMask Stake: Claimed 0.0341 ETH",
+      "readable": "Stake: Claimed 0.0341 ETH",
       "toAddressName": "METAMASK_STAKE_V1",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "METAMASK",
@@ -998,7 +998,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_STAKE_V1_STAKE",
     },
     "v6": {
-      "readable": "MetaMask Stake: Staked 0.001 ETH",
+      "readable": "Stake: Staked 0.001 ETH",
       "toAddressName": "METAMASK_STAKE_V1",
       "transactionCategory": "STAKE",
       "transactionProtocol": "METAMASK",
@@ -1015,7 +1015,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_V1_EXCHANGE",
     },
     "v6": {
-      "readable": "MetaMask: Swapped 0.9 ETH for 1082.9829 AAPX",
+      "readable": "Swapped 0.9 ETH for 1.08K AAPX",
       "toAddressName": "METAMASK_V1_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "METAMASK_V1",
@@ -1032,7 +1032,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_CANCEL_ORDER",
     },
     "v6": {
-      "readable": "OpenSea: Cancelled Order",
+      "readable": "Cancelled Order",
       "toAddressName": "OPENSEA_ROUTER",
       "transactionCategory": "CANCEL_ORDER",
       "transactionProtocol": "OPENSEA",
@@ -1049,7 +1049,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_NFT_EXCHANGE",
     },
     "v6": {
-      "readable": "OpenSea: Exchanged NFT",
+      "readable": "Exchanged NFT",
       "toAddressName": "OPENSEA_ROUTER",
       "transactionCategory": "NFT_EXCHANGE",
       "transactionProtocol": "OPENSEA",
@@ -1066,7 +1066,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_REGISTER",
     },
     "v6": {
-      "readable": "OpenSea: Registered",
+      "readable": "Registered",
       "toAddressName": "OPENSEA_REGISTRY",
       "transactionCategory": "REGISTER",
       "transactionProtocol": "OPENSEA",
@@ -1083,7 +1083,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_V1.1_TRANSFER",
     },
     "v6": {
-      "readable": "OpenSea: Transferred 0.012 ETH",
+      "readable": "Sent 0.012 ETH",
       "toAddressName": "OPENSEA_SEAPORT",
       "transactionCategory": "TRANSFER",
       "transactionProtocol": "OPENSEA",
@@ -1100,7 +1100,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_V1.4_CANCEL_ORDER",
     },
     "v6": {
-      "readable": "OpenSea: Cancelled Order",
+      "readable": "Cancelled Order",
       "toAddressName": "OPENSEA_SEAPORT",
       "transactionCategory": "CANCEL_ORDER",
       "transactionProtocol": "OPENSEA",
@@ -1117,7 +1117,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_V1.5_CANCEL_ORDER",
     },
     "v6": {
-      "readable": "OpenSea: Cancelled Order",
+      "readable": "Cancelled Order",
       "toAddressName": "OPENSEA_SEAPORT",
       "transactionCategory": "CANCEL_ORDER",
       "transactionProtocol": "OPENSEA",
@@ -1134,7 +1134,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_V1.6_CANCEL_ORDER",
     },
     "v6": {
-      "readable": "OpenSea: Cancelled Order",
+      "readable": "Cancelled Order",
       "toAddressName": "OPENSEA_SEAPORT",
       "transactionCategory": "CANCEL_ORDER",
       "transactionProtocol": "OPENSEA",
@@ -1151,7 +1151,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "OPENSEA_V1.6_NFT_EXCHANGE",
     },
     "v6": {
-      "readable": "OpenSea: Exchanged NFT",
+      "readable": "Exchanged NFT",
       "toAddressName": "OPENSEA_SEAPORT",
       "transactionCategory": "NFT_EXCHANGE",
       "transactionProtocol": "OPENSEA",
@@ -1168,7 +1168,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "PARASWAP_V4_EXCHANGE",
     },
     "v6": {
-      "readable": "Paraswap: Swapped 0.83 YFI for 24846.8189 USDC",
+      "readable": "Swapped 0.83 YFI for 24.85K USDC",
       "toAddressName": "PARASWAP_V4_EXCHANGE_PROXY",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "PARASWAP_V4",
@@ -1185,7 +1185,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "PARASWAP_V5_EXCHANGE",
     },
     "v6": {
-      "readable": "Paraswap: Swapped 200000 ENA for 50218.837 USDC",
+      "readable": "Swapped 200K ENA for 50.22K USDC",
       "toAddressName": "PARASWAP",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "PARASWAP",
@@ -1202,7 +1202,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POLYGON_BRIDGE_IN",
     },
     "v6": {
-      "readable": "Polygon: Deposited 3000 DAI to bridge",
+      "readable": "Deposited 3K DAI to bridge",
       "toAddressName": "POLYGON_BRIDGE",
       "transactionCategory": "BRIDGE_IN",
       "transactionProtocol": "POLYGON",
@@ -1219,7 +1219,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POLYGON_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "Polygon: Withdrew 883.8767 USDC",
+      "readable": "Withdrew 883.8767 USDC",
       "toAddressName": "POLYGON_BRIDGE",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "POLYGON",
@@ -1236,7 +1236,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POOLTOGETHER_CLAIM",
     },
     "v6": {
-      "readable": "Pooltogether: Claimed 2.2319 POOL",
+      "readable": "Claimed 2.2319 POOL",
       "toAddressName": "POOLTOGETHER_DISTRIBUTOR",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "POOLTOGETHER",
@@ -1253,7 +1253,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POOLTOGETHER_DEPOSIT",
     },
     "v6": {
-      "readable": "Pooltogether: Deposited 410 DAI",
+      "readable": "Deposited 410 DAI",
       "toAddressName": "POOLTOGETHER",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "POOLTOGETHER",
@@ -1270,7 +1270,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POOLTOGETHER_WITHDRAW",
     },
     "v6": {
-      "readable": "Pooltogether: Withdrew 100 DAI",
+      "readable": "Withdrew 100 DAI",
       "toAddressName": "POOLTOGETHER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "POOLTOGETHER",
@@ -1287,7 +1287,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SEADROP_V1.0_MINT",
     },
     "v6": {
-      "readable": "Seadrop: Minted Token",
+      "readable": "Minted Token",
       "toAddressName": "SEADROP",
       "transactionCategory": "MINT",
       "transactionProtocol": "SEADROP",
@@ -1304,7 +1304,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SHAPESHIFT_CLAIM",
     },
     "v6": {
-      "readable": "Shapeshift: Claimed 200 FOX",
+      "readable": "Claimed 200 FOX",
       "toAddressName": "FOX_DISTRIBUTOR",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "SHAPESHIFT",
@@ -1321,7 +1321,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SOCKET_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "Socket: Withdrew",
+      "readable": "Withdrew",
       "toAddressName": "SOCKET",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "SOCKET",
@@ -1338,7 +1338,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SPAM_TOKEN_TRANSFER",
     },
     "v6": {
-      "readable": "Spam Token: Transferred",
+      "readable": "Dust Attack",
       "toAddressName": undefined,
       "transactionCategory": "TRANSFER",
       "transactionProtocol": "SPAM_TOKEN",
@@ -1355,7 +1355,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "STANDARD",
     },
     "v6": {
-      "readable": "Transferred 0.004 ETH",
+      "readable": "Sent 0.004 ETH",
       "toAddressName": undefined,
       "transactionCategory": "STANDARD",
       "transactionProtocol": undefined,
@@ -1372,7 +1372,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SUSHISWAP_DEPOSIT",
     },
     "v6": {
-      "readable": "SushiSwap: Deposited 29.8996 ILV and 2.6166 ETH",
+      "readable": "Deposited 29.8996 ILV and 2.6166 ETH",
       "toAddressName": "SUSHISWAP_ROUTER",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "SUSHISWAP",
@@ -1389,7 +1389,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SUSHISWAP_EXCHANGE",
     },
     "v6": {
-      "readable": "SushiSwap: Swapped 0.1558 MCN for 0.0588 ETH",
+      "readable": "Swapped 0.1558 MCN for 0.0588 ETH",
       "toAddressName": "SUSHISWAP_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "SUSHISWAP",
@@ -1406,7 +1406,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SUSHISWAP_WITHDRAW",
     },
     "v6": {
-      "readable": "SushiSwap: Withdrew 718.9205 PERP and 4.1312 ETH",
+      "readable": "Withdrew 718.9205 PERP and 4.1312 ETH",
       "toAddressName": "SUSHISWAP_ROUTER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "SUSHISWAP",
@@ -1423,7 +1423,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "TORNADO_CASH_V1_DEPOSIT",
     },
     "v6": {
-      "readable": "Tornado Cash: Deposited 1 ETH",
+      "readable": "Deposited 1 ETH",
       "toAddressName": "TORNADO_CASH",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "TORNADO_CASH_V1",
@@ -1440,7 +1440,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "TORNADO_CASH_V1_WITHDRAW",
     },
     "v6": {
-      "readable": "Tornado Cash: Withdrew 51.4139 USDC",
+      "readable": "Withdrew 51.4139 USDC",
       "toAddressName": "TORNADO_CASH",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "TORNADO_CASH_V1",
@@ -1457,7 +1457,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_CLAIM",
     },
     "v6": {
-      "readable": "Uniswap: Claimed 400 UNI",
+      "readable": "Claimed 400 UNI",
       "toAddressName": "UNISWAP_DISTRIBUTOR",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "UNISWAP",
@@ -1474,7 +1474,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_EXCHANGE",
     },
     "v6": {
-      "readable": "Uniswap: Swapped 0.1125 ETH for 3247.5179 PSI",
+      "readable": "Swapped 0.1125 ETH for 3.25K PSI",
       "toAddressName": "UNISWAP_UNIVERSAL_ROUTER_2",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "UNISWAP",
@@ -1491,7 +1491,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V2_DEPOSIT",
     },
     "v6": {
-      "readable": "Uniswap: Deposited 7 ETH and 100000000 PROPHET",
+      "readable": "Deposited 7 ETH and 100M PROPHET",
       "toAddressName": "UNISWAP_V2_ROUTER",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "UNISWAP_V2",
@@ -1508,7 +1508,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V2_EXCHANGE",
     },
     "v6": {
-      "readable": "Uniswap: Swapped 0.2018 MKR for 112.3412 FST",
+      "readable": "Swapped 0.2018 MKR for 112.3412 FST",
       "toAddressName": "UNISWAP_V2_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "UNISWAP_V2",
@@ -1525,7 +1525,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V2_WITHDRAW",
     },
     "v6": {
-      "readable": "Uniswap: Withdrew 0.0346 ETH and 1.0745 Ponzio",
+      "readable": "Withdrew 0.0346 ETH and 1.0745 Ponzio",
       "toAddressName": "UNISWAP_V2_ROUTER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "UNISWAP_V2",
@@ -1542,7 +1542,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V3_DEPOSIT",
     },
     "v6": {
-      "readable": "Uniswap: Deposited 29336.4949 HEX and 26091.1054 USDC",
+      "readable": "Deposited 29.34K HEX and 26.09K USDC",
       "toAddressName": "UNISWAP_NFT_POSITION_MANAGER",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "UNISWAP",
@@ -1559,7 +1559,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V3_EXCHANGE",
     },
     "v6": {
-      "readable": "Uniswap: Swapped 73255.7946 USDC for 31.8654 ETH",
+      "readable": "Swapped 73.26K USDC for 31.8654 ETH",
       "toAddressName": "UNISWAP_V3_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "UNISWAP_V3",
@@ -1576,7 +1576,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V3_WITHDRAW",
     },
     "v6": {
-      "readable": "Uniswap: Withdrew 7633.7082 HEX and 966.403 USDC",
+      "readable": "Withdrew 7.63K HEX and 966.403 USDC",
       "toAddressName": "UNISWAP_NFT_POSITION_MANAGER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "UNISWAP",
@@ -1593,7 +1593,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V4_EXCHANGE",
     },
     "v6": {
-      "readable": "Uniswap: Swapped 100 CEL for 0.0069 ETH",
+      "readable": "Swapped 100 CEL for 0.0069 ETH",
       "toAddressName": "UNISWAP_V4_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "UNISWAP_V4",
@@ -1610,7 +1610,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "WETH_APPROVE",
     },
     "v6": {
-      "readable": "WETH: Approved 0x7a250d5630b4cf539739df2c5dacb4c659f2488d to spend",
+      "readable": "Approved 0x7a250d5630b4cf539739df2c5dacb4c659f2488d to spend",
       "toAddressName": "WETH",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "WETH",
@@ -1627,7 +1627,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "WETH_DEPOSIT",
     },
     "v6": {
-      "readable": "WETH: Deposited 0.0758 ETH",
+      "readable": "Deposited 0.0758 ETH",
       "toAddressName": "WETH",
       "transactionCategory": "DEPOSIT",
       "transactionProtocol": "WETH",
@@ -1644,7 +1644,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "WETH_UNWRAP",
     },
     "v6": {
-      "readable": "WETH: Unwrapped 1.4723 WETH for 1.4723 ETH",
+      "readable": "Unwrapped 1.4723 WETH for 1.4723 ETH",
       "toAddressName": "WETH",
       "transactionCategory": "UNWRAP",
       "transactionProtocol": "WETH",
@@ -1666,7 +1666,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ACROSS_BRIDGE_IN",
     },
     "v6": {
-      "readable": "Across: Deposited 2092.2495 USDC to bridge",
+      "readable": "Deposited 2.09K USDC to bridge",
       "toAddressName": "ACROSS",
       "transactionCategory": "BRIDGE_IN",
       "transactionProtocol": "ACROSS",
@@ -1683,7 +1683,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COINBACK_CLAIM",
     },
     "v6": {
-      "readable": "Coinback: Claimed 100 SOULS",
+      "readable": "Claimed 100 SOULS",
       "toAddressName": "COINBACK",
       "transactionCategory": "CLAIM",
       "transactionProtocol": "COINBACK",
@@ -1700,7 +1700,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "IZUMI_FINANCE_EXCHANGE",
     },
     "v6": {
-      "readable": "Izumi Finance: Swapped 19.8053 USDC for 0.0099 ETH",
+      "readable": "Swapped 19.8053 USDC for 0.0099 ETH",
       "toAddressName": "IZUMI_FINANCE",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "IZUMI_FINANCE",
@@ -1717,7 +1717,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "LIFI_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "Lifi: Withdrew 0.0000001 ETH",
+      "readable": "Withdrew <0.0001 ETH",
       "toAddressName": "LIFI",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "LIFI",
@@ -1734,7 +1734,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "LIFI_EXCHANGE",
     },
     "v6": {
-      "readable": "Lifi: Swapped 0.002 ETH for 3.9535 USDC",
+      "readable": "Swapped 0.002 ETH for 3.9535 USDC",
       "toAddressName": "LIFI",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "LIFI",
@@ -1751,7 +1751,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
     },
     "v6": {
-      "readable": "MetaMask Bridge: Withdrew",
+      "readable": "Bridge: Withdrew",
       "toAddressName": "METAMASK_BRIDGE_V2",
       "transactionCategory": "BRIDGE_OUT",
       "transactionProtocol": "METAMASK",
@@ -1768,7 +1768,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_CARD_APPROVE",
     },
     "v6": {
-      "readable": "MetaMask Card: Approved 0xa90b298d05c2667ddc64e2a4e17111357c215dd2 to spend",
+      "readable": "MetaMask Card Spend Approved",
       "toAddressName": undefined,
       "transactionCategory": "APPROVE",
       "transactionProtocol": "METAMASK_CARD",
@@ -1785,7 +1785,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_CARD_PAYMENT",
     },
     "v6": {
-      "readable": "MetaMask Card: Paid",
+      "readable": "MetaMask Card Payment",
       "toAddressName": "METAMASK_CARD_PAYMENT_PROVIDER",
       "transactionCategory": "PAYMENT",
       "transactionProtocol": "METAMASK_CARD",
@@ -1802,7 +1802,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_V1_EXCHANGE",
     },
     "v6": {
-      "readable": "MetaMask: Swapped 28.7793 USDT for 28.5178 USDC",
+      "readable": "Swapped 28.7793 USDT for 28.5178 USDC",
       "toAddressName": "METAMASK_V1_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "METAMASK_V1",
@@ -1819,7 +1819,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ODOS_EXCHANGE",
     },
     "v6": {
-      "readable": "Odos: Swapped 0.0001 WBTC and 1074.0238 FOXY for 0.0044 ankrETH",
+      "readable": "Swapped <0.0001 WBTC and 1.07K FOXY for 0.0044 ankrETH",
       "toAddressName": "ODOS_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "ODOS",
@@ -1836,7 +1836,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "PANCAKESWAP_V2_EXCHANGE",
     },
     "v6": {
-      "readable": "Pancakeswap: Swapped 56.1995 USDC and 24.0855 USDC for 0.0399 ETH",
+      "readable": "Swapped 56.1995 USDC and 24.0855 USDC for 0.0399 ETH",
       "toAddressName": "PANCAKESWAP_V2_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "PANCAKESWAP_V2",
@@ -1853,7 +1853,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SPAM_TOKEN_TRANSFER",
     },
     "v6": {
-      "readable": "Spam Token: Transferred 22950000 SKIBIDI",
+      "readable": "Dust Attack",
       "toAddressName": undefined,
       "transactionCategory": "TRANSFER",
       "transactionProtocol": "SPAM_TOKEN",
