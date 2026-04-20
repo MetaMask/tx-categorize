@@ -11,6 +11,7 @@
   "BRIDGE_IN": "ブリッジ入金",
   "BRIDGE_OUT": "ブリッジ出金",
   "CLAIM": "請求",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "ドメインを転送",
   "DOMAIN_REGISTER": "ドメインを登録",
   "DOMAIN_RESOLVER_SET": "ドメイン名解決を設定",

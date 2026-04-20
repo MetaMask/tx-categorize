@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Depósito ponte",
   "BRIDGE_OUT": "Saque ponte",
   "CLAIM": "Reivindicar",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transferir domínio",
   "DOMAIN_REGISTER": "Registrar domínio",
   "DOMAIN_RESOLVER_SET": "Definir resolução de nome de domínio",

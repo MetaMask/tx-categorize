@@ -11,6 +11,7 @@
   "BRIDGE_IN": "I-bridge ang Deposito",
   "BRIDGE_OUT": "I-bridge ang Pag-withdraw",
   "CLAIM": "I-claim",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Ilipat ang Domain",
   "DOMAIN_REGISTER": "Irehistro ang Domain",
   "DOMAIN_RESOLVER_SET": "Itakda ang Resolusyon ng Pangalan ng Domain",

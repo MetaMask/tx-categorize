@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Bridge Deposit",
   "BRIDGE_OUT": "Bridge Penarikan",
   "CLAIM": "Klaim",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transfer Domain",
   "DOMAIN_REGISTER": "Daftarkan Domain",
   "DOMAIN_RESOLVER_SET": "Atur Resolusi Nama Domain",
