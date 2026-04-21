@@ -389,6 +389,11 @@ const determinants: DeterminantMap = {
       protocol: 'AAVE',
       version: 'V3',
     },
+    {
+      address: '0xcf50b810e57ac33b91dcf525c6ddd9881b139332',
+      name: 'CONVEX_STAKED_CVX_POOL',
+      protocol: 'CONVEX',
+    },
   ],
   methodIds: [
     { id: '0xaf7060fd', name: EXCHANGE, priority: 1, protocol: 'LIFI' }, // lifi
@@ -678,6 +683,12 @@ const determinants: DeterminantMap = {
       hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
       name: DEPOSIT,
       protocol: 'CURVE',
+      priority: 14,
+    },
+    // Convex reward pool RewardPaid
+    {
+      hash: '0xe2403640ba68fed3a2f88b7557551d1993f84b99bb10ff833f0cf8db0c5e0486',
+      name: CLAIM,
       priority: 14,
     },
   ],

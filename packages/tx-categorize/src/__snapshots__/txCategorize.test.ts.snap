@@ -444,6 +444,23 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_WITHDRAW",
     },
   },
+  "CONVEX_CLAIM": {
+    "txHash": "0x22288abb8adf55b26445812dcf9e79b145f31f351175f77be1bbd96362871351",
+    "v5": {
+      "readable": "Convex: Claim",
+      "toAddressName": "CONVEX_STAKED_CVX_POOL",
+      "transactionCategory": "CLAIM",
+      "transactionProtocol": "CONVEX",
+      "transactionType": "CONVEX_CLAIM",
+    },
+    "v6": {
+      "readable": "Claimed 97.2854 cvxCRV",
+      "toAddressName": "CONVEX_STAKED_CVX_POOL",
+      "transactionCategory": "CLAIM",
+      "transactionProtocol": "CONVEX",
+      "transactionType": "CONVEX_CLAIM",
+    },
+  },
   "CURVE_DEPOSIT": {
     "txHash": "0xa0051bc2323b729274c4be4e0bf9d51c9a406725dcc3d6b654b281dd762873e4",
     "v5": {
