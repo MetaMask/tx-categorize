@@ -1,6 +1,6 @@
 {
   "name": "@MetaMask/tx-categorize-monorepo",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "MetaFi Software Development Kit",
   "main": "index.ts",
   "author": "Consensys Software Inc.",
