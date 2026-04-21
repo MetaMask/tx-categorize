@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3]
+
+### Uncategorized
+
+- fix: proper handling of partially-identified txs to 'unidentified' ([#42](https://github.com/MetaMask/tx-categorize/pull/42))
+- fix: spend approval txs labels ([#41](https://github.com/MetaMask/tx-categorize/pull/41))
+
 ## [2.0.2]
 
 ### Uncategorized
@@ -54,7 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/MetaMask/tx-categorize/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/MetaMask/tx-categorize/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...v2.0.0
