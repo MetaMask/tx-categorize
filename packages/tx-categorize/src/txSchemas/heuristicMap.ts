@@ -394,6 +394,11 @@ const determinants: DeterminantMap = {
       name: 'CONVEX_STAKED_CVX_POOL',
       protocol: 'CONVEX',
     },
+    {
+      address: '0x4fef9d741011476750a243ac70b9789a63dd47df',
+      name: 'METAMASK_POOLED_STAKING',
+      protocol: 'METAMASK_STAKE',
+    },
   ],
   methodIds: [
     { id: '0xaf7060fd', name: EXCHANGE, priority: 1, protocol: 'LIFI' }, // lifi
@@ -689,6 +694,12 @@ const determinants: DeterminantMap = {
     {
       hash: '0xe2403640ba68fed3a2f88b7557551d1993f84b99bb10ff833f0cf8db0c5e0486',
       name: CLAIM,
+      priority: 14,
+    },
+    // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking
+    {
+      hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
+      name: STAKE,
       priority: 14,
     },
   ],

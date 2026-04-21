@@ -105,6 +105,7 @@ export const txTestCases = {
   CURVE_DEPOSIT: '0xa0051bc2323b729274c4be4e0bf9d51c9a406725dcc3d6b654b281dd762873e4',
   METAMASK_STAKE_V1_CLAIM: '0x2ebb958fef3b51fe3306d5a027a83f22292d106773768e3748a4553b796333f9',
   CONVEX_CLAIM: '0x22288abb8adf55b26445812dcf9e79b145f31f351175f77be1bbd96362871351',
+  METAMASK_STAKE_STAKE: '0x7cb0d9f70ddca8933d9dc0f1a75ab98d9a03186de580fa494a664d93180bb123',
 }
 
 /**
@@ -212,6 +213,7 @@ export const txTestCaseReadableLabels: Record<string, string> = {
   HOP_BRIDGE_IN: 'Deposited to bridge',
   METAMASK_STAKE_V1_CLAIM: 'Stake: Claimed 0.0341 ETH',
   AAVE_V3_STAKE: 'Staked 12.3528 AAVE',
+  METAMASK_STAKE_STAKE: 'Staked 0.0001 ETH',
 }
 
 export const lineaTxTestCases = {
