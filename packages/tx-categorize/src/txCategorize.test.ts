@@ -344,6 +344,23 @@ describe('#txCategorizeV6', () => {
     )
     expect(categorizedTxV5['readable']).toMatch(/^Sent/)
   })
+  it('categorizes a contract call with methodId but no logs as GENERIC_CONTRACT_CALL, not STANDARD', async () => {
+    // ENS commit() tx: has a methodId (0xf14fcbc8) and targets a known contract, but emits no logs
+    const txHash = '0xf877a64271e53923c7138e87d8fc7c9dddadb14051ffc396e205d0951e94e171'
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const result = determineTransactionMetadataV6(
+      {
+        transaction: data,
+        subjectAddress: createAccountId(data.from, chainId),
+      },
+      Language.en,
+      false,
+      49,
+    )
+    expect(result['transactionType']).toBe('GENERIC_CONTRACT_CALL')
+    expect(result['transactionCategory']).toBe('CONTRACT_CALL')
+    expect(result['readable']).toBe('Unidentified Transaction')
+  })
   it('properly attaches a spam label to a dust native transfer', async () => {
     const txHash = '0xeda92a5cf7dc7e329ed123d85df969c075707758a853e0c5f0f77c1cf772b3bc'
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)

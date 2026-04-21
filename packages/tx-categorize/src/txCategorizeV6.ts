@@ -321,7 +321,7 @@ export const determineTransactionMetadataV6 = (
       readable: tV2(Action.CONTRACT_CALL),
     }
 
-    if (!transaction.logs || !transaction.logs.length || !transaction.methodId) {
+    if ((!transaction.logs || !transaction.logs.length) && !transaction.methodId) {
       fallbackMetadata.transactionType = 'STANDARD'
       fallbackMetadata.transactionCategory = Action.STANDARD
     }
