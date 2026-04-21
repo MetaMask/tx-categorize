@@ -6,23 +6,12 @@ import { contractAddressMap, methodIdMap, topicHashMap } from './txSchemas/heuri
 import { DetermineTransactionMetadataInputV6, Transaction, TxMetadataV6, ValueTransfer } from './types'
 import { TemplateContext, interpolateTemplate, refineActionForMultiAssets, titlecase } from './utils'
 import { Action } from './enums'
+import { DUST_THRESHOLD_WEI } from './constants'
 
 interface TxMetadataPriority {
   transactionProtocol: number
   transactionCategory: number
   toAddressName: number
-}
-
-const maybeOverwriteProtocol = (protocol: string) => {
-  switch (protocol) {
-    case 'ERC_1155':
-    case 'ERC_20':
-      return 'TOKEN'
-    case 'ERC_721':
-      return 'NFT'
-    default:
-      return protocol
-  }
 }
 
 const tryUpdateTransactionProtocol = (
@@ -289,9 +278,16 @@ export const determineTransactionMetadataV6 = (
     // Use the refined action only for readable template selection, not for transactionType/transactionCategory
     const refinedAction = refineActionForMultiAssets(txMetadata.transactionCategory, sentAssets, receivedAssets)
 
-    const transactionProtocolToUse = maybeOverwriteProtocol(transactionProtocol)
-    const protocol = titlecase(transactionProtocolToUse)
-    const templateKey = refinedAction
+    let templateKey: string = refinedAction
+    // Try protocol-specific template key first (e.g., METAMASK_CARD_PAYMENT)
+    const protocolQualifiedKey = `${transactionProtocol}_${refinedAction}`
+    const protocolTemplate = tV2(protocolQualifiedKey, {}, language ?? fallbackLngV2)
+    if (protocolTemplate !== protocolQualifiedKey) {
+      templateKey = protocolQualifiedKey
+    } else if (refinedAction === Action.TRANSFER) {
+      // For TRANSFER, use subject-address-aware sent/received templates
+      templateKey = receivedAssets.length > 0 && sentAssets.length === 0 ? 'TRANSFER_RECEIVED' : 'TRANSFER_SENT'
+    }
     const template = tV2(templateKey, {}, language ?? fallbackLngV2)
     const ctx: TemplateContext =
       txMetadata.transactionCategory === Action.APPROVE
@@ -305,7 +301,8 @@ export const determineTransactionMetadataV6 = (
             sentAssets,
             receivedAssets,
           }
-    const localizedReadable = `${protocol}${definingTrait && ` ${titlecase(definingTrait)}`}: ${interpolateTemplate(template, ctx)}`
+    const definingTraitLabel = definingTrait ? `${titlecase(definingTrait)}: ` : ''
+    const localizedReadable = `${definingTraitLabel}${interpolateTemplate(template, ctx)}`
 
     txMetadata.readable = localizedReadable
   }
@@ -327,14 +324,30 @@ export const determineTransactionMetadataV6 = (
       fallbackMetadata.transactionType = 'STANDARD'
       fallbackMetadata.transactionCategory = Action.STANDARD
     }
+    // Dust native transfers (< 0.0001 ETH) are likely spam
+    if (
+      fallbackMetadata.transactionCategory === Action.STANDARD &&
+      transaction.value &&
+      BigInt(transaction.value) > 0n &&
+      BigInt(transaction.value) < DUST_THRESHOLD_WEI
+    ) {
+      fallbackMetadata.transactionType = 'SPAM_TRANSFER'
+      fallbackMetadata.transactionCategory = Action.TRANSFER
+      fallbackMetadata.transactionProtocol = 'SPAM'
+    }
     if (transaction.logs && transaction.logs.length > spamTransferThreshold) {
       fallbackMetadata.transactionType = 'SPAM_TOKEN_TRANSFER'
       fallbackMetadata.transactionCategory = Action.TRANSFER
       fallbackMetadata.transactionProtocol = 'SPAM_TOKEN'
     }
-    const fallbackTemplate = tV2(fallbackMetadata.transactionCategory, {}, language ?? fallbackLngV2)
-    fallbackMetadata.readable = fallbackMetadata.transactionProtocol
-      ? `${titlecase(fallbackMetadata.transactionProtocol)}: ${interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })}`
+    let templateKey: string = fallbackMetadata.transactionCategory
+    if (fallbackMetadata.transactionCategory === Action.STANDARD) {
+      templateKey =
+        receivedAssets.length > 0 && sentAssets.length === 0 ? Action.STANDARD_RECEIVED : Action.STANDARD_SENT
+    }
+    const fallbackTemplate = tV2(templateKey, {}, language ?? fallbackLngV2)
+    fallbackMetadata.readable = fallbackMetadata.transactionProtocol?.startsWith('SPAM')
+      ? tV2('DUST_ATTACK', {}, language ?? fallbackLngV2)
       : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })
 
     return fallbackMetadata

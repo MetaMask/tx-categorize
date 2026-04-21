@@ -12,6 +12,7 @@
   "BRIDGE_OUT": "桥接提款",
   "CLAIM": "申领",
   "COLLECT": "收取",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "转让域名",
   "DOMAIN_REGISTER": "注册域名",
   "DOMAIN_RESOLVER_SET": "设置域名解析",

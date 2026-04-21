@@ -1,3 +1,4 @@
+import { DUST_THRESHOLD_WEI } from './constants'
 import { Language, fallbackLng, isI18nextInitialized, t } from './localization'
 import { contractAddressMap, methodIdMap, topicHashMap } from './txSchemas/heuristicMap'
 import { DetermineTransactionMetadataInputV5, TxMetadata } from './types'
@@ -223,6 +224,22 @@ export const determineTransactionMetadataV5 = (
       txMetadata.transactionType = 'STANDARD'
       txMetadata.transactionCategory = 'STANDARD'
       txMetadata.readable = `${t('STANDARD', {}, language)}`
+    }
+    // Dust native transfers (< 0.0001 ETH) are likely spam
+    if (
+      txMetadata.transactionCategory === 'STANDARD' &&
+      transaction.value &&
+      BigInt(transaction.value) > 0n &&
+      BigInt(transaction.value) < DUST_THRESHOLD_WEI
+    ) {
+      txMetadata.transactionType = 'SPAM_TRANSFER'
+      txMetadata.transactionCategory = 'TRANSFER'
+      txMetadata.transactionProtocol = 'SPAM'
+      txMetadata.readable = `${titlecase(txMetadata.transactionProtocol)}: ${t(
+        txMetadata.transactionCategory,
+        {},
+        language,
+      )}`
     }
     if (transaction.logs && transaction.logs.length > spamTransferThreshold) {
       txMetadata.transactionType = 'SPAM_TOKEN_TRANSFER'

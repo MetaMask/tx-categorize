@@ -12,6 +12,7 @@
   "BRIDGE_OUT": "Bridge-Auszahlung",
   "CLAIM": "Anfordern",
   "COLLECT": "Einsammeln",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Domain transferieren",
   "DOMAIN_REGISTER": "Domain registrieren",
   "DOMAIN_RESOLVER_SET": "Festlegen der Domainnamenauflösung",

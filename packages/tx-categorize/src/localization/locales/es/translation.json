@@ -11,7 +11,11 @@
   "BRIDGE_IN": "Puente entrante",
   "BRIDGE_OUT": "Puente saliente",
   "CLAIM": "Reclamar",
+<<<<<<< HEAD
   "COLLECT": "Recolectar",
+=======
+  "CLAIM_BONUS": "Claim Bonus",
+>>>>>>> main
   "DOMAIN_TRANSFER": "Transferir dominio",
   "DOMAIN_REGISTER": "Registrar dominio",
   "DOMAIN_RESOLVER_SET": "Establecer resolutor de dominio",

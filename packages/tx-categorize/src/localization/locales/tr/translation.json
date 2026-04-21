@@ -12,6 +12,7 @@
   "BRIDGE_OUT": "Bridge Withdraw",
   "CLAIM": "Claim",
   "COLLECT": "Collect",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transfer Domain",
   "DOMAIN_REGISTER": "Register Domain",
   "DOMAIN_RESOLVER_SET": "Set Domain Name Resolution",

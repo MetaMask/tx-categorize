@@ -12,6 +12,7 @@
   "BRIDGE_OUT": "Effectuer un retrait à l’aide d’une passerelle",
   "CLAIM": "Réclamer",
   "COLLECT": "Collecter",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transférer le domaine",
   "DOMAIN_REGISTER": "Enregistrer le domaine",
   "DOMAIN_RESOLVER_SET": "Définir la résolution du nom de domaine",

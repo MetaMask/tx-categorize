@@ -9,7 +9,7 @@ const {
   BRIDGE_OUT,
   CANCEL_ORDER,
   CLAIM,
-  COLLECT,
+  CLAIM_BONUS,
   DEPOSIT,
   DOMAIN_REGISTER,
   EXCHANGE,
@@ -435,6 +435,11 @@ const determinants: DeterminantMap = {
     { address: '0x60626db611a9957c1ae4ac5b7ede69e24a3b76c5', name: 'POOL_TOKEN', protocol: 'BALANCER' },
     { address: '0x6b74fb4e4b3b177b8e95ba9fa4c3a3121d22fbfb', name: 'POOL_TOKEN', protocol: 'BALANCER' },
     {
+      address: '0x3ef3d8ba38ebe18db133cec108f4d14ce00dd9ae',
+      name: 'METAMASK_BONUS',
+      protocol: 'METAMASK',
+    },
+    {
       address: '0xa90b298d05c2667ddc64e2a4e17111357c215dd2',
       name: 'METAMASK_CARD_PAYMENT_PROVIDER',
       protocol: 'METAMASK_CARD',
@@ -460,6 +465,7 @@ const determinants: DeterminantMap = {
     { id: '0xca350aa6', name: WITHDRAW, protocol: 'COINBASE' },
     { id: '0x1a1da075', name: WITHDRAW, protocol: 'COINBASE' },
     { id: '0x0ffab6c2', name: CLAIM, protocol: 'METAMASK_STAKE_V1' },
+    { id: '0x71ee95c0', name: CLAIM_BONUS, protocol: 'METAMASK' },
     { id: '0x98a128c5', name: CLAIM },
     { id: '0xdeff4b24', name: BRIDGE_IN },
     { id: '0xfb0f3ee1', name: TRANSFER },

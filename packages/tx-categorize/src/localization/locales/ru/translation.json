@@ -12,6 +12,7 @@
   "BRIDGE_OUT": "Отмена моста",
   "CLAIM": "Получить",
   "COLLECT": "Сбор",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Передать домен",
   "DOMAIN_REGISTER": "Зарегистрировать домен",
   "DOMAIN_RESOLVER_SET": "Установить разрешение доменного имени",

@@ -1,5 +1,5 @@
 {
-  "APPROVE": "Approved $spender to spend $approved_assets_0_value $approved_assets_0_ticker",
+  "APPROVE": "Approved $approved_assets_0_value $approved_assets_0_ticker for spend",
   "BORROW": "Borrowed $received_assets_0_value $received_assets_0_ticker",
   "UNWRAP": "Unwrapped $sent_assets_0_value $sent_assets_0_ticker for $received_assets_0_value $received_assets_0_ticker",
   "DOMAIN_RENEW": "Renewed Domain",
@@ -13,6 +13,7 @@
   "BRIDGE_IN": "Deposited $sent_assets_0_value $sent_assets_0_ticker to bridge",
   "BRIDGE_OUT": "Withdrew $received_assets_0_value $received_assets_0_ticker",
   "CLAIM": "Claimed $received_assets_0_value $received_assets_0_ticker",
+  "CLAIM_BONUS": "Claimed $received_assets_0_value $received_assets_0_ticker Bonus ",
   "DOMAIN_TRANSFER": "Transferred Domain",
   "DOMAIN_REGISTER": "Registered Domain",
   "DOMAIN_RESOLVER_SET": "Set Domain Name Resolution",
@@ -27,6 +28,8 @@
   "WITHDRAW": "Withdrew $received_assets_0_value $received_assets_0_ticker",
   "WITHDRAW_MULTI": "Withdrew $received_assets_0_value $received_assets_0_ticker and $received_assets_1_value $received_assets_1_ticker",
   "TRANSFER": "Transferred $sent_assets_0_value $sent_assets_0_ticker",
+  "TRANSFER_SENT": "Sent $sent_assets_0_value $sent_assets_0_ticker",
+  "TRANSFER_RECEIVED": "Received $received_assets_0_value $received_assets_0_ticker",
   "NFT_EXCHANGE": "Exchanged NFT",
   "NFT_APPROVE": "Approved NFT",
   "NFT_TRANSFER": "Transferred NFT",
@@ -36,6 +39,11 @@
   "WITHDRAW_TOKEN": "Withdrew Token",
   "RECLAIM": "Reclaimed $received_assets_0_value $received_assets_0_ticker",
   "PAYMENT": "Paid $sent_assets_0_value $sent_assets_0_ticker",
+  "METAMASK_CARD_PAYMENT": "MetaMask Card Payment",
+  "METAMASK_CARD_APPROVE": "MetaMask Card Spend Approved",
   "CONTRACT_CALL": "Unidentified Transaction",
-  "STANDARD": "Transferred $sent_assets_0_value $sent_assets_0_ticker"
+  "STANDARD": "Transferred $sent_assets_0_value $sent_assets_0_ticker",
+  "STANDARD_SENT": "Sent $sent_assets_0_value $sent_assets_0_ticker",
+  "STANDARD_RECEIVED": "Received $received_assets_0_value $received_assets_0_ticker",
+  "DUST_ATTACK": "Дастинг-атака"
 }

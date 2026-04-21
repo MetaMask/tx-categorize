@@ -12,6 +12,7 @@
   "BRIDGE_OUT": "브리지 아웃",
   "CLAIM": "클레임",
   "COLLECT": "수집",
+  "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "도메인 이전",
   "DOMAIN_REGISTER": "도메인 등록",
   "DOMAIN_RESOLVER_SET": "도메인 리졸버 설정",

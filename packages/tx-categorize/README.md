@@ -209,10 +209,11 @@ Use the debugging script to test your new category:
 
 ```bash
 # Test with a transaction hash
-yarn categorize <tx_hash> <chain_id>
+yarn categorize <tx_hash> [chain_id] [subject_address]
 
 # Example:
-yarn categorize 0xf389bf1c4258ebb4b57c51444db204848c85be9de5e400fe2bd6fccfbffff951 1
+yarn categorize 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef 1
+yarn categorize 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef 1 0xYourAddress
 ```
 
 ### Step 6: Add Test Cases
@@ -248,13 +249,29 @@ Higher priority schemas override lower priority ones when multiple matches occur
 
 ## Development Scripts
 
-### `yarn categorize <tx_hash> [chain_id]`
+### `yarn categorize <tx_hash> [chain_id] [subject_address]`
 
 Debug tool to categorize a specific transaction and see why it was categorized that way.
 
 ```bash
-yarn categorize 0x1234... 1
+# Basic usage (defaults to chain_id=1, subject=transaction.from)
+yarn categorize 0x1234... 
+
+# Specify chain ID
+yarn categorize 0x1234... 137
+
+# Specify a subject address (to see categorization from that address's perspective)
+yarn categorize 0x1234... 1 0x5197b5b062288bbf29008c92b08010a92dd677cd
 ```
+
+You can also set the `SUBJECT_ADDRESS` environment variable to avoid passing it each time:
+
+```bash
+export SUBJECT_ADDRESS=0x5197b5b062288bbf29008c92b08010a92dd677cd
+yarn categorize 0x1234...
+```
+
+> **Note:** The subject address determines perspective. If the subject is the sender, the transaction may read "Sent 1 ETH". If the subject is the recipient, it reads "Received 1 ETH". Without a subject address, it defaults to `transaction.from`.
 
 ### `yarn list:metrics`
 
