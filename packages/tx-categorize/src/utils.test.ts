@@ -4,6 +4,7 @@ import {
   formatCompactNumber,
   interpolateTemplate,
   refineActionForMultiAssets,
+  truncateAddress,
 } from './utils'
 import { tV2 } from './localizationV2'
 import { ValueTransfer } from './types'
@@ -213,10 +214,10 @@ describe('interpolateTemplate', () => {
     const result = interpolateTemplate(tV2('APPROVE'), {
       sentAssets: [],
       receivedAssets: [],
-      spender: '0x1234567890abcdef1234567890abcdef12345678',
+      spender: '0x12345...45678',
       approvedAssets: [makeValueTransfer({ symbol: 'USDC', amount: '1000000', decimal: 6 })],
     })
-    expect(result).toBe('Approved 0x1234567890abcdef1234567890abcdef12345678 to spend 1 USDC')
+    expect(result).toBe('Approved 0x12345...45678 to spend 1 USDC')
   })
 
   it('handles static templates with no variables', () => {
@@ -273,5 +274,23 @@ describe('refineActionForMultiAssets', () => {
       Action.EXCHANGE,
     )
     expect(refineActionForMultiAssets(Action.VOTE, [], [])).toBe(Action.VOTE)
+  })
+})
+
+describe('truncateAddress', () => {
+  it('truncates a standard Ethereum address', () => {
+    expect(truncateAddress('0x6B175474E89094C44Da98b954EedeAC495271d0F')).toBe('0x6B175...71d0F')
+  })
+
+  it('returns short strings unchanged', () => {
+    expect(truncateAddress('0x123456')).toBe('0x123456')
+  })
+
+  it('returns 10-char string unchanged', () => {
+    expect(truncateAddress('0x12345678')).toBe('0x12345678')
+  })
+
+  it('returns empty string unchanged', () => {
+    expect(truncateAddress('')).toBe('')
   })
 })

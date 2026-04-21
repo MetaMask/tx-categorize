@@ -4,7 +4,7 @@ import { Language } from './localization'
 import { fallbackLngV2, tV2 } from './localizationV2'
 import { contractAddressMap, methodIdMap, topicHashMap } from './txSchemas/heuristicMap'
 import { DetermineTransactionMetadataInputV6, Transaction, TxMetadataV6, ValueTransfer } from './types'
-import { TemplateContext, interpolateTemplate, refineActionForMultiAssets, titlecase } from './utils'
+import { TemplateContext, interpolateTemplate, refineActionForMultiAssets, titlecase, truncateAddress } from './utils'
 import { Action } from './enums'
 import { DUST_THRESHOLD_WEI } from './constants'
 
@@ -289,12 +289,13 @@ export const determineTransactionMetadataV6 = (
       templateKey = receivedAssets.length > 0 && sentAssets.length === 0 ? 'TRANSFER_RECEIVED' : 'TRANSFER_SENT'
     }
     const template = tV2(templateKey, {}, language ?? fallbackLngV2)
+    const rawSpender = extractSpender(transaction) ?? ''
     const ctx: TemplateContext =
       txMetadata.transactionCategory === Action.APPROVE
         ? {
             sentAssets,
             receivedAssets,
-            spender: extractSpender(transaction) ?? '',
+            spender: truncateAddress(rawSpender),
             approvedAssets: extractApprovedAssets(transaction),
           }
         : {

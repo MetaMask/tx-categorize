@@ -149,3 +149,9 @@ export const refineActionForMultiAssets = (
 
   return action
 }
+
+export const truncateAddress = (address: string): string => {
+  if (address.length <= 40) return address
+
+  return `${address.slice(0, 7)}...${address.slice(-5)}`
+}
