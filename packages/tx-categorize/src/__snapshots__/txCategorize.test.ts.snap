@@ -403,7 +403,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_APPROVE",
     },
     "v6": {
-      "readable": "Approved 0x1111111254eeb25477b68fb85ed929f73a960582 to spend",
+      "readable": "Approved 0x11111...60582 to spend",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "COMPOUND",
@@ -675,7 +675,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_20_APPROVE",
     },
     "v6": {
-      "readable": "Approved 0x881d40237659c251811cec9c364ef91dc08d300c to spend",
+      "readable": "Approved 0x881d4...d300c to spend",
       "toAddressName": undefined,
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ERC_20",
@@ -1695,7 +1695,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "WETH_APPROVE",
     },
     "v6": {
-      "readable": "Approved 0x7a250d5630b4cf539739df2c5dacb4c659f2488d to spend",
+      "readable": "Approved 0x7a250...2488d to spend",
       "toAddressName": "WETH",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "WETH",
