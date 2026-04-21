@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Puente entrante",
   "BRIDGE_OUT": "Puente saliente",
   "CLAIM": "Reclamar",
+  "COLLECT": "Recolectar",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transferir dominio",
   "DOMAIN_REGISTER": "Registrar dominio",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "Retirar token",
   "RECLAIM": "Reclamar",
   "PAYMENT": "Pago",
+  "MODIFY_LIQUIDITY": "Modificar liquidez",
   "CONTRACT_CALL": "Llamada de contrato",
   "STANDARD": "Estándar"
 }

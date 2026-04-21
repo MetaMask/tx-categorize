@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Bridge-Einzahlung",
   "BRIDGE_OUT": "Bridge-Auszahlung",
   "CLAIM": "Anfordern",
+  "COLLECT": "Einsammeln",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Domain transferieren",
   "DOMAIN_REGISTER": "Domain registrieren",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "Token auszahlen lassen",
   "RECLAIM": "Zurückfordern",
   "PAYMENT": "Zahlung",
+  "MODIFY_LIQUIDITY": "Liquidität anpassen",
   "CONTRACT_CALL": "Nicht identifizierte Transaktion",
   "STANDARD": "Native Übertragung"
 }

@@ -2,13 +2,13 @@
     {
         "scope": "https://primitives.api.cx.metamask.io:443",
         "method": "GET",
-        "path": "/v1/networks/1/transactions/0x193570052d343dc09bf95eafed6f799e326f2b24e3b4ad6e8a44bc8266a3f7d5?includeLogs=true&includeValueTransfers=true",
+        "path": "/v1/networks/1/transactions/0x98255f3728bea65bd8659d0b01b406023609d15ef705cd4a02593cef2333f7f7?includeLogs=true&includeValueTransfers=true",
         "body": "",
         "status": 200,
-        "response": "1bf50400c437fd65557bf36ae74696cddd01824ccbf9594a78dd814bed106180c9a19d12bf58da96d61745719459140594e7c636ae474b80dad9a77e83c3e573d9cf9141973a1917881c37634dab94ca48aecbe8cd8f905237ec0717b6dd142bcdf728d6961ad97b31233407853a97c5e98b86ac15ea743c3d206b85260741bec15cf67364503738e35b208389fd0999134d9fb5cea4b371f789e82740c9ca7aaaabb7c74de93b64b69ebd3729858458ba355f43a41eaa151b8a37c14a70dcd838d3622be45c8dc618573ae9caa9975a6d90deaaf1a40d1466b247f69a625298c9fecbbe3764eb3da57cd3fbdda27664e8e0bd21eb1c147c0c785623389d4e6b47e61014ea71735ccb02d5a0802359cf9e1436fd309fda8bc62725895caaa540617c5917190485c3c4767493aac3482e36eeddb11166f24c3e25eb52a8dab46874af010a63376d149a67632bc91097e2585228bed628ae914faeda185af0ce9276090a8bfd93dd6eda210f59ef3b0afcc1c8e847dfed917fdd6cad099c34023549216aae2579a96d444d41b388f3dc4a6c434c2b7d406186d77b890c4d44d66928b45e171b59237b853a9d1e76520f0f5adbf5fd1ef2c0db0cbdc8f8f2e9f167289ccaa623e3733fccfbeede974f8fa170605ef5f9eaac23a3ef2a13eefe28aca7991aa6dd1226d025053bac25a3d2633b5bd43df22fd0656b831d4bd3a5738da9f854b9908fa39a109b48725c240ced4db5a2b5e7389c13db8663534c1f50205c54ce7992a33193e18f82d8945f4fb317a7ad5f227ba6bb3f7777",
+        "response": "1b67060064d35f6f55affa2523b22db90fe111ca94fdb87cc7ff77131c6e998fd6a04f0997073a26cee7670d94801760e010a5e3cce9eb10cab61f2ff57fe1f2d7cb38efa002fee5c6292d296c6d464e6d584e3eb02135c58c2c197d509aab60ea430339b9f4b9584456590536e8bbb8797c35a0d2067d7f7dbc40a50d465c02eabfb08bf30e2a6036a6f143400546ce4f509f907e4da9a2d7e44f11f147286a5cbbdff7bbf7d787364f5059ad98490931209666d64e4e039162261e6e79596a7d344132612a9ec39db463421f4dc25d4259b2b631b3895fe20c95d0a191cc6fce73402531f6d4677d3cddf409158a9be6a49c61032a23bc9833e671ffd8275436e70dfaf5e17a1f2b708a1e42d9985036789897dd7ebc1a67aac2aede7b9bb0c113669d50016183cbfec4aabb64556e1a9a98a71512f73e0a956863989668446b9ac106ebb47f40693fe16e656aa2a2a86c8cd2c6f25c9cd68ad24758242fd960839bf3b3d3697f82bae2fe3cab087f3272c49aa733d49f7ed9e07effe50cf5a77f95122be05fe87e119bb639398d3e348cd0ba0919b915e5ac83a76883583cdcf433d49f5838bde2b90f370ff1a59abca5151473e4f0b0d147eb9a1c2dfa1ab94c64eb23651be1e6c61d365ca04884063714499c07d1468689f0cb0637532249a953914034f25e0a3591158559223551f7c6ba5a1fd45a07b97c525e3d8ef917d494fcff4d368f27e79503d5e674125bdcb14fce7909736feecc366d64f298dcd612ecb92c1b7df96029a529e3294978b1910525b770e332feffcbffff03",
         "rawHeaders": [
             "Date",
-            "Fri, 10 Apr 2026 17:17:03 GMT",
+            "Tue, 21 Apr 2026 10:33:51 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -48,13 +48,13 @@
             "cf-cache-status",
             "DYNAMIC",
             "set-cookie",
-            "__cf_bm=AV.XQNjDzmL6_ee3j9wjRPv44W6RIL3Qngxxyz27u54-1775841423.2201612-1.0.1.1-HhZPRW9RL6TSeeT0ve5OwHE4toIpJZN7Bc88v9aeHwMiC_qSc2fjXT8xKK0QfrHoz97_YsISm9vql9_e_2MLOPSutwQ4mwfypZgwiLNE7BJatDBvEOoRGQOEBmQyOidu; HttpOnly; Secure; Path=/; Domain=api.cx.metamask.io; Expires=Fri, 10 Apr 2026 17:47:03 GMT",
+            "__cf_bm=pGg67dz1ecPBUEfp_e8QtYeIukoi.rxG_dBpvF9gk6M-1776767630.6930346-1.0.1.1-Cv4DyQAeA1pr5CTiHHldWkJ7O8JZ87TCLVgnFy.y1.L7Lo4UORcOXkhLGJ893qajNQNTUcd8nZuaPCsu19crUXocjvuL_AEHyPgcINwj.gK9Xf_PYefbfZWXGuRUEMLi; HttpOnly; Secure; Path=/; Domain=api.cx.metamask.io; Expires=Tue, 21 Apr 2026 11:03:51 GMT",
             "Content-Encoding",
             "br",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "9ea3671f1aa73208-SEA"
+            "9efbbb9bdf9b0b09-LHR"
         ],
         "responseIsBinary": true
     }

@@ -8,6 +8,7 @@ const {
   BRIDGE_IN,
   BRIDGE_OUT,
   CANCEL_ORDER,
+  COLLECT,
   CLAIM,
   CLAIM_BONUS,
   DEPOSIT,
@@ -20,6 +21,7 @@ const {
   VOTE,
   REPAY,
   MINT,
+  MODIFY_LIQUIDITY,
   UNWRAP,
   DEPOSIT_TOKEN,
   DOMAIN_RENEW,
@@ -46,8 +48,9 @@ const determinants: DeterminantMap = {
         '0x94b75331ae8d42c1b61065089b7d48fe14aa73b7',
         '0xeabbcb3e8e415306207ef514f660a3f820025be3',
       ],
-      name: 'UNISWAP_V4_ROUTER',
-      protocol: 'UNISWAP_V4',
+      name: 'UNISWAP_ROUTER',
+      protocol: 'UNISWAP',
+      version: 'V4',
     },
     {
       addresses: [
@@ -69,8 +72,9 @@ const determinants: DeterminantMap = {
         '0x5b7ec4a94ff9bedb700fb82ab09d5846972f4016', // Monad (143)
         '0x9ae0921e981aaa7308f176f8d4f9129b9247c89d', // MegaETH (4326)
       ],
-      name: 'UNISWAP_V4_POSITION_MANAGER',
-      protocol: 'UNISWAP_V4',
+      name: 'UNISWAP_POSITION_MANAGER',
+      protocol: 'UNISWAP',
+      version: 'V4',
     },
     {
       addresses: ['0x2d8879046f1559e53eb052e949e9544bcb72f414'],
@@ -94,6 +98,11 @@ const determinants: DeterminantMap = {
     { address: '0xdef171fe48cf0115b1d80b88dc8eab59176fee57', name: 'PARASWAP', protocol: 'PARASWAP', version: 'V5' },
     { address: '0xb8901acb165ed027e32754e0ffe830802919727f', name: 'HOP_PROTOCOL', protocol: 'HOP' },
     { address: '0xba12222222228d8ba445958a75a0704d566bf2c8', name: 'BALANCER_VAULT', protocol: 'BALANCER' },
+    {
+      address: '0x8a4fc4a9bc8ea6a7d26fac88f2c75a4262457500',
+      name: 'CURVE_POOL',
+      protocol: 'CURVE',
+    },
     {
       address: '0x80a64c6d7f12c47b7c66c5b4e20e72bc1fcd5d9e',
       name: 'MAESTRO_ROUTER',
@@ -184,7 +193,7 @@ const determinants: DeterminantMap = {
     },
     {
       address: '0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45',
-      name: 'UNISWAP_V3_ROUTER_2',
+      name: 'UNISWAP_ROUTER_2',
       protocol: 'UNISWAP',
       version: 'V3',
     },
@@ -232,9 +241,24 @@ const determinants: DeterminantMap = {
       protocol: 'WETH',
     },
     { address: '0x745daa146934b27e3f0b6bff1a6e36b9b90fb131', name: 'DEX_AG_PROXY', protocol: 'DEX_AG' },
-    { address: '0xdef1c0ded9bec7f1a1670819833240f027b25eff', name: '0X_EXCHANGE_PROXY', protocol: '0X_V3' },
-    { address: '0x11111112542d85b3ef69ae05771c2dccff4faa26', name: '1INCH_V3_EXCHANGE_PROXY', protocol: '1INCH_V3' },
-    { address: '0x398ec7346dcd622edc5ae82352f02be94c62d119', name: 'AAVE_LENDING_POOL_V1', protocol: 'AAVE_V1' },
+    {
+      address: '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
+      name: '0X_EXCHANGE_PROXY',
+      protocol: '0X',
+      version: 'V3',
+    },
+    {
+      address: '0x11111112542d85b3ef69ae05771c2dccff4faa26',
+      name: '1INCH_EXCHANGE_PROXY',
+      protocol: '1INCH',
+      version: 'V3',
+    },
+    {
+      address: '0x398ec7346dcd622edc5ae82352f02be94c62d119',
+      name: 'AAVE_LENDING_POOL',
+      protocol: 'AAVE',
+      version: 'V1',
+    },
     { address: '0x4dbd4fc535ac27206064b68ffcf827b0a60bab3f', name: 'ARBITRUM_INBOX', protocol: 'ARBITRUM' },
     { address: '0x760723cd2e632826c38fef8cd438a4cc7e7e1a40', name: 'ARBITRUM_OUTBOX', protocol: 'ARBITRUM' },
     { address: '0x6d19b2bf3a36a61530909ae65445a906d98a2fa8', name: 'BALANCER_DISTRIBUTOR', protocol: 'BALANCER' },
@@ -262,7 +286,7 @@ const determinants: DeterminantMap = {
     { address: '0xde3e5a990bce7fc60a6f017e7c4a95fc4939299e', name: 'GITCOIN_DISTRIBUTOR', protocol: 'GITCOIN' },
     {
       address: '0x82e0b8cdd80af5930c4452c684e71c861148ec8a',
-      name: 'METAMASK_BRIDGE_V1',
+      name: 'METAMASK_BRIDGE',
       protocol: 'METAMASK',
       definingTrait: 'BRIDGE',
       version: 'V1',
@@ -279,17 +303,53 @@ const determinants: DeterminantMap = {
         '0x29106d08382d3c73bF477A94333C61Db1142E1B6', //avalanche c-chain
         '0xE3d0d2607182Af5B24f5C3C2E4990A053aDd64e3', //linea
       ],
-      name: 'METAMASK_BRIDGE_V2',
+      name: 'METAMASK_BRIDGE',
       protocol: 'METAMASK',
       definingTrait: 'BRIDGE',
       version: 'V2',
     },
     {
       addresses: ['0xf256f3cbefc7abbce953635f5d700a98c4b45277', '0xDc71aFFC862fceB6aD32BE58E098423A7727bEbd'],
-      name: 'METAMASK_STAKE_V1',
+      name: 'METAMASK_STAKE',
       protocol: 'METAMASK',
       definingTrait: 'STAKE',
       version: 'V1',
+    },
+    {
+      address: '0x4fef9d741011476750a243ac70b9789a63dd47df',
+      name: 'METAMASK_POOLED_STAKING',
+      protocol: 'METAMASK_STAKE',
+    },
+    {
+      addresses: [
+        '0x4da27a545c0c5b758a6ba100e3a049001de870f5',
+        '0x1a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d',
+        '0x9eda81c21c273a82be9bbc19b6a6182212068101',
+      ],
+      name: 'AAVE_STAKE_TOKEN',
+      protocol: 'AAVE',
+      version: 'V3',
+    },
+    {
+      address: '0xcf50b810e57ac33b91dcf525c6ddd9881b139332',
+      name: 'CONVEX_STAKED_CVX_POOL',
+      protocol: 'CONVEX',
+    },
+    {
+      address: '0x72a19342e8f1838460ebfccef09f6585e32db86e',
+      name: 'CONVEX_CVX_LOCKER',
+      protocol: 'CONVEX',
+      version: 'V2',
+    },
+    {
+      address: '0x8014595f2ab54cd7c604b00e9fb932176fdc86ae',
+      name: 'CONVEX_CRV_DEPOSITOR',
+      protocol: 'CONVEX',
+    },
+    {
+      address: '0xc128a9954e6c874ea3d62ce62b468ba073093f25',
+      name: 'BALANCER_VE_BAL',
+      protocol: 'BALANCER',
     },
     {
       addresses: [
@@ -298,8 +358,9 @@ const determinants: DeterminantMap = {
         '0x9dda6ef3d919c9bc8885d5560999a3640431e8e6',
         '0xf504c1fe13d14df615e66dcd0abf39e60c697f34',
       ],
-      name: 'METAMASK_V1_ROUTER',
-      protocol: 'METAMASK_V1',
+      name: 'METAMASK_ROUTER',
+      protocol: 'METAMASK',
+      version: 'V1',
     },
     { address: '0xce16f69375520ab01377ce7b88f5ba8c48f8d666', name: 'SQUID_ROUTER', protocol: 'SQUID' },
     { address: '0xa5409ec958c83c3f309868babaca7c86dcb077c1', name: 'OPENSEA_REGISTRY', protocol: 'OPENSEA' },
@@ -307,8 +368,9 @@ const determinants: DeterminantMap = {
     { address: '0x7f268357a8c2552623316e2562d90e642bb538e5', name: 'OPENSEA_EXCHANGE_2', protocol: 'OPENSEA' },
     {
       address: '0x1bd435f3c054b6e901b7b108a0ab7617c808677b',
-      name: 'PARASWAP_V4_EXCHANGE_PROXY',
-      protocol: 'PARASWAP_V4',
+      name: 'PARASWAP_EXCHANGE_PROXY',
+      protocol: 'PARASWAP',
+      version: 'V4',
     },
     {
       addresses: [
@@ -318,8 +380,9 @@ const determinants: DeterminantMap = {
         '0xb89a6778d1efe7a5b7096757a21b810cc2886fa1',
         '0xdaee41e335322c85ff2c5a6745c98e1351806e98',
       ],
-      name: 'PANCAKESWAP_V2_ROUTER',
-      protocol: 'PANCAKESWAP_V2',
+      name: 'PANCAKESWAP_ROUTER',
+      protocol: 'PANCAKESWAP',
+      version: 'V2',
     },
     { address: '0xa0c68c638235ee32657e8f720a23cec1bfc77c77', name: 'POLYGON_BRIDGE', protocol: 'POLYGON' },
     {
@@ -329,8 +392,18 @@ const determinants: DeterminantMap = {
     },
     { address: '0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f', name: 'SUSHISWAP_ROUTER', protocol: 'SUSHISWAP' },
     { address: '0x090d4613473dee047c3f2706764f49e0821d256e', name: 'UNISWAP_DISTRIBUTOR', protocol: 'UNISWAP' },
-    { address: '0x7a250d5630b4cf539739df2c5dacb4c659f2488d', name: 'UNISWAP_V2_ROUTER', protocol: 'UNISWAP_V2' },
-    { address: '0xe592427a0aece92de3edee1f18e0157c05861564', name: 'UNISWAP_V3_ROUTER', protocol: 'UNISWAP_V3' },
+    {
+      address: '0x7a250d5630b4cf539739df2c5dacb4c659f2488d',
+      name: 'UNISWAP_ROUTER',
+      protocol: 'UNISWAP',
+      version: 'V2',
+    },
+    {
+      address: '0xe592427a0aece92de3edee1f18e0157c05861564',
+      name: 'UNISWAP_ROUTER',
+      protocol: 'UNISWAP',
+      version: 'V3',
+    },
     { address: '0x8fd00f170fdf3772c5ebdcd90bf257316c69ba45', name: 'SPARKPOOL_MINING_PAYOUT', protocol: 'SPARKPOOL' },
     {
       address: '0x3ecef08d0e2dad803847e052249bb4f8bff2d5bb',
@@ -345,8 +418,18 @@ const determinants: DeterminantMap = {
     },
     { address: '0x3a9fff453d50d4ac52a6890647b823379ba36b9e', name: 'SHUFFLE_MONSTER_V3', protocol: 'ERC_20' },
     { address: '0x26946ada5ecb57f3a1f91605050ce45c482c9eb1', name: 'BITCOINSOV', protocol: 'ERC_20' },
-    { address: '0x722122df12d4e14e13ac3b6895a86e84145b6967', name: 'TORNADO_CASH', protocol: 'TORNADO_CASH_V1' },
-    { address: '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5', name: 'ENS_V1', protocol: 'ENS_V1' },
+    {
+      address: '0x722122df12d4e14e13ac3b6895a86e84145b6967',
+      name: 'TORNADO_CASH',
+      protocol: 'TORNADO_CASH',
+      version: 'V1',
+    },
+    {
+      address: '0x283af0b28c62c092c9727f1ee09c02ca627eb7f5',
+      name: 'ENS_V1',
+      protocol: 'ENS',
+      version: 'V1',
+    },
     { address: '0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e', name: 'ENS', protocol: 'ENS' },
     { address: '0xebfb47a7ad0fd6e57323c8a42b2e5a6a4f68fc1a', name: 'POOLTOGETHER', protocol: 'POOLTOGETHER' },
     { address: '0xa0fa0e79342884a9c84f42fafa28f051b1efaec9', name: 'DS_PROXY', protocol: 'BALANCER' },
@@ -364,13 +447,13 @@ const determinants: DeterminantMap = {
     },
     {
       address: '0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2',
-      name: 'AAVE_LENDING_POOL_V3',
+      name: 'AAVE_LENDING_POOL',
       protocol: 'AAVE',
       version: 'V3',
     },
     {
       address: '0xdd3f50f8a6cafbe9b31a427582963f465e745af8',
-      name: 'ROCKET_POOL_V1.2',
+      name: 'ROCKET_POOL',
       protocol: 'ROCKET_POOL',
       version: 'V1.2',
     },
@@ -417,9 +500,12 @@ const determinants: DeterminantMap = {
     { id: '0x40c10f19', name: MINT, protocol: 'ERC_20', priority: 100 },
     { id: '0xa9059cbb', name: TRANSFER, protocol: 'ERC_20', priority: 99 },
     { id: '0x38ed1739', name: EXCHANGE, priority: 1 },
-    { id: '0xfc6f7865', name: WITHDRAW },
+    { id: '0xfc6f7865', name: COLLECT },
+    // Explicit priority so category applies on known contracts (undefined skipped `-100 < undefined`).
+    { id: '0x0c49ccbe', name: WITHDRAW, priority: 0 },
     { id: '0xac9650d8', name: EXCHANGE, priority: 1 },
     { id: '0x88316456', name: DEPOSIT },
+    { id: '0x80ed71e4', name: DEPOSIT }, // deposit(uint256,bool,address) — Convex CRV Depositor
     { id: '0xf7a16963', name: DOMAIN_REGISTER },
     { id: '0x18cbafe5', name: EXCHANGE, priority: 1 },
     { id: '0xc804c39a', name: CLAIM },
@@ -466,6 +552,55 @@ const determinants: DeterminantMap = {
       name: EXCHANGE,
     },
     { hash: '0xac1020908b5f7134d59c1580838eba6fc42dd8c28bae65bf345676bba1913f8e', name: STAKE, priority: 10 },
+    // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking
+    {
+      hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
+      name: STAKE,
+      priority: 14,
+    },
+    // 0x4da27a545c0c5B758a6BA100e3a049001de870f5 stkAAVE
+    {
+      hash: '0x6c86f3fd5118b3aa8bb4f389a617046de0a3d3d477de1a1673d227f802f616dc',
+      name: STAKE,
+      priority: 14,
+    },
+    // 0xCF50b810E57Ac33B91dCF525C6ddd9881B139332 Convex staked CVX
+    {
+      hash: '0x9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d',
+      name: STAKE,
+      priority: 14,
+    },
+    // 0x72a19342e8F1838460eBFCCEf09F6585e32db86E CvxLockerV2 Staked
+    {
+      hash: '0x9cfd25589d1eb8ad71e342a86a8524e83522e3936c0803048c08f6d9ad974f40',
+      name: STAKE,
+      priority: 14,
+    },
+    // 0x72a19342e8F1838460eBFCCEf09F6585e32db86E CvxLockerV2 RewardPaid
+    {
+      hash: '0x540798df468d7b23d11f156fdb954cb19ad414d150722a7b6d55ba369dea792e',
+      name: CLAIM,
+      priority: 14,
+    },
+    // Convex reward pool RewardPaid
+    {
+      hash: '0xe2403640ba68fed3a2f88b7557551d1993f84b99bb10ff833f0cf8db0c5e0486',
+      name: CLAIM,
+      priority: 14,
+    },
+    // 0xC128a9954e6c874eA3d62ce62B468bA073093F25 veBAL VotingEscrow
+    {
+      hash: '0x4566dfc29f6f11d13a418c26a02bef7c28bae749d4de47e4e6a7cddea6730d59',
+      name: STAKE,
+      priority: 14,
+    },
+    // AddLiquidity at pool 0x8a4fc4a9bc8ea6a7d26fac88f2c75a4262457500; protocol beats ERC_20 Transfer in topic pass
+    {
+      hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
+      name: DEPOSIT,
+      protocol: 'CURVE',
+      priority: 14,
+    },
     { hash: '0x936c2ca3b35d2d0b24057b0675c459e4515f48fe132d138e213ae59ffab7f53e', name: BRIDGE_OUT },
     { hash: '0x1e77446728e5558aa1b7e81e0cdab9cc1b075ba893b740600c76a315c2caa553', name: BORROW },
     { hash: '0xc12c57b1c73a2c3a2ea4613e9476abb3d8d146857aab7329e24243fb59710c82', name: DEPOSIT },
@@ -542,7 +677,27 @@ const determinants: DeterminantMap = {
     { hash: '0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1', name: DEPOSIT },
     { hash: '0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde', name: DEPOSIT },
     { hash: '0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67', name: EXCHANGE, priority: 1 },
-    { hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01', name: WITHDRAW },
+    // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager Collect
+    {
+      hash: '0x40d0efd1a53d60ecbf40971b9daf7dc90178c3aadc7aab1765632738fa8b8f01',
+      name: COLLECT,
+      priority: 45,
+    },
+    // 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 NonfungiblePositionManager increase/decrease liquidity
+    {
+      hashes: [
+        '0x3067048beee31b25b2f1681f88dac838c8bba36af25bfb2b7cf7473a5847e35f',
+        '0x26f6a048ee9138f2c0ce266f322cb99228e8d619ae2bff30c67f8dcf9d2377b4',
+      ],
+      name: MODIFY_LIQUIDITY,
+      priority: 45,
+    },
+    // pool ModifyLiquidity (Uniswap V4 and forks)
+    {
+      hash: '0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec',
+      name: MODIFY_LIQUIDITY,
+      priority: 45,
+    },
     { hash: '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65', name: UNWRAP, priority: -1 },
     { hash: '0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c', name: WRAP, priority: -1 },
     { hash: '0xde16772e5c4365a3057b0336ad2eef600c1aad8cd2b5b3146aded1c20da71866', name: WITHDRAW },

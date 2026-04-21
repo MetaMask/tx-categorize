@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Effectuer un dépôt à l’aide d’une passerelle",
   "BRIDGE_OUT": "Effectuer un retrait à l’aide d’une passerelle",
   "CLAIM": "Réclamer",
+  "COLLECT": "Collecter",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transférer le domaine",
   "DOMAIN_REGISTER": "Enregistrer le domaine",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "Retirer le jeton",
   "RECLAIM": "Récupérer",
   "PAYMENT": "Paiement",
+  "MODIFY_LIQUIDITY": "Modifier la liquidité",
   "CONTRACT_CALL": "Transaction non identifiée",
   "STANDARD": "Transfert natif"
 }

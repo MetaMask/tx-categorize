@@ -11,6 +11,7 @@
   "BRIDGE_IN": "桥接存款",
   "BRIDGE_OUT": "桥接提款",
   "CLAIM": "申领",
+  "COLLECT": "收取",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "转让域名",
   "DOMAIN_REGISTER": "注册域名",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "提取代币",
   "RECLAIM": "赎回",
   "PAYMENT": "付款",
+  "MODIFY_LIQUIDITY": "修改流动性",
   "CONTRACT_CALL": "未识别交易",
   "STANDARD": "原生转账"
 }

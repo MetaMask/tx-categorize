@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Bridge Deposit",
   "BRIDGE_OUT": "Bridge Withdraw",
   "CLAIM": "Claim",
+  "COLLECT": "Collect",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Transfer Domain",
   "DOMAIN_REGISTER": "Register Domain",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "Withdraw Token",
   "RECLAIM": "Reclaim",
   "PAYMENT": "Payment",
+  "MODIFY_LIQUIDITY": "Modify Liquidity",
   "CONTRACT_CALL": "Unidentified Transaction",
   "STANDARD": "Native Transfer"
 }

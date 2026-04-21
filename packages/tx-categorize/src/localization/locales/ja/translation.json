@@ -11,6 +11,7 @@
   "BRIDGE_IN": "ブリッジ入金",
   "BRIDGE_OUT": "ブリッジ出金",
   "CLAIM": "請求",
+  "COLLECT": "回収",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "ドメインを転送",
   "DOMAIN_REGISTER": "ドメインを登録",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "トークンを出金",
   "RECLAIM": "再請求",
   "PAYMENT": "支払い",
+  "MODIFY_LIQUIDITY": "流動性の変更",
   "CONTRACT_CALL": "未特定のトランザクション",
   "STANDARD": "ネイティブ送金"
 }

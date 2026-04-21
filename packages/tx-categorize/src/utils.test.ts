@@ -268,6 +268,21 @@ describe('refineActionForMultiAssets', () => {
     expect(result).toBe(Action.WITHDRAW_MULTI)
   })
 
+  it('refines COLLECT to COLLECT_MULTI when multiple received', () => {
+    const result = refineActionForMultiAssets(Action.COLLECT, [], [makeValueTransfer(), makeValueTransfer()])
+    expect(result).toBe(Action.COLLECT_MULTI)
+  })
+
+  it('refines MODIFY_LIQUIDITY to MODIFY_LIQUIDITY_MULTI_SENT when multiple sent', () => {
+    const result = refineActionForMultiAssets(Action.MODIFY_LIQUIDITY, [makeValueTransfer(), makeValueTransfer()], [])
+    expect(result).toBe(Action.MODIFY_LIQUIDITY_MULTI_SENT)
+  })
+
+  it('refines MODIFY_LIQUIDITY to MODIFY_LIQUIDITY_MULTI_RECV when multiple received', () => {
+    const result = refineActionForMultiAssets(Action.MODIFY_LIQUIDITY, [], [makeValueTransfer(), makeValueTransfer()])
+    expect(result).toBe(Action.MODIFY_LIQUIDITY_MULTI_RECV)
+  })
+
   it('returns original action when no multi-asset refinement needed', () => {
     expect(refineActionForMultiAssets(Action.EXCHANGE, [makeValueTransfer()], [makeValueTransfer()])).toBe(
       Action.EXCHANGE,

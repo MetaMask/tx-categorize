@@ -11,6 +11,7 @@
   "BRIDGE_IN": "브리지 인",
   "BRIDGE_OUT": "브리지 아웃",
   "CLAIM": "클레임",
+  "COLLECT": "수집",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "도메인 이전",
   "DOMAIN_REGISTER": "도메인 등록",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "토큰 인출",
   "RECLAIM": "리클레임",
   "PAYMENT": "지불",
+  "MODIFY_LIQUIDITY": "유동성 수정",
   "CONTRACT_CALL": "컨트랙 콜",
   "STANDARD": "스탠다드"
 }

@@ -11,6 +11,7 @@
   "BRIDGE_IN": "I-bridge ang Deposito",
   "BRIDGE_OUT": "I-bridge ang Pag-withdraw",
   "CLAIM": "I-claim",
+  "COLLECT": "Kolektahin",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Ilipat ang Domain",
   "DOMAIN_REGISTER": "Irehistro ang Domain",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "Mag-withdraw ng Token",
   "RECLAIM": "Bawiin",
   "PAYMENT": "Bayad",
+  "MODIFY_LIQUIDITY": "Baguhin ang liquidity",
   "CONTRACT_CALL": "Hindi Natukoy na Transaksyon",
   "STANDARD": "Native na Paglilipat"
 }

@@ -11,6 +11,7 @@
   "BRIDGE_IN": "Nạp qua cầu nối",
   "BRIDGE_OUT": "Rút qua cầu nối",
   "CLAIM": "Nhận",
+  "COLLECT": "Thu thập",
   "CLAIM_BONUS": "Claim Bonus",
   "DOMAIN_TRANSFER": "Chuyển tên miền",
   "DOMAIN_REGISTER": "Đăng ký tên miền",
@@ -33,6 +34,7 @@
   "WITHDRAW_TOKEN": "Rút Token",
   "RECLAIM": "Nhận lại",
   "PAYMENT": "Thanh toán",
+  "MODIFY_LIQUIDITY": "Sửa đổi thanh khoản",
   "CONTRACT_CALL": "Giao dịch không xác định",
   "STANDARD": "Chuyển tài sản gốc"
 }
