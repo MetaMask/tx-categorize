@@ -1022,6 +1022,23 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
     },
   },
+  "METAMASK_STAKE_STAKE": {
+    "txHash": "0x7cb0d9f70ddca8933d9dc0f1a75ab98d9a03186de580fa494a664d93180bb123",
+    "v5": {
+      "readable": "MetaMask Stake: Stake",
+      "toAddressName": "METAMASK_POOLED_STAKING",
+      "transactionCategory": "STAKE",
+      "transactionProtocol": "METAMASK_STAKE",
+      "transactionType": "METAMASK_STAKE_STAKE",
+    },
+    "v6": {
+      "readable": "Staked 0.0001 ETH",
+      "toAddressName": "METAMASK_POOLED_STAKING",
+      "transactionCategory": "STAKE",
+      "transactionProtocol": "METAMASK_STAKE",
+      "transactionType": "METAMASK_STAKE_STAKE",
+    },
+  },
   "METAMASK_STAKE_V1_CLAIM": {
     "txHash": "0x2ebb958fef3b51fe3306d5a027a83f22292d106773768e3748a4553b796333f9",
     "v5": {
