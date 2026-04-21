@@ -1695,7 +1695,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V4_MODIFY_LIQUIDITY",
     },
     "v6": {
-      "readable": "Modified liquidity",
+      "readable": "Modified liquidity — deposited 7.34K USDC and 2.93K MUSD",
       "toAddressName": "UNISWAP_POSITION_MANAGER",
       "transactionCategory": "MODIFY_LIQUIDITY",
       "transactionProtocol": "UNISWAP",

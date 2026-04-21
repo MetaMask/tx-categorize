@@ -7,6 +7,8 @@
   "REPAY": "Repaid $sent_assets_0_value $sent_assets_0_ticker",
   "MINT": "Minted Token",
   "MODIFY_LIQUIDITY": "Modified liquidity",
+  "MODIFY_LIQUIDITY_MULTI_SENT": "Modified liquidity — deposited $sent_assets_0_value $sent_assets_0_ticker and $sent_assets_1_value $sent_assets_1_ticker",
+  "MODIFY_LIQUIDITY_MULTI_RECV": "Modified liquidity — withdrew $received_assets_0_value $received_assets_0_ticker and $received_assets_1_value $received_assets_1_ticker",
   "EXCHANGE": "Swapped $sent_assets_0_value $sent_assets_0_ticker for $received_assets_0_value $received_assets_0_ticker",
   "EXCHANGE_FOR_MULTI": "Swapped $sent_assets_0_value $sent_assets_0_ticker for $received_assets_0_value $received_assets_0_ticker and $received_assets_1_value $received_assets_1_ticker",
   "EXCHANGE_FROM_MULTI": "Swapped $sent_assets_0_value $sent_assets_0_ticker and $sent_assets_1_value $sent_assets_1_ticker for $received_assets_0_value $received_assets_0_ticker",
