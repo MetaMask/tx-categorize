@@ -379,6 +379,16 @@ const determinants: DeterminantMap = {
       protocol: 'ROCKET_POOL',
       version: 'V1.2',
     },
+    {
+      addresses: [
+        '0x4da27a545c0c5b758a6ba100e3a049001de870f5',
+        '0x1a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d',
+        '0x9eda81c21c273a82be9bbc19b6a6182212068101',
+      ],
+      name: 'AAVE_STAKE_TOKEN',
+      protocol: 'AAVE',
+      version: 'V3',
+    },
   ],
   methodIds: [
     { id: '0xaf7060fd', name: EXCHANGE, priority: 1, protocol: 'LIFI' }, // lifi
@@ -458,6 +468,12 @@ const determinants: DeterminantMap = {
     { id: '0xe21fd0e9', name: EXCHANGE, priority: 1 },
   ],
   topics: [
+    // 0x4da27a545c0c5B758a6BA100e3a049001de870f5 stkAAVE
+    {
+      hash: '0x6c86f3fd5118b3aa8bb4f389a617046de0a3d3d477de1a1673d227f802f616dc',
+      name: STAKE,
+      priority: 14,
+    },
     { hash: '0xe2cee3f6836059820b673943853afebd9b3026125dab0d774284e6f28a4855be', name: EXCHANGE, priority: 1 },
     { hash: '0xd6d4f5681c246c9f42c203e287975af1601f8df8035a9251f79aab5c8f09e2f8', name: EXCHANGE, priority: 1 },
     {
