@@ -59,9 +59,11 @@ const getTxWithLogsFromPrimitives = async (
 ): Promise<SingleTransactionResponse> => {
   if (!isNockConfigured) {
     nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
-    nock.back.setMode(
-      (process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'lockdown',
-    )
+    const explicitMode = process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild' | undefined
+    // Local default: record (replay fixtures when present; can hit network to add/update them).
+    // CI sets CI=true — default lockdown there so tests stay offline and deterministic.
+    const defaultMode = process.env.CI === 'true' ? 'lockdown' : 'record'
+    nock.back.setMode(explicitMode || defaultMode)
     isNockConfigured = true
   }
 
@@ -83,6 +85,11 @@ const getTxWithLogsFromPrimitives = async (
     )
 
     return data
+  } catch (cause) {
+    // AxiosError carries circular refs (request ↔ redirect); Jest workers JSON-serialize
+    // failures and crash with "Converting circular structure to JSON" if we rethrow it.
+    const message = cause instanceof Error ? cause.message : String(cause)
+    throw new Error(`Primitives request failed for ${fixtureName}: ${message}`)
   } finally {
     nockDone()
     context.assertScopesFinished()
