@@ -104,6 +104,7 @@ export const txTestCases = {
   HOP_BRIDGE_IN: '0xa41a27f3f89357345b0c25c144a90bab78160a3130bb6d7d39f4fddf91a89e45',
   CURVE_DEPOSIT: '0xa0051bc2323b729274c4be4e0bf9d51c9a406725dcc3d6b654b281dd762873e4',
   METAMASK_STAKE_V1_CLAIM: '0x2ebb958fef3b51fe3306d5a027a83f22292d106773768e3748a4553b796333f9',
+  CONVEX_CLAIM: '0x22288abb8adf55b26445812dcf9e79b145f31f351175f77be1bbd96362871351',
 }
 
 /**
@@ -166,6 +167,7 @@ export const txTestCaseReadableLabels: Record<string, string> = {
   SHAPESHIFT_CLAIM: 'Claimed 200 FOX',
   GITCOIN_CLAIM: 'Claimed 16.492 GTC',
   COMPOUND_CLAIM: 'Claimed 2.5091 COMP',
+  CONVEX_CLAIM: 'Claimed 97.2854 cvxCRV',
   ERC_721_TRANSFER: 'Sent PLSR',
   ERC_721_MINT: 'Minted Token',
   ERC_721_APPROVE: 'Approved to spend',
