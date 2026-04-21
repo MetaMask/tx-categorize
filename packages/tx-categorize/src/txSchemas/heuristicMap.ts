@@ -393,8 +393,8 @@ const determinants: DeterminantMap = {
       address: '0xcf50b810e57ac33b91dcf525c6ddd9881b139332',
       name: 'CONVEX_STAKED_CVX_POOL',
       protocol: 'CONVEX',
-
-    },{
+    },
+    {
       address: '0x4fef9d741011476750a243ac70b9789a63dd47df',
       name: 'METAMASK_POOLED_STAKING',
       protocol: 'METAMASK_STAKE',
@@ -696,12 +696,12 @@ const determinants: DeterminantMap = {
       name: CLAIM,
       priority: 14,
     },
-        // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking
-        {
-          hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
-          name: STAKE,
-          priority: 14,
-        },
+    // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking
+    {
+      hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
+      name: STAKE,
+      priority: 14,
+    },
   ],
 }
 
