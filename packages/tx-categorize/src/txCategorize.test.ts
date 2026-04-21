@@ -59,9 +59,17 @@ const getTxWithLogsFromPrimitives = async (
 ): Promise<SingleTransactionResponse> => {
   if (!isNockConfigured) {
     nock.back.fixtures = path.join(__dirname, '..', 'test-fixtures', 'nock')
-    nock.back.setMode(
-      (process.env.NOCK_BACK_MODE as 'record' | 'lockdown' | 'dryrun' | 'update' | 'wild') || 'lockdown',
-    )
+    const explicitMode = process.env.NOCK_BACK_MODE as
+      | 'record'
+      | 'lockdown'
+      | 'dryrun'
+      | 'update'
+      | 'wild'
+      | undefined
+    // Local default: record (replay fixtures when present; can hit network to add/update them).
+    // CI sets CI=true — default lockdown there so tests stay offline and deterministic.
+    const defaultMode = process.env.CI === 'true' ? 'lockdown' : 'record'
+    nock.back.setMode(explicitMode || defaultMode)
     isNockConfigured = true
   }
 
@@ -83,6 +91,11 @@ const getTxWithLogsFromPrimitives = async (
     )
 
     return data
+  } catch (cause) {
+    // AxiosError carries circular refs (request ↔ redirect); Jest workers JSON-serialize
+    // failures and crash with "Converting circular structure to JSON" if we rethrow it.
+    const message = cause instanceof Error ? cause.message : String(cause)
+    throw new Error(`Primitives request failed for ${fixtureName}: ${message}`)
   } finally {
     nockDone()
     context.assertScopesFinished()
@@ -117,6 +130,9 @@ const buildV5V6SnapshotForCases = async (
   const out: Record<string, CategorizationSnapshotRow> = {}
   const sorted = Object.entries(cases).sort(([a], [b]) => a.localeCompare(b))
   for (const [category, txHash] of sorted) {
+    if (!txHash) {
+      continue
+    }
     const { data, chainId: responseChainId } = await getTxWithLogsFromPrimitives(txHash, chainId)
     const subjectAddress = createAccountId(data.from, responseChainId)
     const v5 = determineTransactionMetadataV5({ transaction: data }, Language.en, false, 49)
@@ -134,6 +150,9 @@ const buildV5V6SnapshotForCases = async (
 describe('#txCategorizeV2', () => {
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
+      if (!txHash) {
+        continue
+      }
       const { data } = await getTxWithLogsFromPrimitives(txHash)
 
       const categorizedTxV5 = determineTransactionMetadataV5(
@@ -230,6 +249,9 @@ describe('#txCategorizeV2', () => {
 describe('#txCategorizeV6', () => {
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
+      if (!txHash) {
+        continue
+      }
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
 
       const categorizedTxV5 = determineTransactionMetadataV6(
@@ -262,7 +284,9 @@ describe('#txCategorizeV6', () => {
   it('produces correct readable labels for ethereum txs', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const expectedReadable = txTestCaseReadableLabels[txCategory]
-      if (!expectedReadable) continue
+      if (!txHash || !expectedReadable) {
+        continue
+      }
 
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
       const categorizedTx = determineTransactionMetadataV6(

@@ -8,6 +8,7 @@ const {
   BRIDGE_IN,
   BRIDGE_OUT,
   CANCEL_ORDER,
+  COLLECT,
   CLAIM,
   CLAIM_BONUS,
   DEPOSIT,
@@ -500,7 +501,8 @@ const determinants: DeterminantMap = {
     { id: '0xa9059cbb', name: TRANSFER, protocol: 'ERC_20', priority: 99 },
     { id: '0x38ed1739', name: EXCHANGE, priority: 1 },
     { id: '0xfc6f7865', name: COLLECT },
-    { id: '0x0c49ccbe', name: WITHDRAW },
+    // Explicit priority so category applies on known contracts (undefined skipped `-100 < undefined`).
+    { id: '0x0c49ccbe', name: WITHDRAW, priority: 0 },
     { id: '0xac9650d8', name: EXCHANGE, priority: 1 },
     { id: '0x88316456', name: DEPOSIT },
     { id: '0x80ed71e4', name: DEPOSIT }, // deposit(uint256,bool,address) — Convex CRV Depositor
