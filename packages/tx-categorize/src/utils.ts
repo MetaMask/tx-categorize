@@ -146,6 +146,7 @@ export const refineActionForMultiAssets = (
   }
   if (action === Action.DEPOSIT && sentAssets.length > 1) return Action.DEPOSIT_MULTI
   if (action === Action.WITHDRAW && receivedAssets.length > 1) return Action.WITHDRAW_MULTI
+  if (action === Action.COLLECT && receivedAssets.length > 1) return Action.COLLECT_MULTI
 
   return action
 }

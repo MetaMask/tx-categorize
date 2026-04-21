@@ -142,7 +142,7 @@ export const txTestCaseReadableLabels: Record<string, string> = {
   UNISWAP_V3_WITHDRAW: 'Withdrew',
   UNISWAP_V3_EXCHANGE: 'Swapped 73.26K USDC for 31.8654 ETH',
   UNISWAP_V3_DEPOSIT: 'Deposited 29.34K HEX and 26.09K USDC',
-  UNISWAP_V3_COLLECT: 'Collected 3.6951 tBTC',
+  UNISWAP_V3_COLLECT: 'Collected 3.6951 tBTC and 0.0003 WBTC',
   UNISWAP_V4_EXCHANGE: 'Swapped 100 CEL for 0.0069 ETH',
   UNISWAP_V4_MODIFY_LIQUIDITY: 'Modified liquidity',
   '1INCH_V3_EXCHANGE': 'Swapped 13.51K FXF for 5.19K USDT',

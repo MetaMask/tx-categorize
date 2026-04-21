@@ -1610,7 +1610,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V3_COLLECT",
     },
     "v6": {
-      "readable": "Collected 3.6951 tBTC",
+      "readable": "Collected 3.6951 tBTC and 0.0003 WBTC",
       "toAddressName": "UNISWAP_NFT_POSITION_MANAGER",
       "transactionCategory": "COLLECT",
       "transactionProtocol": "UNISWAP",

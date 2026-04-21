@@ -15,6 +15,7 @@
   "BRIDGE_OUT": "Withdrew $received_assets_0_value $received_assets_0_ticker",
   "CLAIM": "Claimed $received_assets_0_value $received_assets_0_ticker",
   "COLLECT": "Collected $received_assets_0_value $received_assets_0_ticker",
+  "COLLECT_MULTI": "Collected $received_assets_0_value $received_assets_0_ticker and $received_assets_1_value $received_assets_1_ticker",
   "CLAIM_BONUS": "Claimed $received_assets_0_value $received_assets_0_ticker Bonus ",
   "DOMAIN_TRANSFER": "Transferred Domain",
   "DOMAIN_REGISTER": "Registered Domain",
