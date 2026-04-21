@@ -143,6 +143,11 @@ const determinants: DeterminantMap = {
       protocol: 'LIFI',
     },
     {
+      address: '0x8a4fc4a9bc8ea6a7d26fac88f2c75a4262457500',
+      name: 'CURVE_POOL',
+      protocol: 'CURVE',
+    },
+    {
       addresses: [
         '0xc30141b657f4216252dc59af2e7cdb9d8792e1b0',
         '0x2b42affd4b7c14d9b7c2579229495c052672ccd3',
@@ -652,6 +657,12 @@ const determinants: DeterminantMap = {
     {
       hash: '0xb3d084820fb1a9decffb176436bd02558d15fac9b0ddfed8c465bc7359d7dce0',
       name: BORROW,
+    },
+    {
+      hash: '0x7196cbf63df1f2ec20638e683ebe51d18260be510592ee1e2efe3f3cfd4c33e9',
+      name: DEPOSIT,
+      protocol: 'CURVE',
+      priority: 14,
     },
   ],
 }
