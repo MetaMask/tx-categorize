@@ -9,14 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.3]
 
-### Uncategorized
+### Fixed
 
 - fix: proper handling of partially-identified txs to 'unidentified' ([#42](https://github.com/MetaMask/tx-categorize/pull/42))
 - fix: spend approval txs labels ([#41](https://github.com/MetaMask/tx-categorize/pull/41))
 
 ## [2.0.2]
 
-### Uncategorized
+### Added
 
 - feat: balancer stake ([#39](https://github.com/MetaMask/tx-categorize/pull/39))
 - feat: metamaskstake stake ([#37](https://github.com/MetaMask/tx-categorize/pull/37))
