@@ -160,6 +160,7 @@ export const txTestCaseReadableLabels: Record<string, string> = {
   BALANCER_DEPOSIT: 'Deposited 0.0041 DAI',
   BALANCER_WITHDRAW: 'Withdrew 108.3346 DAI and <0.0001 YFI',
   BALANCER_EXCHANGE: 'Swapped 70 DAI for 604.83K yTrump',
+  CURVE_DEPOSIT: 'Deposited 4 USDT and 120 YELLOW',
   UNISWAP_CLAIM: 'Claimed 400 UNI',
   SHAPESHIFT_CLAIM: 'Claimed 200 FOX',
   GITCOIN_CLAIM: 'Claimed 16.492 GTC',

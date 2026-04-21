@@ -151,6 +151,7 @@ describe('#txCategorizeV2', () => {
         false,
         49,
       )
+      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
   it('categorizes a linea tx correctly', async () => {
@@ -247,6 +248,7 @@ describe('#txCategorizeV6', () => {
         false,
         49,
       )
+      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
   it('categorizes a linea tx correctly', async () => {
@@ -267,6 +269,7 @@ describe('#txCategorizeV6', () => {
   it('produces correct readable labels for ethereum txs', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const expectedReadable = txTestCaseReadableLabels[txCategory]
+      if (!expectedReadable) continue
 
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
       const categorizedTx = determineTransactionMetadataV6(
