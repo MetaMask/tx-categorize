@@ -215,7 +215,7 @@ export const txTestCaseReadableLabels: Record<string, string> = {
   METAMASK_STAKE_V1_CLAIM: 'Stake: Claimed 0.0341 ETH',
   AAVE_V3_STAKE: 'Staked 12.3528 AAVE',
   METAMASK_STAKE_STAKE: 'Staked 0.0001 ETH',
-  BALANCER_STAKE: 'Staked 30.4778 B-80BAL-20WETH'
+  BALANCER_STAKE: 'Staked 30.4778 B-80BAL-20WETH',
 }
 
 export const lineaTxTestCases = {
