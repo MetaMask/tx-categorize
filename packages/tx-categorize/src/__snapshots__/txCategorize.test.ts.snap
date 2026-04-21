@@ -325,6 +325,23 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_EXCHANGE",
     },
   },
+  "BALANCER_STAKE": {
+    "txHash": "0xf72595e9c0bfa407b608b11747954896834df998398ef1b27e3204ffbbae5a5b",
+    "v5": {
+      "readable": "Balancer: Stake",
+      "toAddressName": "BALANCER_VE_BAL",
+      "transactionCategory": "STAKE",
+      "transactionProtocol": "BALANCER",
+      "transactionType": "BALANCER_STAKE",
+    },
+    "v6": {
+      "readable": "Staked 30.4778 B-80BAL-20WETH",
+      "toAddressName": "BALANCER_VE_BAL",
+      "transactionCategory": "STAKE",
+      "transactionProtocol": "BALANCER",
+      "transactionType": "BALANCER_STAKE",
+    },
+  },
   "BALANCER_WITHDRAW": {
     "txHash": "0x034eb747b8254e57bd3c56681ac79f126aa0f8e386b91fc0ee65b1fa1bfd38f2",
     "v5": {
