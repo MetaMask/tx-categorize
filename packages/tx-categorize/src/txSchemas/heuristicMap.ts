@@ -399,6 +399,11 @@ const determinants: DeterminantMap = {
       name: 'METAMASK_POOLED_STAKING',
       protocol: 'METAMASK_STAKE',
     },
+    {
+      address: '0xc128a9954e6c874ea3d62ce62b468ba073093f25',
+      name: 'BALANCER_VE_BAL',
+      protocol: 'BALANCER',
+    },
   ],
   methodIds: [
     { id: '0xaf7060fd', name: EXCHANGE, priority: 1, protocol: 'LIFI' }, // lifi
@@ -699,6 +704,12 @@ const determinants: DeterminantMap = {
     // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking
     {
       hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
+      name: STAKE,
+      priority: 14,
+    },
+    // 0xC128a9954e6c874eA3d62ce62B468bA073093F25 veBAL VotingEscrow
+    {
+      hash: '0x4566dfc29f6f11d13a418c26a02bef7c28bae749d4de47e4e6a7cddea6730d59',
       name: STAKE,
       priority: 14,
     },

@@ -106,6 +106,7 @@ export const txTestCases = {
   METAMASK_STAKE_V1_CLAIM: '0x2ebb958fef3b51fe3306d5a027a83f22292d106773768e3748a4553b796333f9',
   CONVEX_CLAIM: '0x22288abb8adf55b26445812dcf9e79b145f31f351175f77be1bbd96362871351',
   METAMASK_STAKE_STAKE: '0x7cb0d9f70ddca8933d9dc0f1a75ab98d9a03186de580fa494a664d93180bb123',
+  BALANCER_STAKE: '0xf72595e9c0bfa407b608b11747954896834df998398ef1b27e3204ffbbae5a5b',
 }
 
 /**
@@ -214,6 +215,7 @@ export const txTestCaseReadableLabels: Record<string, string> = {
   METAMASK_STAKE_V1_CLAIM: 'Stake: Claimed 0.0341 ETH',
   AAVE_V3_STAKE: 'Staked 12.3528 AAVE',
   METAMASK_STAKE_STAKE: 'Staked 0.0001 ETH',
+  BALANCER_STAKE: 'Staked 30.4778 B-80BAL-20WETH',
 }
 
 export const lineaTxTestCases = {
