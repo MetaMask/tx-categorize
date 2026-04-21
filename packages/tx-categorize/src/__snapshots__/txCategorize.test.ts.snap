@@ -189,6 +189,23 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_REPAY",
     },
   },
+  "AAVE_V3_STAKE": {
+    "txHash": "0x3f68193fa8edf883b1c12ae310f92536097c2742e04999cdd84f38a27708a510",
+    "v5": {
+      "readable": "Aave V3: Stake",
+      "toAddressName": "AAVE_STAKE_TOKEN",
+      "transactionCategory": "STAKE",
+      "transactionProtocol": "AAVE",
+      "transactionType": "AAVE_V3_STAKE",
+    },
+    "v6": {
+      "readable": "Staked 12.3528 AAVE",
+      "toAddressName": "AAVE_STAKE_TOKEN",
+      "transactionCategory": "STAKE",
+      "transactionProtocol": "AAVE",
+      "transactionType": "AAVE_V3_STAKE",
+    },
+  },
   "AAVE_V3_WITHDRAW": {
     "txHash": "0x2c124830d4d7b721d001db489f377f3996439b0e6b43136c0948f2d496059827",
     "v5": {
