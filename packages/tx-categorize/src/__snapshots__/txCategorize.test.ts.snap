@@ -216,7 +216,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 5 USDT",
+      "readable": "Withdrew 5 USDT from bridge",
       "toAddressName": "AAVE_LENDING_POOL_V3",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "AAVE",
@@ -267,7 +267,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ARBITRUM_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 0.763 ETH",
+      "readable": "Withdrew 0.763 ETH from bridge",
       "toAddressName": "ARBITRUM_OUTBOX",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "ARBITRUM",
@@ -352,7 +352,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 108.3346 DAI and <0.0001 YFI",
+      "readable": "Withdrew 108.3346 DAI from bridge and <0.0001 YFI",
       "toAddressName": "POOL_TOKEN",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "BALANCER",
@@ -369,7 +369,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COINBASE_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew",
+      "readable": "Withdrew from bridge",
       "toAddressName": undefined,
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "COINBASE",
@@ -454,7 +454,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 571.35K DAI",
+      "readable": "Withdrew 571.35K DAI from bridge",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "COMPOUND",
@@ -777,7 +777,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ETHER_DELTA_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 0.0163 ETH",
+      "readable": "Withdrew 0.0163 ETH from bridge",
       "toAddressName": "ETHER_DELTA_2",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "ETHER_DELTA",
@@ -879,7 +879,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "GNOSIS_SAFE_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew",
+      "readable": "Withdrew from bridge",
       "toAddressName": undefined,
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "GNOSIS_SAFE",
@@ -947,7 +947,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "IDEX_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 364.2416 AURA",
+      "readable": "Withdrew 364.2416 AURA from bridge",
       "toAddressName": "IDEX_STAKING",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "IDEX",
@@ -1015,7 +1015,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V1_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Bridge: Withdrew",
+      "readable": "Bridge: Withdrew from bridge",
       "toAddressName": "METAMASK_BRIDGE_V1",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
@@ -1032,7 +1032,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Bridge: Withdrew",
+      "readable": "Bridge: Withdrew from bridge",
       "toAddressName": "METAMASK_BRIDGE_V2",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
@@ -1304,7 +1304,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POLYGON_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 883.8767 USDC",
+      "readable": "Withdrew 883.8767 USDC from bridge",
       "toAddressName": "POLYGON_BRIDGE",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "POLYGON",
@@ -1355,7 +1355,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "POOLTOGETHER_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 100 DAI",
+      "readable": "Withdrew 100 DAI from bridge",
       "toAddressName": "POOLTOGETHER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "POOLTOGETHER",
@@ -1406,7 +1406,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SOCKET_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew",
+      "readable": "Withdrew from bridge",
       "toAddressName": "SOCKET",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "SOCKET",
@@ -1491,7 +1491,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SUSHISWAP_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 718.9205 PERP and 4.1312 ETH",
+      "readable": "Withdrew 718.9205 PERP from bridge and 4.1312 ETH",
       "toAddressName": "SUSHISWAP_ROUTER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "SUSHISWAP",
@@ -1525,7 +1525,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "TORNADO_CASH_V1_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 51.4139 USDC",
+      "readable": "Withdrew 51.4139 USDC from bridge",
       "toAddressName": "TORNADO_CASH",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "TORNADO_CASH_V1",
@@ -1610,7 +1610,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V2_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 0.0346 ETH and 1.0745 Ponzio",
+      "readable": "Withdrew 0.0346 ETH from bridge and 1.0745 Ponzio",
       "toAddressName": "UNISWAP_V2_ROUTER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "UNISWAP_V2",
@@ -1661,7 +1661,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V3_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 7.63K HEX and 966.403 USDC",
+      "readable": "Withdrew 7.63K HEX from bridge and 966.403 USDC",
       "toAddressName": "UNISWAP_NFT_POSITION_MANAGER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "UNISWAP",
@@ -1802,7 +1802,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "LIFI_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew <0.0001 ETH",
+      "readable": "Withdrew <0.0001 ETH from bridge",
       "toAddressName": "LIFI",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "LIFI",
@@ -1836,7 +1836,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW",
     },
     "v6": {
-      "readable": "Bridge: Withdrew",
+      "readable": "Bridge: Withdrew from bridge",
       "toAddressName": "METAMASK_BRIDGE_V2",
       "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
