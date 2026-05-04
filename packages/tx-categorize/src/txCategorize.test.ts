@@ -103,7 +103,6 @@ const pickCategorizationForSnapshot = (meta: {
   transactionProtocol?: string
   toAddressName?: string
   readable?: string
-  extended?: any
 }) => ({
   transactionType: meta.transactionType,
   transactionCategory: meta.transactionCategory,
