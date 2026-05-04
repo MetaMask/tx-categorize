@@ -9,7 +9,7 @@ This document explains how to add categorization coverage for a new transaction 
 `txCategorizeV6` categorizes on-chain transactions by matching three heuristic dimensions:
 
 | Dimension | Source Map | Matches On |
-|---|---|---|
+|---|---|---| 
 | **Contract address** (`toAddress`) | `contractAddressMap` | The `toAddress` of the transaction |
 | **Method ID** | `methodIdMap` | The 4-byte function selector (`methodId`) |
 | **Topic hash** | `topicHashMap` | Event topic hashes from transaction logs |

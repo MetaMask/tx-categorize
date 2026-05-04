@@ -159,9 +159,9 @@
       "and": ["TO_ARBITRUM_INBOX"]
     },
     "meta": {
-      "name": "ARBITRUM_BRIDGE_IN",
+      "name": "ARBITRUM_BRIDGE_DEPOSIT",
       "priority": 30,
-      "type": "BRIDGE_IN",
+      "type": "BRIDGE_DEPOSIT",
       "protocol": "ARBITRUM"
     }
   },
@@ -173,9 +173,9 @@
       "and": ["TO_ARBITRUM_OUTBOX"]
     },
     "meta": {
-      "name": "ARBITRUM_BRIDGE_OUT",
+      "name": "ARBITRUM_BRIDGE_WITHDRAW",
       "priority": 30,
-      "type": "BRIDGE_OUT",
+      "type": "BRIDGE_WITHDRAW",
       "protocol": "ARBITRUM"
     }
   },
@@ -614,9 +614,9 @@
       "and": ["TO_METAMASK_BRIDGE_V1"]
     },
     "meta": {
-      "name": "METAMASK_V1_BRIDGE_OUT",
+      "name": "METAMASK_V1_BRIDGE_WITHDRAW",
       "priority": 40,
-      "type": "BRIDGE_OUT",
+      "type": "BRIDGE_WITHDRAW",
       "protocol": "METAMASK_BRIDGE"
     }
   },
@@ -725,9 +725,9 @@
       "and": ["TO_POLYGON_BRIDGE"]
     },
     "meta": {
-      "name": "POLYGON_BRIDGE_IN",
+      "name": "POLYGON_BRIDGE_DEPOSIT",
       "priority": 30,
-      "type": "BRIDGE_IN",
+      "type": "BRIDGE_DEPOSIT",
       "protocol": "POLYGON"
     }
   },
@@ -739,9 +739,9 @@
       "and": ["TO_POLYGON_BRIDGE"]
     },
     "meta": {
-      "name": "POLYGON_BRIDGE_OUT",
+      "name": "POLYGON_BRIDGE_WITHDRAW",
       "priority": 30,
-      "type": "BRIDGE_OUT",
+      "type": "BRIDGE_WITHDRAW",
       "protocol": "POLYGON"
     }
   },

@@ -223,55 +223,55 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "AAVE_V3_WITHDRAW",
     },
   },
-  "ACROSS_BRIDGE_IN": {
+  "ACROSS_BRIDGE_DEPOSIT": {
     "txHash": "0x192446c1ff665764eb081b6a893e6d92ba46a9241a45133f9c4eac536f58674d",
     "v5": {
       "readable": "Across: Bridge Deposit",
       "toAddressName": "ACROSS",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "ACROSS",
-      "transactionType": "ACROSS_BRIDGE_IN",
+      "transactionType": "ACROSS_BRIDGE_DEPOSIT",
     },
     "v6": {
       "readable": "Deposited 0.0198 WETH to bridge",
       "toAddressName": "ACROSS",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "ACROSS",
-      "transactionType": "ACROSS_BRIDGE_IN",
+      "transactionType": "ACROSS_BRIDGE_DEPOSIT",
     },
   },
-  "ARBITRUM_BRIDGE_IN": {
+  "ARBITRUM_BRIDGE_DEPOSIT": {
     "txHash": "0xd1a63cdf9c8a0a230a6ad64ecdb21ba66119d35d950bc3cfafa1a088c299748c",
     "v5": {
       "readable": "Arbitrum: Bridge Deposit",
       "toAddressName": "ARBITRUM_INBOX",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "ARBITRUM",
-      "transactionType": "ARBITRUM_BRIDGE_IN",
+      "transactionType": "ARBITRUM_BRIDGE_DEPOSIT",
     },
     "v6": {
       "readable": "Deposited 0.68 ETH to bridge",
       "toAddressName": "ARBITRUM_INBOX",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "ARBITRUM",
-      "transactionType": "ARBITRUM_BRIDGE_IN",
+      "transactionType": "ARBITRUM_BRIDGE_DEPOSIT",
     },
   },
-  "ARBITRUM_BRIDGE_OUT": {
+  "ARBITRUM_BRIDGE_WITHDRAW": {
     "txHash": "0xcae9a5292d866e3f4b07430ec447947998952129c68fc3c1404940638188058a",
     "v5": {
       "readable": "Arbitrum: Bridge Withdraw",
       "toAddressName": "ARBITRUM_OUTBOX",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "ARBITRUM",
-      "transactionType": "ARBITRUM_BRIDGE_OUT",
+      "transactionType": "ARBITRUM_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Withdrew 0.763 ETH",
       "toAddressName": "ARBITRUM_OUTBOX",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "ARBITRUM",
-      "transactionType": "ARBITRUM_BRIDGE_OUT",
+      "transactionType": "ARBITRUM_BRIDGE_WITHDRAW",
     },
   },
   "BALANCER_CLAIM": {
@@ -886,21 +886,21 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "GNOSIS_SAFE_WITHDRAW",
     },
   },
-  "HOP_BRIDGE_IN": {
+  "HOP_BRIDGE_DEPOSIT": {
     "txHash": "0xa41a27f3f89357345b0c25c144a90bab78160a3130bb6d7d39f4fddf91a89e45",
     "v5": {
       "readable": "Hop: Bridge Deposit",
       "toAddressName": undefined,
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "HOP",
-      "transactionType": "HOP_BRIDGE_IN",
+      "transactionType": "HOP_BRIDGE_DEPOSIT",
     },
     "v6": {
       "readable": "Deposited to bridge",
       "toAddressName": undefined,
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "HOP",
-      "transactionType": "HOP_BRIDGE_IN",
+      "transactionType": "HOP_BRIDGE_DEPOSIT",
     },
   },
   "IDEX_DEPOSIT": {
@@ -1005,38 +1005,38 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "MAESTRO_V2_EXCHANGE",
     },
   },
-  "METAMASK_BRIDGE_V1_BRIDGE_OUT": {
+  "METAMASK_BRIDGE_V1_BRIDGE_WITHDRAW": {
     "txHash": "0x484058a1295f64e61beb8c87ac6c3eb099da5c790f9ab405b372d2c956747ee9",
     "v5": {
       "readable": "MetaMask Bridge V1: Bridge Withdraw",
       "toAddressName": "METAMASK_BRIDGE_V1",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
-      "transactionType": "METAMASK_BRIDGE_V1_BRIDGE_OUT",
+      "transactionType": "METAMASK_BRIDGE_V1_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Bridge: Withdrew",
       "toAddressName": "METAMASK_BRIDGE_V1",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
-      "transactionType": "METAMASK_BRIDGE_V1_BRIDGE_OUT",
+      "transactionType": "METAMASK_BRIDGE_V1_BRIDGE_WITHDRAW",
     },
   },
-  "METAMASK_BRIDGE_V2_BRIDGE_OUT": {
+  "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW": {
     "txHash": "0xf33ee80221e603f0d4f1267beaf06c6aaeb7c567cf8a8db432a34cfd5fdae30c",
     "v5": {
       "readable": "MetaMask Bridge V2: Bridge Withdraw",
       "toAddressName": "METAMASK_BRIDGE_V2",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
-      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
+      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Bridge: Withdrew",
       "toAddressName": "METAMASK_BRIDGE_V2",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
-      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
+      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW",
     },
   },
   "METAMASK_STAKE_STAKE": {
@@ -1277,38 +1277,38 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "PARASWAP_V5_EXCHANGE",
     },
   },
-  "POLYGON_BRIDGE_IN": {
+  "POLYGON_BRIDGE_DEPOSIT": {
     "txHash": "0xce142a2692e135b84aef8c18112da43b82a10e460ca67fadf75a52a39ccbe7d4",
     "v5": {
       "readable": "Polygon: Bridge Deposit",
       "toAddressName": "POLYGON_BRIDGE",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "POLYGON",
-      "transactionType": "POLYGON_BRIDGE_IN",
+      "transactionType": "POLYGON_BRIDGE_DEPOSIT",
     },
     "v6": {
       "readable": "Deposited 3K DAI to bridge",
       "toAddressName": "POLYGON_BRIDGE",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "POLYGON",
-      "transactionType": "POLYGON_BRIDGE_IN",
+      "transactionType": "POLYGON_BRIDGE_DEPOSIT",
     },
   },
-  "POLYGON_BRIDGE_OUT": {
+  "POLYGON_BRIDGE_WITHDRAW": {
     "txHash": "0xe65eea21f5b20a1b006ac583125d9830a57ba3e5bd8084572d65fb46f052c84f",
     "v5": {
       "readable": "Polygon: Bridge Withdraw",
       "toAddressName": "POLYGON_BRIDGE",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "POLYGON",
-      "transactionType": "POLYGON_BRIDGE_OUT",
+      "transactionType": "POLYGON_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Withdrew 883.8767 USDC",
       "toAddressName": "POLYGON_BRIDGE",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "POLYGON",
-      "transactionType": "POLYGON_BRIDGE_OUT",
+      "transactionType": "POLYGON_BRIDGE_WITHDRAW",
     },
   },
   "POOLTOGETHER_CLAIM": {
@@ -1396,21 +1396,21 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SHAPESHIFT_CLAIM",
     },
   },
-  "SOCKET_BRIDGE_OUT": {
+  "SOCKET_BRIDGE_WITHDRAW": {
     "txHash": "0x707b06fdeafce0935827a441892f7186c3b779491523e2b340fef2ba31feb990",
     "v5": {
       "readable": "Socket: Bridge Withdraw",
       "toAddressName": "SOCKET",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "SOCKET",
-      "transactionType": "SOCKET_BRIDGE_OUT",
+      "transactionType": "SOCKET_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Withdrew",
       "toAddressName": "SOCKET",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "SOCKET",
-      "transactionType": "SOCKET_BRIDGE_OUT",
+      "transactionType": "SOCKET_BRIDGE_WITHDRAW",
     },
   },
   "SPAM_TOKEN_TRANSFER": {
@@ -1741,21 +1741,21 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
 
 exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches snapshot for all lineaTxTestCases 1`] = `
 {
-  "ACROSS_BRIDGE_IN": {
+  "ACROSS_BRIDGE_DEPOSIT": {
     "txHash": "0x636d18efb3f6828d2881a28b39376c2ad6ff4ded9f8dc6e26516713ce75e115c",
     "v5": {
       "readable": "Across: Bridge Deposit",
       "toAddressName": "ACROSS",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "ACROSS",
-      "transactionType": "ACROSS_BRIDGE_IN",
+      "transactionType": "ACROSS_BRIDGE_DEPOSIT",
     },
     "v6": {
       "readable": "Deposited 2.09K USDC to bridge",
       "toAddressName": "ACROSS",
-      "transactionCategory": "BRIDGE_IN",
+      "transactionCategory": "BRIDGE_DEPOSIT",
       "transactionProtocol": "ACROSS",
-      "transactionType": "ACROSS_BRIDGE_IN",
+      "transactionType": "ACROSS_BRIDGE_DEPOSIT",
     },
   },
   "COINBACK_CLAIM": {
@@ -1792,21 +1792,21 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "IZUMI_FINANCE_EXCHANGE",
     },
   },
-  "LIFI_BRIDGE_OUT": {
+  "LIFI_BRIDGE_WITHDRAW": {
     "txHash": "0xf5b55713fe260e4a497c63cfb271ecd5fffc920a30fc2be4927f5b71eb24e7f1",
     "v5": {
       "readable": "Lifi: Bridge Withdraw",
       "toAddressName": "LIFI",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "LIFI",
-      "transactionType": "LIFI_BRIDGE_OUT",
+      "transactionType": "LIFI_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Withdrew <0.0001 ETH",
       "toAddressName": "LIFI",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "LIFI",
-      "transactionType": "LIFI_BRIDGE_OUT",
+      "transactionType": "LIFI_BRIDGE_WITHDRAW",
     },
   },
   "LIFI_EXCHANGE": {
@@ -1826,21 +1826,21 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "LIFI_EXCHANGE",
     },
   },
-  "METAMASK_BRIDGE_V2_BRIDGE_OUT": {
+  "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW": {
     "txHash": "0x63ad52afc44d408181cebb3d2141c84d9c0c5d8e0522c904c0b6cb936ff14c3d",
     "v5": {
       "readable": "MetaMask Bridge V2: Bridge Withdraw",
       "toAddressName": "METAMASK_BRIDGE_V2",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
-      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
+      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW",
     },
     "v6": {
       "readable": "Bridge: Withdrew",
       "toAddressName": "METAMASK_BRIDGE_V2",
-      "transactionCategory": "BRIDGE_OUT",
+      "transactionCategory": "BRIDGE_WITHDRAW",
       "transactionProtocol": "METAMASK",
-      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_OUT",
+      "transactionType": "METAMASK_BRIDGE_V2_BRIDGE_WITHDRAW",
     },
   },
   "METAMASK_CARD_APPROVE": {
