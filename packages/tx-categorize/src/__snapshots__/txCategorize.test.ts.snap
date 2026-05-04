@@ -352,7 +352,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "BALANCER_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 108.3346 DAI from bridge and <0.0001 YFI",
+      "readable": "Withdrew 108.3346 DAI and <0.0001 YFI from bridge",
       "toAddressName": "POOL_TOKEN",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "BALANCER",
@@ -1491,7 +1491,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "SUSHISWAP_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 718.9205 PERP from bridge and 4.1312 ETH",
+      "readable": "Withdrew 718.9205 PERP and 4.1312 ETH from bridge",
       "toAddressName": "SUSHISWAP_ROUTER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "SUSHISWAP",
@@ -1610,7 +1610,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V2_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 0.0346 ETH from bridge and 1.0745 Ponzio",
+      "readable": "Withdrew 0.0346 ETH and 1.0745 Ponzio from bridge",
       "toAddressName": "UNISWAP_V2_ROUTER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "UNISWAP_V2",
@@ -1661,7 +1661,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "UNISWAP_V3_WITHDRAW",
     },
     "v6": {
-      "readable": "Withdrew 7.63K HEX from bridge and 966.403 USDC",
+      "readable": "Withdrew 7.63K HEX and 966.403 USDC from bridge",
       "toAddressName": "UNISWAP_NFT_POSITION_MANAGER",
       "transactionCategory": "WITHDRAW",
       "transactionProtocol": "UNISWAP",

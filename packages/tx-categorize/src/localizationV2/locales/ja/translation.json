@@ -26,7 +26,7 @@
   "DEPOSIT": "Deposited $sent_assets_0_value $sent_assets_0_ticker",
   "DEPOSIT_MULTI": "Deposited $sent_assets_0_value $sent_assets_0_ticker and $sent_assets_1_value $sent_assets_1_ticker",
   "WITHDRAW": "Withdrew $received_assets_0_value $received_assets_0_ticker from bridge",
-  "WITHDRAW_MULTI": "Withdrew $received_assets_0_value $received_assets_0_ticker from bridge and $received_assets_1_value $received_assets_1_ticker",
+  "WITHDRAW_MULTI": "Withdrew $received_assets_0_value $received_assets_0_ticker and $received_assets_1_value $received_assets_1_ticker from bridge",
   "TRANSFER": "Transferred $sent_assets_0_value $sent_assets_0_ticker",
   "TRANSFER_SENT": "Sent $sent_assets_0_value $sent_assets_0_ticker",
   "TRANSFER_RECEIVED": "Received $received_assets_0_value $received_assets_0_ticker",
