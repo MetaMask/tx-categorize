@@ -281,7 +281,7 @@ describe('#txCategorizeV6', () => {
         false,
         49,
       )
-      expect(`${categorizedTx['readable']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
+      expect(`${categorizedTx['readableExtended']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
     }
   })
   it('produces correct readable labels for linea txs', async () => {
@@ -299,7 +299,7 @@ describe('#txCategorizeV6', () => {
         false,
         49,
       )
-      expect(`${categorizedTx['readable']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
+      expect(`${categorizedTx['readableExtended']}-${txCategory}`).toBe(`${expectedReadable}-${txCategory}`)
     }
   })
   it('has readable label entries for all ethereum test cases', () => {
@@ -408,7 +408,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Sent 0.0044 MKR')
+    expect(categorizedTxV5['readableExtended']).toBe('Sent 0.0044 MKR')
   })
   it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
     const txHash = txTestCases['ERC_20_APPROVE']

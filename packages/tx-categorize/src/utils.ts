@@ -100,7 +100,7 @@ export interface ApproveTemplateContext extends BaseTemplateContext {
 
 export type TemplateContext = BaseTemplateContext | ApproveTemplateContext
 
-const resolveVariable = (varName: string, ctx: TemplateContext): string => {
+const resolveVariable = (varName: string, ctx: TemplateContext, includeAmounts = true): string => {
   const match = varName.match(/^(sent_assets|received_assets|approved_assets)_(\d+)_(value|ticker)$/)
   if (match) {
     const [, group, indexStr, field] = match
@@ -114,6 +114,8 @@ const resolveVariable = (varName: string, ctx: TemplateContext): string => {
     if (!asset) return ''
 
     if (field === 'value') {
+      if (!includeAmounts) return ''
+
       return asset.amount && asset.decimal != null
         ? convertWeiToRoundedDecimalWithSigFigs(asset.amount, asset.decimal)
         : ''
@@ -127,9 +129,9 @@ const resolveVariable = (varName: string, ctx: TemplateContext): string => {
   return ''
 }
 
-export const interpolateTemplate = (template: string, ctx: TemplateContext): string => {
+export const interpolateTemplate = (template: string, ctx: TemplateContext, includeAmounts = true): string => {
   return template
-    .replace(/\$([a-z_0-9]+)/g, (_, varName) => resolveVariable(varName, ctx))
+    .replace(/\$([a-z_0-9]+)/g, (_, varName) => resolveVariable(varName, ctx, includeAmounts))
     .replace(/\s+/g, ' ')
     .trim()
 }

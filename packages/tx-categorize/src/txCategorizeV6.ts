@@ -303,9 +303,11 @@ export const determineTransactionMetadataV6 = (
             receivedAssets,
           }
     const definingTraitLabel = definingTrait ? `${titlecase(definingTrait)}: ` : ''
-    const localizedReadable = `${definingTraitLabel}${interpolateTemplate(template, ctx)}`
+    const localizedReadable = `${definingTraitLabel}${interpolateTemplate(template, ctx, false)}`
+    const localizedReadableExtended = `${definingTraitLabel}${interpolateTemplate(template, ctx, true)}`
 
     txMetadata.readable = localizedReadable
+    txMetadata.readableExtended = localizedReadableExtended
   }
   // if we still don't have a transaction category, default to generic contract call
   // also - if the transaction priority is < 0 (i.e. - contains an erc20/erc721 event by log events, but not by methodId
@@ -319,6 +321,7 @@ export const determineTransactionMetadataV6 = (
       transactionType: 'GENERIC_CONTRACT_CALL',
       transactionCategory: Action.CONTRACT_CALL,
       readable: tV2(Action.CONTRACT_CALL),
+      readableExtended: tV2(Action.CONTRACT_CALL),
     }
 
     if ((!transaction.logs || !transaction.logs.length) && !transaction.methodId) {
@@ -349,7 +352,10 @@ export const determineTransactionMetadataV6 = (
     const fallbackTemplate = tV2(templateKey, {}, language ?? fallbackLngV2)
     fallbackMetadata.readable = fallbackMetadata.transactionProtocol?.startsWith('SPAM')
       ? tV2('DUST_ATTACK', {}, language ?? fallbackLngV2)
-      : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets })
+      : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets }, false)
+    fallbackMetadata.readableExtended = fallbackMetadata.transactionProtocol?.startsWith('SPAM')
+      ? tV2('DUST_ATTACK', {}, language ?? fallbackLngV2)
+      : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets }, true)
 
     return fallbackMetadata
   }
