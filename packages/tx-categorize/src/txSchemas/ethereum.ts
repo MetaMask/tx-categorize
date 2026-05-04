@@ -173,9 +173,9 @@ export const ethereumSchemas: Array<TransactionSchema<SchemaV2>> = [
       and: ['TO_METAMASK_BRIDGE_V2'],
     },
     meta: {
-      name: 'METAMASK_V2_BRIDGE_OUT',
+      name: 'METAMASK_V2_BRIDGE_WITHDRAW',
       priority: 40,
-      type: 'BRIDGE_OUT',
+      type: 'BRIDGE_WITHDRAW',
       protocol: 'METAMASK_BRIDGE',
     },
   },
