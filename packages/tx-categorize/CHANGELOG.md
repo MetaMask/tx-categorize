@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.0]
 
-### Uncategorized
+### Fixed
 
-- feat: solves issue with short readable label field by excluding amounts in readable ([#45](https://github.com/MetaMask/tx-categorize/pull/45))
 - Fix: Bridge Txs ([#44](https://github.com/MetaMask/tx-categorize/pull/44))
+- feat: solves issue with short readable label field by excluding amounts in readable ([#45](https://github.com/MetaMask/tx-categorize/pull/45)
 
 ## [2.0.3]
 
