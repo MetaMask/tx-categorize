@@ -38,6 +38,7 @@ export interface TxMetadataV6 {
   transactionProtocol?: string
   toAddressName?: string
   readable?: string
+  readableExtended?: string
 }
 
 export interface MethodIdMap {
