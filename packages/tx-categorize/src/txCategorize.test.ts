@@ -426,7 +426,7 @@ describe('#txCategorizeV6', () => {
       49,
     )
     // Spender should be extracted from the Approval event log
-    expect(categorizedTxV5['readable']).toMatch(/Approved.*to spend/)
+    expect(categorizedTxV5['readable']).toMatch(/Approve.*spending cap/)
   })
 })
 

@@ -78,7 +78,7 @@ describe('localizationV2 interpolation', () => {
         spender: '0xSpenderAddress',
         approvedAssets: [makeValueTransfer({ symbol: 'USDC', amount: '1000000', decimal: 6 })],
       })
-      expect(result).toBe('Approved 0xSpenderAddress to spend 1 USDC')
+      expect(result).toBe('Approve USDC spending cap')
     })
 
     it('interpolates EXCHANGE_FOR_MULTI with multiple received assets', () => {

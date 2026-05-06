@@ -217,7 +217,7 @@ describe('interpolateTemplate', () => {
       spender: '0x12345...45678',
       approvedAssets: [makeValueTransfer({ symbol: 'USDC', amount: '1000000', decimal: 6 })],
     })
-    expect(result).toBe('Approved 0x12345...45678 to spend 1 USDC')
+    expect(result).toBe('Approve USDC spending cap')
   })
 
   it('handles static templates with no variables', () => {

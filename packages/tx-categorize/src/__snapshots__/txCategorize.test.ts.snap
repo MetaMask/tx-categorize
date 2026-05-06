@@ -403,7 +403,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "COMPOUND_V2_APPROVE",
     },
     "v6": {
-      "readable": "Approved 0x11111...60582 to spend",
+      "readable": "Approve spending cap",
       "toAddressName": "COMPOUND_C_TOKEN",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "COMPOUND",
@@ -556,7 +556,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ENS_DOMAIN_APPROVE",
     },
     "v6": {
-      "readable": "Domain: Approved to spend",
+      "readable": "Domain: Approve spending cap",
       "toAddressName": "ENS_REGISTRAR",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ENS",
@@ -675,7 +675,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_20_APPROVE",
     },
     "v6": {
-      "readable": "Approved 0x881d4...d300c to spend",
+      "readable": "Approve spending cap",
       "toAddressName": undefined,
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ERC_20",
@@ -726,7 +726,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "ERC_721_APPROVE",
     },
     "v6": {
-      "readable": "Approved to spend",
+      "readable": "Approve spending cap",
       "toAddressName": undefined,
       "transactionCategory": "APPROVE",
       "transactionProtocol": "ERC_721",
@@ -1695,7 +1695,7 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "WETH_APPROVE",
     },
     "v6": {
-      "readable": "Approved 0x7a250...2488d to spend",
+      "readable": "Approve spending cap",
       "toAddressName": "WETH",
       "transactionCategory": "APPROVE",
       "transactionProtocol": "WETH",
