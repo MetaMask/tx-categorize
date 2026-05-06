@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.1]
 
-### Uncategorized
+### Fixed
 
 - feat: improve coverage of swaps/bridge ([#47](https://github.com/MetaMask/tx-categorize/pull/47))
 - feat: remove spender in approval readable label ([#48](https://github.com/MetaMask/tx-categorize/pull/48))
