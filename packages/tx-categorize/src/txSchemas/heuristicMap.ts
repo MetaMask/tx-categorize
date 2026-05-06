@@ -266,7 +266,7 @@ const determinants: DeterminantMap = {
     },
     { address: '0xde3e5a990bce7fc60a6f017e7c4a95fc4939299e', name: 'GITCOIN_DISTRIBUTOR', protocol: 'GITCOIN' },
     {
-      address: '0x82e0b8cdd80af5930c4452c684e71c861148ec8a',
+      address: '0x82e0b8cdd80af5930c4452c684e71c861148ec8a', // chainId: 1, 10, 56, 137, 42161, 43114
       name: 'METAMASK_BRIDGE_V1',
       protocol: 'METAMASK',
       definingTrait: 'BRIDGE',
@@ -274,15 +274,19 @@ const determinants: DeterminantMap = {
     },
     {
       addresses: [
-        '0x0439e60F02a8900a951603950d8D4527f400C3f1', //ethereum
-        '0xB90357f2b86dbfD59c3502215d4060f71DF8ca0e', //optimism
-        '0xaEc23140408534b378bf5832defc426dF8604B59', //bnb
-        '0x3A0b42cE6166abB05d30DdF12E726c95a83D7a16', //polygon
-        '0x357B5935482AD8a4A2e181e0132aBd1882E16520', //324
-        '0xa20ECbC821fB54064aa7B5C6aC81173b8b34Df71', //base
-        '0x23981fC34e69eeDFE2BD9a0a9fCb0719Fe09DbFC', //arbitrum
-        '0x29106d08382d3c73bF477A94333C61Db1142E1B6', //avalanche c-chain
-        '0xE3d0d2607182Af5B24f5C3C2E4990A053aDd64e3', //linea
+        '0x0439e60F02a8900a951603950d8D4527f400C3f1', // chainId: 1 (ethereum)
+        '0xB90357f2b86dbfD59c3502215d4060f71DF8ca0e', // chainId: 10 (optimism)
+        '0xaEc23140408534b378bf5832defc426dF8604B59', // chainId: 56 (bnb)
+        '0x3A0b42cE6166abB05d30DdF12E726c95a83D7a16', // chainId: 137 (polygon)
+        '0xFB00D4EA6f3f0d0b4A57b32378075Df408F2aaBA', // chainId: 143
+        '0x357B5935482AD8a4A2e181e0132aBd1882E16520', // chainId: 324
+        '0x730a77f27eE2954106E0895815C1867126172b3e', // chainId: 999
+        '0x099625f63395aA1e2e4d31175f330AB07591bD12', // chainId: 1329
+        '0xe55B94365BA38B7061084f60184b4b49cEE23acE', // chainId: 4326
+        '0xa20ECbC821fB54064aa7B5C6aC81173b8b34Df71', // chainId: 8453 (base)
+        '0x23981fC34e69eeDFE2BD9a0a9fCb0719Fe09DbFC', // chainId: 42161 (arbitrum)
+        '0x29106d08382d3c73bF477A94333C61Db1142E1B6', // chainId: 43114 (avalanche c-chain)
+        '0xE3d0d2607182Af5B24f5C3C2E4990A053aDd64e3', // chainId: 59144 (linea)
       ],
       name: 'METAMASK_BRIDGE_V2',
       protocol: 'METAMASK',
@@ -298,10 +302,12 @@ const determinants: DeterminantMap = {
     },
     {
       addresses: [
-        '0x881d40237659c251811cec9c364ef91dc08d300c',
-        '0x1a1ec25DC08e98e5E93F1104B5e5cdD298707d31',
-        '0x9dda6ef3d919c9bc8885d5560999a3640431e8e6',
-        '0xf504c1fe13d14df615e66dcd0abf39e60c697f34',
+        '0x881d40237659c251811cec9c364ef91dc08d300c', // chainId: 1 (ethereum)
+        '0x9dDA6Ef3D919c9bC8885D5560999A3640431e8e6', // chainId: 10 (optimism), 8453 (base), 42161 (arbitrum), 59144 (linea)
+        '0x1a1ec25DC08e98e5E93F1104B5e5cdD298707d31', // chainId: 56 (bnb), 137 (polygon), 43114 (avalanche)
+        '0x962287c9d5B8a682389E61edAE90ec882325d08b', // chainId: 143, 1329, 4326
+        '0xf504c1fe13d14DF615E66dcd0ABF39e60c697f34', // chainId: 324
+        '0xB165C4d4B8044D4A9276c3d75F08cD6a2874A3b2', // chainId: 999
       ],
       name: 'METAMASK_V1_ROUTER',
       protocol: 'METAMASK_V1',
