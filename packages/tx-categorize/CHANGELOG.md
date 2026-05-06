@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0]
+
+### Fixed
+
+- Fix: Bridge Txs ([#44](https://github.com/MetaMask/tx-categorize/pull/44))
+- feat: solves issue with short readable label field by excluding amounts in readable ([#45](https://github.com/MetaMask/tx-categorize/pull/45)
+
 ## [2.0.3]
 
 ### Fixed
@@ -61,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/MetaMask/tx-categorize/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/MetaMask/tx-categorize/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/MetaMask/tx-categorize/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...v2.0.1
