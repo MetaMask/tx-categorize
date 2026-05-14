@@ -109,6 +109,10 @@ export const txTestCases = {
   BALANCER_STAKE: '0xf72595e9c0bfa407b608b11747954896834df998398ef1b27e3204ffbbae5a5b',
 }
 
+export const arbitrumTxTestCases = {
+  METAMASK_V1_EXCHANGE: '0x51f3fec98c9e0794aa6b73402a6f1e030aea8f746ccc6559b47b8102b2051596',
+}
+
 /**
  * V6 readable labels for Ethereum mainnet test cases (from sender perspective).
  * Maps category key → expected human-readable label produced by determineTransactionMetadataV6.

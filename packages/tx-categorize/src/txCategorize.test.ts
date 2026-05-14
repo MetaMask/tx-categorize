@@ -6,6 +6,7 @@ import nock from 'nock'
 
 import { ChainId } from './networks'
 import {
+  arbitrumTxTestCases,
   lineaTxTestCaseReadableLabels,
   lineaTxTestCases,
   txTestCaseReadableLabels,
@@ -264,6 +265,21 @@ describe('#txCategorizeV6', () => {
         49,
       )
       expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
+    }
+  })
+  it('categorizes a arbitrum tx correctly', async () => {
+    for (const [txCategory, txHash] of Object.entries(arbitrumTxTestCases)) {
+      const { data, chainId } = await getTxWithLogsFromPrimitives(txHash, ChainId.ARBITRUM)
+      const categorizedTxV6 = determineTransactionMetadataV6(
+        {
+          transaction: data,
+          subjectAddress: createAccountId(data.from, chainId),
+        },
+        Language.en,
+        false,
+        49,
+      )
+      expect(`${categorizedTxV6['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
   it('produces correct readable labels for ethereum txs', async () => {

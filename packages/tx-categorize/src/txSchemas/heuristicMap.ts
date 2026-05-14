@@ -555,7 +555,12 @@ const determinants: DeterminantMap = {
     { hash: '0xf341246adaac6f497bc2a656f546ab9e182111d630394f0c57c710a59a2cb567', name: WITHDRAW },
     { hash: '0x1849bd6a030a1bca28b83437fd3de96f3d27a5d172fa7e9c78e7b61468928a39', name: EXCHANGE, priority: 1 },
     { hash: '0x7f4091b46c33e918a0f3aa42307641d17bb67029427a5369e54b353984238705', name: EXCHANGE, priority: 1 },
-    { hash: '0xbeee1e6e7fe307ddcf84b0a16137a4430ad5e2480fc4f4a8e250ab56ccd7630d', name: EXCHANGE, priority: 1 },
+    {
+      hash: '0xbeee1e6e7fe307ddcf84b0a16137a4430ad5e2480fc4f4a8e250ab56ccd7630d',
+      name: EXCHANGE,
+      priority: 1,
+      protocol: 'METAMASK_V1',
+    },
     { hash: '0x5152abf959f6564662358c2e52b702259b78bac5ee7842a0f01937e670efcc7d', name: CANCEL_ORDER },
     { hash: '0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b', name: REGISTER },
     { hash: '0x9cc2048b8af5eadff75759a3169b369efc538fb79c760fd396a4b355410b41b7', name: EXCHANGE, priority: 5 }, // aggregator exchange
