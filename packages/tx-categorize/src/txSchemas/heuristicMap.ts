@@ -374,7 +374,7 @@ const determinants: DeterminantMap = {
       protocol: 'METAMASK_CARD',
     },
     {
-      address: '0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2',
+      addresses: ['0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2', '0x794a61358d6845594f94dc1db02a252b5b4814ad'],
       name: 'AAVE_LENDING_POOL_V3',
       protocol: 'AAVE',
       version: 'V3',
@@ -428,6 +428,7 @@ const determinants: DeterminantMap = {
     { id: '0x3598d8ab', name: EXCHANGE, priority: 1 },
     { id: '0x7c025200', name: EXCHANGE, priority: 1 },
     { id: '0x2e95b6c8', name: EXCHANGE, priority: 1 },
+    { id: '0x617ba037', name: DEPOSIT, protocol: 'AAVE', priority: 2 },
     { id: '0xc858f5f9', name: BORROW },
     { id: '0xd2d0e066', name: DEPOSIT },
     { id: '0x5ceae9c4', name: REPAY },
