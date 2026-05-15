@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.2]
 
-### Uncategorized
+### Fixed
 
-- Feat: Improve Aave categorization coverage across networks and protocol versions ([#51](https://github.com/MetaMask/tx-categorize/pull/51))
+- feat: Improve Aave categorization coverage across networks and protocol versions ([#51](https://github.com/MetaMask/tx-categorize/pull/51))
 - feat: support 7702 authorized txs ([#50](https://github.com/MetaMask/tx-categorize/pull/50))
 
 ## [2.1.1]
