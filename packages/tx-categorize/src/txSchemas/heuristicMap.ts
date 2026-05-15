@@ -380,6 +380,34 @@ const determinants: DeterminantMap = {
       version: 'V3',
     },
     {
+      addresses: [
+        '0x270d4c1b6f0bb172a9fd628e29530ca484190013', // arbitrum
+        '0x4f01aed16d97e3ab5ab2b501154dc9bb0f1a5a2c', // avalanche
+        '0xa238dd80c259a72e81d7e4664a9801593f98d1c5', // base
+        '0x6807dc923806fe8fd134338eabca509979a7e0cb', // binance-smart-chain
+        '0x0aa97c284e98396202b6a04024f5e2c65026f3c0', // ethereum
+        '0x4e033931ad43597d96d6bcc25c280717730b58b1', // ethereum
+        '0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9', // ethereum (v2)
+        '0xae05cd22df81871bc7cc2a04becfb516bfe332c8', // ethereum
+        '0xb50201558b00496a145fe76f7424749556e326d8', // gnosis
+        '0xc47b8c00b0f69a36fa203ffeac0334874574a8ac', // linea
+        '0xf1597757c7d88e72e3778606277aab514166cf3d', // linea
+        '0x925a2a7214ed92428b5b1b090f80b25700095e12', // plasma
+        '0xa119f84bc1b8083f5061e4cf53705cbf1065ba27', // plasma
+        '0x6a8730f54b8c69ab096c43ff217ca0a350726ac7', // polygon
+        '0x8dff5e27ea6b7ac08ebfdf9eb090f32ee9a30fcf', // polygon (v2)
+        '0xdf9e4abdbd94107932265319479643d3b05809dc', // polygon
+        '0x11fcfe756c05ad438e312a7fd934381537d3cffe', // scroll
+        '0xa401e87ab4ab647165d78c2dbbd8d066b4b76d5b', // scroll
+        '0x46dcd5f4600319b02649fd76b55aa6c1035ca478', // sonic
+        '0x5362dbb1e601abf3a4c14c22ffeda64042e5eaa3', // sonic
+        '0x78e30497a3c7527d953c6b1e3541b021a98ac43c', // zksync-era
+        '0xee8ebb0704f5954ab281166f35309087e1b81903', // zksync-era
+      ],
+      name: 'AAVE_LENDING_POOL',
+      protocol: 'AAVE',
+    },
+    {
       address: '0xdd3f50f8a6cafbe9b31a427582963f465e745af8',
       name: 'ROCKET_POOL_V1.2',
       protocol: 'ROCKET_POOL',
@@ -428,6 +456,7 @@ const determinants: DeterminantMap = {
     { id: '0x3598d8ab', name: EXCHANGE, priority: 1 },
     { id: '0x7c025200', name: EXCHANGE, priority: 1 },
     { id: '0x2e95b6c8', name: EXCHANGE, priority: 1 },
+    { id: '0x617ba037', name: DEPOSIT, protocol: 'AAVE', priority: 2 },
     { id: '0xc858f5f9', name: BORROW },
     { id: '0xd2d0e066', name: DEPOSIT },
     { id: '0x5ceae9c4', name: REPAY },
