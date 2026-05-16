@@ -37,14 +37,29 @@ const determinants: DeterminantMap = {
     { address: '0xa2881a90bf33f03e7a3f803765cd2ed5c8928dfb', name: 'UNISWAP_WETH', protocol: 'UNISWAP' },
     {
       addresses: [
-        '0xa51afafe0263b40edaef0df8781ea9aa03e381a3',
-        '0x6ff5693b99212da76ad316178a184ab56d299b43',
-        '0x66a9893cc07d91d95644aedd05d03f95e1dba8af',
-        '0x1095692a6237d83c6a72f3f5efedb9a670c49223',
-        '0x1906c1d672b88cd1b9ac7593301ca990f94eae07',
-        '0x851116d9223fabed8e56c0e6b8ad0c31d98b3507',
-        '0x94b75331ae8d42c1b61065089b7d48fe14aa73b7',
-        '0xeabbcb3e8e415306207ef514f660a3f820025be3',
+        // V2.0 — https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts
+        '0xa51afafe0263b40edaef0df8781ea9aa03e381a3', // Arbitrum (42161)
+        '0x6ff5693b99212da76ad316178a184ab56d299b43', // Base (8453)
+        '0x66a9893cc07d91d95644aedd05d03f95e1dba8af', // Ethereum (1)
+        '0x1095692a6237d83c6a72f3f5efedb9a670c49223', // Polygon (137)
+        '0x1906c1d672b88cd1b9ac7593301ca990f94eae07', // BNB Smart Chain (56)
+        '0x851116d9223fabed8e56c0e6b8ad0c31d98b3507', // Optimism (10)
+        '0x94b75331ae8d42c1b61065089b7d48fe14aa73b7', // Avalanche (43114)
+        '0xeabbcb3e8e415306207ef514f660a3f820025be3', // Blast (81457)
+        '0xcb695bc5d3aa22cad1e6df07801b061a05a0233a', // Celo (42220)
+        '0x3315ef7ca28db74abadc6c44570efdf06b04b020', // Zora (7777777)
+        '0x28731bcc616b5f51dd52cf2e4df0e78dd1136c06', // zkSync (324)
+        '0x8ac7bee993bb44dab564ea4bc9ea67bf9eb5e743', // Worldchain (480)
+        '0xef740bf23acae26f6492b10de645d6b98dc8eaf3', // Unichain (130)
+        '0x0e2850543f69f678257266e0907ff9a58b3f13de', // Soneium (1868)
+        '0x0d97dc33264bfc1c226207428a79b26757fb9dc3', // Monad (143)
+        '0x661e93cca42afacb172121ef892830ca3b70f08d', // Linea (59144)
+        '0x1febb76be10aaf3a1402f04e8e835f2c382f7914', // Tempo (4217)
+        '0x5507749f2c558bb3e162c6e90c314c092e7372ff', // xLayer (196)
+        // V2.1.1
+        '0x4c82d1fbfe28c977cbb58d8c7ff8fcf9f70a2cca', // Ethereum (1)
+        '0x8b844f885672f333bc0042cb669255f93a4c1e6b', // Polygon (137), Optimism (10), Arbitrum (42161), Celo (42220), BNB (56), Avalanche (43114), Blast (81457), Worldchain (480), Soneium (1868), xLayer (196)
+        '0xfdf682f51fe81aa4898f0ae2163d8a55c127fbc7', // Base (8453), Zora (7777777), Unichain (130), Monad (143), Tempo (4217)
       ],
       name: 'UNISWAP_V4_ROUTER',
       protocol: 'UNISWAP_V4',
@@ -228,8 +243,22 @@ const determinants: DeterminantMap = {
       name: 'IZUMI_FINANCE',
       protocol: 'IZUMI_FINANCE',
     },
-    { address: '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad', name: 'UNISWAP_UNIVERSAL_ROUTER', protocol: 'UNISWAP' },
-    { address: '0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b', name: 'UNISWAP_UNIVERSAL_ROUTER_2', protocol: 'UNISWAP' },
+    {
+      addresses: [
+        // V1.2 — https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts
+        '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad', // Ethereum (1), Base (8453)
+        '0xef1c6e67703c7bd7107eed8303fbe6ec2554bf6b', // Ethereum (old)
+        '0xec7be89e9d109e7e3fec59c222cf297125fefda2', // Polygon (137)
+        '0xcb1355ff08ab38bbce60111f1bb2b784be25d7e8', // Optimism (10)
+        '0x5e325eda8064b456f4781070c0738d849c824258', // Arbitrum (42161)
+        '0x643770e279d5d0733f21d6dc03a8efbabf3255b4', // Celo (42220), Blast (81457)
+        '0x4dae2f939acf50408e13d58534ff8c2776d45265', // BNB Smart Chain (56), Avalanche (43114)
+        '0x2986d9721a49838ab4297b695858af7f17f38014', // Zora (7777777)
+        '0x4d73a4411ca1c660035e4aecc8270e5ddec8c17', // Unichain (130)
+      ],
+      name: 'UNISWAP_UNIVERSAL_ROUTER',
+      protocol: 'UNISWAP',
+    },
     { address: '0x2a0c0dbecc7e4d658f48e01e3fa353f44050c208', name: 'IDEX_STAKING', protocol: 'IDEX' },
     {
       addresses: ['0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', '0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f'],
