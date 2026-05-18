@@ -254,7 +254,7 @@ const determinants: DeterminantMap = {
         '0x643770e279d5d0733f21d6dc03a8efbabf3255b4', // Celo (42220), Blast (81457)
         '0x4dae2f939acf50408e13d58534ff8c2776d45265', // BNB Smart Chain (56), Avalanche (43114)
         '0x2986d9721a49838ab4297b695858af7f17f38014', // Zora (7777777)
-        '0x4d73a4411ca1c660035e4aecc8270e5ddec8c17', // Unichain (130)
+        '0x4d73a4411ca1c660035e4aecc8270e5dddec8c17', // Unichain (130)
       ],
       name: 'UNISWAP_UNIVERSAL_ROUTER',
       protocol: 'UNISWAP',
