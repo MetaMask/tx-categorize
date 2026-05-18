@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.3]
 
-### Uncategorized
+### Fixed
 
 - chore: increase uniswap coverage ([#54](https://github.com/MetaMask/tx-categorize/pull/54))
 
