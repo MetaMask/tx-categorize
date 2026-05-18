@@ -1553,14 +1553,14 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
     "txHash": "0xbee90775c011df3b448f488fbea20e10fed8dd11c39630526a7f4176149b2df8",
     "v5": {
       "readable": "Uniswap: Exchange",
-      "toAddressName": "UNISWAP_UNIVERSAL_ROUTER_2",
+      "toAddressName": "UNISWAP_UNIVERSAL_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "UNISWAP",
       "transactionType": "UNISWAP_EXCHANGE",
     },
     "v6": {
       "readable": "Swapped ETH for PSI",
-      "toAddressName": "UNISWAP_UNIVERSAL_ROUTER_2",
+      "toAddressName": "UNISWAP_UNIVERSAL_ROUTER",
       "transactionCategory": "EXCHANGE",
       "transactionProtocol": "UNISWAP",
       "transactionType": "UNISWAP_EXCHANGE",
