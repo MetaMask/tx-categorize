@@ -73,7 +73,7 @@
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.2"
   },
-  "packageManager": "yarn@4.4.1",
+  "packageManager": "yarn@4.16.0",
   "resolutions": {
     "meow": "13.2.0",
     "secp256k1": "4.0.4",
