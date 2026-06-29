@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.4]
 
-### Uncategorized
+### Fixed
 
 - fix: i18n pkg vuln ([#57](https://github.com/MetaMask/tx-categorize/pull/57))
 
