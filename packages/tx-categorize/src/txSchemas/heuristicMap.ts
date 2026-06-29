@@ -30,6 +30,7 @@ const {
   WITHDRAW_TOKEN,
   RECLAIM,
   PAYMENT,
+  UNSTAKE,
 } = Action
 
 const determinants: DeterminantMap = {
@@ -500,6 +501,7 @@ const determinants: DeterminantMap = {
     { id: '0xb88d4fde', name: TRANSFER, protocol: 'ERC_721', priority: 99 },
     { id: '0x3ce33bff', name: BRIDGE_WITHDRAW },
     { id: '0xe10cb889', name: STAKE },
+    { id: '0x8ceab9aa', name: UNSTAKE },
     { id: '0xab834bab', name: NFT_EXCHANGE },
     { id: '0xe3dec8fb', name: BRIDGE_DEPOSIT },
     { id: '0x3805550f', name: BRIDGE_WITHDRAW },
@@ -774,6 +776,12 @@ const determinants: DeterminantMap = {
     {
       hash: '0x861a4138e41fb21c121a7dbb1053df465c837fc77380cc7226189a662281be2c',
       name: STAKE,
+      priority: 14,
+    },
+    // 0x4FEF9D741011476750A243aC70b9789a63dd47Df MetaMask pooled staking unstake
+    {
+      hash: '0x211091c5bf013c1230f996c3bb2bc327e3de429a3d3c356dcea9a0c858bc407f',
+      name: UNSTAKE,
       priority: 14,
     },
     // 0xC128a9954e6c874eA3d62ce62B468bA073093F25 veBAL VotingEscrow

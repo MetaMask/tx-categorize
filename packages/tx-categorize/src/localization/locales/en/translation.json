@@ -17,6 +17,7 @@
   "DOMAIN_RESOLVER_SET": "Set Domain Name Resolution",
   "VOTE": "Vote",
   "STAKE": "Stake",
+  "UNSTAKE": "Unstake",
   "REGISTER": "Register",
   "CANCEL_ORDER": "Cancel Order",
   "BRIDGE": "Bridge",

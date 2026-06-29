@@ -1056,6 +1056,23 @@ exports[`V5 / V6 categorization snapshots (alongside nock HTTP fixtures) matches
       "transactionType": "METAMASK_STAKE_STAKE",
     },
   },
+  "METAMASK_STAKE_UNSTAKE": {
+    "txHash": "0x8cdd4a16590d1451ee167c1b032a58cf4f5defc3571b10d050a5e8db527f36bb",
+    "v5": {
+      "readable": "MetaMask Stake: Unstake",
+      "toAddressName": "METAMASK_POOLED_STAKING",
+      "transactionCategory": "UNSTAKE",
+      "transactionProtocol": "METAMASK_STAKE",
+      "transactionType": "METAMASK_STAKE_UNSTAKE",
+    },
+    "v6": {
+      "readable": "Unstake",
+      "toAddressName": "METAMASK_POOLED_STAKING",
+      "transactionCategory": "UNSTAKE",
+      "transactionProtocol": "METAMASK_STAKE",
+      "transactionType": "METAMASK_STAKE_UNSTAKE",
+    },
+  },
   "METAMASK_STAKE_V1_CLAIM": {
     "txHash": "0x2ebb958fef3b51fe3306d5a027a83f22292d106773768e3748a4553b796333f9",
     "v5": {

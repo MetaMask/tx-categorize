@@ -155,6 +155,20 @@ export const ethereumSchemas: Array<TransactionSchema<SchemaV2>> = [
     schema: {
       key: 'methodId',
       type: 'methodId',
+      methodId: ['0x8ceab9aa'],
+      and: ['TO_METAMASK_POOLED_STAKE'],
+    },
+    meta: {
+      name: 'METAMASK_POOLED_UNSTAKE_V1',
+      priority: 40,
+      type: 'UNSTAKE',
+      protocol: 'METAMASK_STAKE',
+    },
+  },
+  {
+    schema: {
+      key: 'methodId',
+      type: 'methodId',
       methodId: ['0xd0e30db0'],
       and: ['TO_METAMASK_VALIDATOR_STAKE'],
     },
