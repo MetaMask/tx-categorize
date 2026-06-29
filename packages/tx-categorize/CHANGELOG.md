@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.4]
+
+### Fixed
+
+- fix: i18n pkg vuln ([#57](https://github.com/MetaMask/tx-categorize/pull/57))
+
 ## [2.1.3]
 
 ### Fixed
@@ -88,7 +94,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
 
-[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.1.3...HEAD
+[Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.1.4...HEAD
+[2.1.4]: https://github.com/MetaMask/tx-categorize/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/MetaMask/tx-categorize/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/MetaMask/tx-categorize/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/MetaMask/tx-categorize/compare/v2.1.0...v2.1.1
