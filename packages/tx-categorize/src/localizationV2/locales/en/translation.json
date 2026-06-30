@@ -19,6 +19,7 @@
   "DOMAIN_RESOLVER_SET": "Set Domain Name Resolution",
   "VOTE": "Voted",
   "STAKE": "Staked $sent_assets_0_value $sent_assets_0_ticker",
+  "UNSTAKE": "Unstaked $sent_assets_0_ticker",
   "REGISTER": "Registered",
   "CANCEL_ORDER": "Cancelled Order",
   "BRIDGE": "Bridged $sent_assets_0_value $sent_assets_0_ticker",
