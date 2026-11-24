@@ -271,6 +271,12 @@ export SUBJECT_ADDRESS=0x5197b5b062288bbf29008c92b08010a92dd677cd
 yarn categorize 0x1234...
 ```
 
+Set `CATEGORIZE_LANGUAGE` to choose the language of the `readable` / `readableExtended` labels (defaults to `en`):
+
+```bash
+CATEGORIZE_LANGUAGE=es yarn categorize 0x1234... 1
+```
+
 > **Note:** The subject address determines perspective. If the subject is the sender, the transaction may read "Sent 1 ETH". If the subject is the recipient, it reads "Received 1 ETH". Without a subject address, it defaults to `transaction.from`.
 
 ### `yarn list:metrics`

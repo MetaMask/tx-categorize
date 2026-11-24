@@ -392,6 +392,22 @@ describe('#txCategorizeV6', () => {
     expect(categorizedTxV5['transactionType']).toBe('SPAM_TRANSFER')
     expect(categorizedTxV5['readable']).toBe('Dust Attack')
   })
+  it('uses the language passed to determineTransactionMetadataV6 for readable labels', async () => {
+    // Step 1: initialize Spanish (the V2 `es` file has a translated DUST_ATTACK label)
+    await initializeI18nextV2(Language.es)
+
+    // Step 2: categorize the same dust transfer in Spanish and English
+    const txHash = '0xeda92a5cf7dc7e329ed123d85df969c075707758a853e0c5f0f77c1cf772b3bc'
+    const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
+    const input = { transaction: data, subjectAddress: createAccountId(data.to, chainId) }
+    const spanish = determineTransactionMetadataV6(input, Language.es, false, 49)
+    const english = determineTransactionMetadataV6(input, Language.en, false, 49)
+
+    // Step 3: the label follows the requested language
+    expect(spanish['readable']).toBe('Ataque de polvo')
+    expect(spanish['readableExtended']).toBe('Ataque de polvo')
+    expect(english['readable']).toBe('Dust Attack')
+  })
   it('properly attaches a spam transfer label to a tx', async () => {
     const txHash = txTestCases['SPAM_TOKEN_TRANSFER']
     if (!txHash) {
