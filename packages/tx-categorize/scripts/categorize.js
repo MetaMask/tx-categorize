@@ -41,13 +41,16 @@ const importTxData = async (txHash, chainId, subjectAddress, language) => {
   // Step 2: fetch the transaction
   const txData = await getTxWithLogsFromPrimitives(txHash, chainId)
   if (!txData || !txData.transaction) {
-    throw new Error(`No transaction data found for address 'eip155:${chainId}:${txHash}'`)
+    throw new Error(`No transaction data found for transaction '${txHash}' on chain ${chainId}`)
   }
   console.log('Fetched tx: ', txData)
 
-  // Step 3: categorize it from the subject's perspective
+  // Step 3: build the subject as a CAIP-10 id. Accept either a plain address or an id that is already CAIP-10,
+  // so that `eip155:1:eip155:1:0x...` is never produced.
   const subject = subjectAddress || txData.transaction.from
-  return determineTransactionMetadataV6({ ...txData, subjectAddress: `eip155:${chainId}:${subject}` }, language, true, 49)
+  const subjectAccountId = subject.startsWith('eip155:') ? subject : `eip155:${chainId}:${subject}`
+
+  return determineTransactionMetadataV6({ ...txData, subjectAddress: subjectAccountId }, language, true, 49)
 }
 
 /**

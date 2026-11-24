@@ -299,10 +299,10 @@ export const determineTransactionMetadataV6 = (
       refinedAction === Action.PAYMENT &&
       receivedAssets.length > 0 &&
       sentAssets.length === 0 &&
-      tV2(refundKey, {}, language ?? fallbackLngV2) !== refundKey
+      tV2(refundKey, {}, resolvedLanguage) !== refundKey
     ) {
       templateKey = refundKey
-    } else if (tV2(protocolQualifiedKey, {}, language ?? fallbackLngV2) !== protocolQualifiedKey) {
+    } else if (tV2(protocolQualifiedKey, {}, resolvedLanguage) !== protocolQualifiedKey) {
       templateKey = protocolQualifiedKey
     } else if (refinedAction === Action.TRANSFER) {
       // For TRANSFER, use subject-address-aware sent/received templates
