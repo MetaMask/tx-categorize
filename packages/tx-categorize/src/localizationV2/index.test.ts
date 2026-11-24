@@ -94,6 +94,39 @@ describe('localizationV2 interpolation', () => {
     })
   })
 
+  describe('uninitialized languages', () => {
+    let warnSpy: jest.SpyInstance
+
+    beforeEach(() => {
+      warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => undefined)
+    })
+
+    afterEach(() => {
+      warnSpy.mockRestore()
+    })
+
+    it('falls back to English and warns only once per language', () => {
+      expect(tV2('TRANSFER_SENT', {}, Language.es)).toBe(enTranslations.TRANSFER_SENT)
+      expect(tV2('TRANSFER_RECEIVED', {}, Language.es)).toBe(enTranslations.TRANSFER_RECEIVED)
+
+      expect(warnSpy).toHaveBeenCalledTimes(1)
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining("'es'"))
+    })
+
+    it('does not warn for the English fallback language', () => {
+      tV2('TRANSFER_SENT', {}, Language.en)
+
+      expect(warnSpy).not.toHaveBeenCalled()
+    })
+
+    it('does not warn once the language has been initialized', async () => {
+      await initializeI18nextV2(Language.es)
+      tV2('TRANSFER_SENT', {}, Language.es)
+
+      expect(warnSpy).not.toHaveBeenCalled()
+    })
+  })
+
   describe('all locales have valid interpolation placeholders', () => {
     const locales = Object.values(Language)
 

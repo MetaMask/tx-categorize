@@ -133,12 +133,26 @@ const extractApprovedAssets = (transaction: Transaction): ValueTransfer[] => {
   ]
 }
 
+/**
+ * Categorize a transaction from the perspective of `input.subjectAddress` and build its localized labels.
+ *
+ * Note: localized labels (`readable` / `readableExtended`) are only translated if `initializeI18nextV2(language)`
+ * was called beforehand; otherwise the English templates are used (and a warning is logged).
+ *
+ * @param input - the transaction and the subject (CAIP-10) account the labels are written for
+ * @param language - the language for `readable` / `readableExtended` (defaults to English)
+ * @param log - log each categorization step to the console
+ * @param spamTransferThreshold - number of logs above which a transaction is flagged as a spam token transfer
+ * @returns the transaction metadata (type, category, protocol and readable labels)
+ */
 export const determineTransactionMetadataV6 = (
   input: DetermineTransactionMetadataInputV6,
   language?: Language,
   log?: boolean,
   spamTransferThreshold = 500,
 ) => {
+  // Step 1: resolve the language once, so every label below uses the same one
+  const resolvedLanguage = language ?? fallbackLngV2
   const { transaction } = input
   if (!transaction) {
     throw new Error('No transaction provided')
@@ -285,16 +299,16 @@ export const determineTransactionMetadataV6 = (
       refinedAction === Action.PAYMENT &&
       receivedAssets.length > 0 &&
       sentAssets.length === 0 &&
-      tV2(refundKey, {}, language ?? fallbackLngV2) !== refundKey
+      tV2(refundKey, {}, resolvedLanguage) !== refundKey
     ) {
       templateKey = refundKey
-    } else if (tV2(protocolQualifiedKey, {}, language ?? fallbackLngV2) !== protocolQualifiedKey) {
+    } else if (tV2(protocolQualifiedKey, {}, resolvedLanguage) !== protocolQualifiedKey) {
       templateKey = protocolQualifiedKey
     } else if (refinedAction === Action.TRANSFER) {
       // For TRANSFER, use subject-address-aware sent/received templates
       templateKey = receivedAssets.length > 0 && sentAssets.length === 0 ? 'TRANSFER_RECEIVED' : 'TRANSFER_SENT'
     }
-    const template = tV2(templateKey, {}, language ?? fallbackLngV2)
+    const template = tV2(templateKey, {}, resolvedLanguage)
     const rawSpender = extractSpender(transaction) ?? ''
     const ctx: TemplateContext =
       txMetadata.transactionCategory === Action.APPROVE
@@ -326,8 +340,8 @@ export const determineTransactionMetadataV6 = (
     const fallbackMetadata: TxMetadataV6 = {
       transactionType: 'GENERIC_CONTRACT_CALL',
       transactionCategory: Action.CONTRACT_CALL,
-      readable: tV2(Action.CONTRACT_CALL),
-      readableExtended: tV2(Action.CONTRACT_CALL),
+      readable: tV2(Action.CONTRACT_CALL, {}, resolvedLanguage),
+      readableExtended: tV2(Action.CONTRACT_CALL, {}, resolvedLanguage),
     }
 
     if ((!transaction.logs || !transaction.logs.length) && !transaction.methodId) {
@@ -355,12 +369,12 @@ export const determineTransactionMetadataV6 = (
       templateKey =
         receivedAssets.length > 0 && sentAssets.length === 0 ? Action.STANDARD_RECEIVED : Action.STANDARD_SENT
     }
-    const fallbackTemplate = tV2(templateKey, {}, language ?? fallbackLngV2)
+    const fallbackTemplate = tV2(templateKey, {}, resolvedLanguage)
     fallbackMetadata.readable = fallbackMetadata.transactionProtocol?.startsWith('SPAM')
-      ? tV2('DUST_ATTACK', {}, language ?? fallbackLngV2)
+      ? tV2('DUST_ATTACK', {}, resolvedLanguage)
       : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets }, false)
     fallbackMetadata.readableExtended = fallbackMetadata.transactionProtocol?.startsWith('SPAM')
-      ? tV2('DUST_ATTACK', {}, language ?? fallbackLngV2)
+      ? tV2('DUST_ATTACK', {}, resolvedLanguage)
       : interpolateTemplate(fallbackTemplate, { sentAssets, receivedAssets }, true)
 
     return fallbackMetadata

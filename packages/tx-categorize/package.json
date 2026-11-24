@@ -6,13 +6,15 @@
   "license": "ISC",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "!dist/**/*.tsbuildinfo"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist tsconfig.build.tsbuildinfo",
+    "build": "yarn clean && tsc -p tsconfig.build.json",
     "categorize": "yarn build && node ./scripts/categorize.js",
     "list:metrics": "yarn build && node ./scripts/listMetrics.js",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
