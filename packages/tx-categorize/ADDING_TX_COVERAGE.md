@@ -39,7 +39,7 @@ Use the existing CLI script to see how the transaction is currently categorized:
 
 ```bash
 # Build first if needed
-npm run build
+yarn build
 
 # Run categorization (defaults to chainId=1 for Ethereum)
 cd packages/tx-categorize && node scripts/categorize.js <TX_HASH> [CHAIN_ID]
@@ -130,7 +130,7 @@ The key is the **expected `transactionType`** string. It is constructed as:
 For example:
 - `UNISWAP_V3_EXCHANGE`
 - `ENS_DOMAIN_REGISTER`
-- `METAMASK_BRIDGE_V1_BRIDGE_OUT`
+- `METAMASK_BRIDGE_V1_BRIDGE_WITHDRAW`
 - `ERC_20_TRANSFER`
 
 #### 4b. Record the Nock Fixture
@@ -146,7 +146,7 @@ To record a new fixture:
 1. Ensure you have network access
 2. Set the nock mode to `record` (this is the default in the test):
    ```bash
-   NOCK_BACK_MODE=record npx jest --no-coverage src/txCategorize.test.ts
+   NOCK_BACK_MODE=record yarn test --coverage=false src/txCategorize.test.ts
    ```
 3. The fixture file (e.g. `1-0xabcd...1234.json`) will be created automatically in `test-fixtures/nock/`
 4. Once recorded, subsequent test runs replay from the fixture (no network needed)
@@ -155,10 +155,10 @@ To record a new fixture:
 
 ```bash
 # Run just the categorization tests
-npx jest --no-coverage src/txCategorize.test.ts
+yarn test --coverage=false src/txCategorize.test.ts
 
 # Run all tests
-npx jest --no-coverage
+yarn test --coverage=false
 ```
 
 The V6 test iterates over every entry in `txTestCases` / `lineaTxTestCases`, fetches the transaction via the nock fixture, calls `determineTransactionMetadataV6`, and asserts:
@@ -183,13 +183,13 @@ If your new action requires a new template, add it in `src/localizationV2/locale
 
 ## Quick Reference: Supported Actions
 
-All actions are defined in the `Action` enum at `src/enums.ts`:
+All 42 actions are defined in the `Action` enum at `src/enums.ts`. The table below is a partial list:
 
 | Action | Description |
 |---|---|
 | `APPROVE` | Token approval |
 | `BORROW` | Lending protocol borrow |
-| `BRIDGE_IN` / `BRIDGE_OUT` | Cross-chain bridge |
+| `BRIDGE` / `BRIDGE_DEPOSIT` / `BRIDGE_WITHDRAW` | Cross-chain bridge |
 | `CLAIM` | Reward/airdrop claim |
 | `DEPOSIT` / `WITHDRAW` | Liquidity/staking deposit or withdrawal |
 | `DOMAIN_REGISTER` / `DOMAIN_RENEW` | ENS domain operations |
@@ -226,7 +226,7 @@ All actions are defined in the `Action` enum at `src/enums.ts`:
 
 3. **Record fixture** — Run with `NOCK_BACK_MODE=record` to capture the API response.
 
-4. **Run tests** — `npx jest --no-coverage src/txCategorize.test.ts` and verify the assertion passes.
+4. **Run tests** — `yarn test --coverage=false src/txCategorize.test.ts` and verify the assertion passes.
 
 ---
 

@@ -28,16 +28,13 @@ This project follows MetaMask's standard release process with automated workflow
 
 📖 **[View the complete Release & Publishing Guide →](RELEASE.md)**
 
-Quick commands:
-- `yarn sync-workflows` - Sync latest workflow files from MetaMask/utils
-
 See [RELEASE.md](RELEASE.md) for detailed instructions on creating releases, managing changelogs, and publishing to npm.
 
 ## Package
 
 | **Package**                                    | **Version** | **Description**                                                           |
 |:-----------------------------------------------|:-----------:|:--------------------------------------------------------------------------|
-| [`tx-categorize`](packages/tx-categorize)     | 1.0.3       | A library for categorizing and labeling blockchain transactions           |
+| [`tx-categorize`](packages/tx-categorize)     | 2.1.4       | A library for categorizing and labeling blockchain transactions           |
 
 **View the [package README](packages/tx-categorize/README.md) for detailed usage and contribution guidelines.**
 

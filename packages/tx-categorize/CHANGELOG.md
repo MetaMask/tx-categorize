@@ -1,5 +1,4 @@
 # Changelog
-
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -8,49 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [2.1.4]
-
 ### Fixed
-
 - fix: i18n pkg vuln ([#57](https://github.com/MetaMask/tx-categorize/pull/57))
 
 ## [2.1.3]
-
-### Fixed
-
+### Changed
 - chore: increase uniswap coverage ([#54](https://github.com/MetaMask/tx-categorize/pull/54))
 
 ## [2.1.2]
-
-### Fixed
-
+### Added
 - feat: Improve Aave categorization coverage across networks and protocol versions ([#51](https://github.com/MetaMask/tx-categorize/pull/51))
 - feat: support 7702 authorized txs ([#50](https://github.com/MetaMask/tx-categorize/pull/50))
 
 ## [2.1.1]
-
-### Fixed
-
+### Added
 - feat: improve coverage of swaps/bridge ([#47](https://github.com/MetaMask/tx-categorize/pull/47))
+
+### Changed
 - feat: remove spender in approval readable label ([#48](https://github.com/MetaMask/tx-categorize/pull/48))
 
 ## [2.1.0]
+### Added
+- feat: solves issue with short readable label field by excluding amounts in readable ([#45](https://github.com/MetaMask/tx-categorize/pull/45))
 
 ### Fixed
-
 - Fix: Bridge Txs ([#44](https://github.com/MetaMask/tx-categorize/pull/44))
-- feat: solves issue with short readable label field by excluding amounts in readable ([#45](https://github.com/MetaMask/tx-categorize/pull/45)
 
 ## [2.0.3]
-
 ### Fixed
-
 - fix: proper handling of partially-identified txs to 'unidentified' ([#42](https://github.com/MetaMask/tx-categorize/pull/42))
 - fix: spend approval txs labels ([#41](https://github.com/MetaMask/tx-categorize/pull/41))
 
 ## [2.0.2]
-
 ### Added
-
 - feat: balancer stake ([#39](https://github.com/MetaMask/tx-categorize/pull/39))
 - feat: metamaskstake stake ([#37](https://github.com/MetaMask/tx-categorize/pull/37))
 - feat: convex claim ([#35](https://github.com/MetaMask/tx-categorize/pull/35))
@@ -58,34 +47,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: curve deposit ([#33](https://github.com/MetaMask/tx-categorize/pull/33))
 
 ## [2.0.1]
-
 ### Added
-
 - Added claim bonus txs ([#31](https://github.com/MetaMask/tx-categorize/pull/31))
 - Increase test coverage ([#29](https://github.com/MetaMask/tx-categorize/pull/29))
 
 ### Changed
-
 - Improvements for standard txs ([#30](https://github.com/MetaMask/tx-categorize/pull/30))
 
-## [2.0.0]
-
 ## [1.0.0]
-
 ### Added
-
 - APIPLAT-2189 - Interpolation for asset symbol/quantity readable labels ([#22](https://github.com/MetaMask/tx-categorize/pull/22))
 - Add uniswap v4 position manager addresses ([#20](https://github.com/MetaMask/tx-categorize/pull/20))
 - Record and replay tx-categorize API fixtures with nock ([#21](https://github.com/MetaMask/tx-categorize/pull/21))
 
 ## [0.1.0]
-
-### Uncategorized
-
-- Fix changelog and version: update changelog formatting and synchronize version numbers for release notes
-
 ### Added
-
 - Initial release of @metamask/tx-categorize
 - Transaction categorization engine supporting multiple EVM chains
 - Bloom filter optimization for efficient method ID and topic lookups
@@ -93,6 +69,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-language localization support (15 languages)
 - Comprehensive transaction schemas including DeFi, NFT, and token operations
 - Heuristic-based fallback categorization
+
+### Fixed
+- Fix changelog and version: update changelog formatting and synchronize version numbers for release notes
 
 [Unreleased]: https://github.com/MetaMask/tx-categorize/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/MetaMask/tx-categorize/compare/v2.1.3...v2.1.4
@@ -102,7 +81,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.1.0]: https://github.com/MetaMask/tx-categorize/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/MetaMask/tx-categorize/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/MetaMask/tx-categorize/compare/v2.0.1...v2.0.2
-[2.0.1]: https://github.com/MetaMask/tx-categorize/compare/v2.0.0...v2.0.1
-[2.0.0]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...v2.0.0
+[2.0.1]: https://github.com/MetaMask/tx-categorize/compare/v1.0.0...v2.0.1
 [1.0.0]: https://github.com/MetaMask/tx-categorize/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/MetaMask/tx-categorize/releases/tag/v0.1.0

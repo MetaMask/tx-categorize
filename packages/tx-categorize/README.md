@@ -4,78 +4,78 @@ A library for categorizing and labeling blockchain transactions across multiple 
 
 ## Overview
 
-`tx-categorize` automatically identifies and categorizes blockchain transactions based on their characteristics (contract addresses, method IDs, event topics) to provide human-readable labels. It supports 38+ transaction categories including DeFi operations (swap, stake, lend), NFT interactions, bridging, governance, and more across 15+ blockchain networks.
+`tx-categorize` automatically identifies and categorizes blockchain transactions based on their characteristics (contract addresses, method IDs, event topics) to provide human-readable labels. It defines 42 action categories (see `src/enums.ts`) including DeFi operations (swap, stake, lend), NFT interactions, bridging, governance, and more.
 
 ## Installation
 
 ```bash
-npm install tx-categorize
+npm install @metamask/tx-categorize
 # or
-yarn add tx-categorize
+yarn add @metamask/tx-categorize
 ```
 
 ## Usage
 
 ```typescript
-import { determineTransactionMetadataV5, initializeI18next, Language } from 'tx-categorize'
+import { determineTransactionMetadataV6, initializeI18nextV2, Language } from '@metamask/tx-categorize'
 
-// Initialize localization (optional, defaults to English)
-await initializeI18next(Language.ENGLISH)
+// Initialize the localized labels once (optional, defaults to English)
+await initializeI18nextV2(Language.en)
 
-// Categorize a transaction
-const metadata = determineTransactionMetadataV5(transaction, chainId)
+// `transaction` is a transaction from the MetaMask Primitives API (including logs and value transfers).
+// `subjectAddress` is a CAIP-10 account id: the labels are written from this account's perspective.
+const metadata = determineTransactionMetadataV6(
+  { transaction, subjectAddress: `eip155:${chainId}:${address}` },
+  Language.en,
+)
 
 console.log(metadata)
 // {
-//   transactionType: 'EXCHANGE',
-//   transactionCategory: 'Exchange',
-//   transactionProtocol: 'UNISWAP_V2',
-//   toAddressName: 'TO_UNISWAP_V2_ROUTER',
-//   readable: 'Exchange via Uniswap V2'
+//   transactionProtocol: 'ERC_20',
+//   transactionCategory: 'TRANSFER',
+//   transactionType: 'ERC_20_TRANSFER',
+//   readable: 'Sent USDC',
+//   readableExtended: 'Sent 50 USDC'
 // }
 ```
 
+`readable` omits amounts; `readableExtended` includes them.
+
+The older `determineTransactionMetadata` (V1), `determineTransactionMetadataV2`, `determineTransactionMetadataV3` and `determineTransactionMetadataV5` functions are still exported for compatibility. New code should use V6.
+
 ## Supported Categories
 
-The library supports 38 transaction categories including:
+The library defines 42 action categories. Examples:
 
 - **DeFi Operations**: `EXCHANGE`, `STAKE`, `LENDING`, `BORROW`, `REPAY`, `DEPOSIT`, `WITHDRAW`
 - **Token Operations**: `APPROVE`, `TRANSFER`, `WRAP`, `UNWRAP`, `MINT`, `CLAIM`
 - **NFT Operations**: `NFT_EXCHANGE`, `NFT_APPROVE`, `NFT_TRANSFER`
-- **Bridging**: `BRIDGE`, `BRIDGE_IN`, `BRIDGE_OUT`
+- **Bridging**: `BRIDGE`, `BRIDGE_DEPOSIT`, `BRIDGE_WITHDRAW`
 - **Governance**: `VOTE`, `REGISTER`
 - **ENS/Domains**: `DOMAIN_REGISTER`, `DOMAIN_RENEW`, `DOMAIN_TRANSFER`, `DOMAIN_RESOLVER_SET`
 - **Other**: `PAYMENT`, `CONTRACT_CALL`, `STANDARD`, and more
 
+The full list is the `Action` enum in `src/enums.ts`.
+
 ## Supported Networks
 
-- Ethereum
-- Polygon
-- BSC (Binance Smart Chain)
-- Avalanche
-- Arbitrum
-- Optimism
-- Base
-- Linea
-- Fantom
-- Cronos
-- Celo
-- Aurora
-- Moonbeam
-- Moonriver
+`determineTransactionMetadataV6` is not tied to a specific chain. The chain only decides which transaction is fetched and the `eip155:<chainId>` prefix of the subject address.
+
+The legacy V2/V3 functions use chain-specific schema sets (see `src/constants.ts`). Those schema sets are not currently loaded correctly, so avoid the V2/V3 functions until that is fixed.
 
 ## How It Works
 
-The categorization system uses a priority-based schema matching system:
+The categorization system matches each transaction on three dimensions:
 
 1. **Contract Address Matching**: Identifies known protocol contracts (e.g., Uniswap Router, Compound cToken)
 2. **Method ID Matching**: Matches transaction method signatures (first 4 bytes of calldata)
 3. **Event Topic Matching**: Analyzes emitted event signatures in transaction logs
-4. **Heuristic Rules**: Combines multiple signals using AND/OR logic for complex patterns
 
-Higher priority schemas (priority: 50) take precedence over lower priority ones (priority: 10).
+Each method ID and topic entry has a numeric `priority`. When several entries match, the highest priority sets the action. See [Priority Guidelines](#priority-guidelines).
 
 ## Contributing a New Category
+
+The steps below are a summary. For the full walkthrough, including field reference and examples, see [ADDING_TX_COVERAGE.md](ADDING_TX_COVERAGE.md).
 
 ### Step 1: Add the Action Enum (if needed)
 
@@ -90,122 +90,45 @@ export enum Action {
 
 ### Step 2: Add Localized Labels
 
-Add human-readable labels for your new category in all supported languages. Start with English in `src/localization/locales/en/translation.json`:
+V6 labels come from the V2 locale files. Add the template to the English source first, then to the other languages:
+
+- `src/localizationV2/locales/en/translation.json` (source)
+- `src/localizationV2/locales/<code>/translation.json` for each other language
+
+Templates use `$variables` such as `$sent_assets_0_value` and `$sent_assets_0_ticker`. Keep the placeholders unchanged in every language. The V1 files in `src/localization/` are only used by the legacy V1/V5 functions.
 
 ```json
 {
-  "YOUR_NEW_ACTION": "Your New Action Label"
+  "YOUR_NEW_ACTION": "Your New Action Label with $sent_assets_0_value $sent_assets_0_ticker"
 }
 ```
 
-Then add translations to other locale files: `de`, `el`, `es`, `fr`, `hi`, `id`, `ja`, `ko`, `pt`, `ru`, `tl`, `tr`, `vi`, `zh`.
+### Step 3: Add Heuristic Entries
 
-### Step 3: Create Schema Definition
+V6 matches on the maps built from the `determinants` object in `src/txSchemas/heuristicMap.ts`:
 
-Choose the appropriate schema type based on your categorization strategy:
+- `contracts`: contract addresses, mapped to a protocol and contract name
+- `methodIds`: 4-byte function selectors, mapped to an `Action`
+- `topics`: event topic hashes, mapped to an `Action`
 
-#### Option A: Contract Address-Based Schema
+Add your entries there. See [ADDING_TX_COVERAGE.md](ADDING_TX_COVERAGE.md) for the field reference and examples.
 
-For protocols with known, fixed contract addresses, add to `src/txSchemas/toAddressSchemas.ts`:
+### Step 4: Add Test Cases
+
+Register the expected `transactionType` and a tx hash in `txTestCases` (Ethereum) or `lineaTxTestCases` (Linea) in `src/testCases.mock.ts`:
 
 ```typescript
-export const yourProtocolContract: TransactionSchema<SchemaV2> = {
-  schema: {
-    key: 'toAddress',
-    type: 'addresses',
-    addresses: ['0x...', '0x...'], // Contract address(es)
-  },
-  meta: {
-    name: 'TO_YOUR_PROTOCOL',
-    priority: 20, // 10=low, 20=medium, 30=high, 50=very high
-    type: 'TO',
-    protocol: 'YOUR_PROTOCOL',
-    excludeFromBuild: true,
-  },
+export const txTestCases = {
+  // ... existing entries
+  YOUR_PROTOCOL_ACTION: '0x...',
 }
 ```
 
-#### Option B: Method ID-Based Schema
+The first run records the Primitives API response to `test-fixtures/nock/`. See [ADDING_TX_COVERAGE.md](ADDING_TX_COVERAGE.md#4b-record-the-nock-fixture).
 
-For specific function calls, add to `src/txSchemas/evmCompatible.ts` or network-specific files:
+### Step 5: Check the Category
 
-```typescript
-{
-  schema: {
-    key: 'methodId',
-    type: 'methodId',
-    methodId: ['0xabcdef12'], // Method signature hash
-    and: ['TO_YOUR_PROTOCOL'], // Optional: require contract match
-  },
-  meta: {
-    name: 'YOUR_PROTOCOL_ACTION',
-    priority: 30,
-    type: 'YOUR_NEW_ACTION',
-    protocol: 'YOUR_PROTOCOL',
-  },
-}
-```
-
-#### Option C: Event Topic-Based Schema
-
-For transactions identified by emitted events:
-
-```typescript
-{
-  schema: {
-    key: 'topics',
-    type: 'topics',
-    topics: ['0x...'], // Event signature hash
-    and: ['TO_YOUR_PROTOCOL'], // Optional: require contract match
-  },
-  meta: {
-    name: 'YOUR_PROTOCOL_ACTION',
-    priority: 30,
-    type: 'YOUR_NEW_ACTION',
-    protocol: 'YOUR_PROTOCOL',
-  },
-}
-```
-
-#### Option D: Heuristic-Based Schema
-
-For complex patterns, add to `src/txSchemas/heuristicMap.ts`:
-
-```typescript
-{
-  schema: {
-    key: 'heuristic',
-    type: 'heuristic',
-    id: 'YOUR_HEURISTIC',
-    and: ['TO_YOUR_PROTOCOL', 'SOME_METHOD'],
-    or: ['ALTERNATIVE_CONDITION'],
-  },
-  meta: {
-    name: 'YOUR_PROTOCOL_ACTION',
-    priority: 40,
-    type: 'YOUR_NEW_ACTION',
-    protocol: 'YOUR_PROTOCOL',
-  },
-}
-```
-
-### Step 4: Register Schema in Network Files
-
-Add your schema to the appropriate network schema files (e.g., `src/txSchemas/ethereum.ts`):
-
-```typescript
-export const ethereumSchemas: Array<TransactionSchema<SchemaV2>> = [
-  ...evmCompatibleSchemas,
-  // ... existing schemas
-  yourProtocolContract,
-]
-```
-
-For multi-chain protocols, add to multiple network files or to `evmCompatible.ts`.
-
-### Step 5: Test Your Category
-
-Use the debugging script to test your new category:
+Use the debugging script to see how a transaction is categorized:
 
 ```bash
 # Test with a transaction hash
@@ -216,36 +139,20 @@ yarn categorize 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd
 yarn categorize 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef 1 0xYourAddress
 ```
 
-### Step 6: Add Test Cases
+### Step 6: Run Tests
 
-Add test cases in `src/txCategorize.test.ts`:
-
-```typescript
-{
-  txHash: '0x...',
-  chainId: ChainId.ETHEREUM,
-  expectedResult: {
-    transactionType: 'YOUR_NEW_ACTION',
-    transactionProtocol: 'YOUR_PROTOCOL',
-  },
-}
-```
-
-### Step 7: Run Tests
+From the repo root:
 
 ```bash
 yarn test
+yarn lint
 ```
 
 ## Priority Guidelines
 
-- **Priority 10**: Generic contract identifiers (DEX routers, token contracts)
-- **Priority 20**: Specific protocol contracts
-- **Priority 30**: Protocol-specific method calls
-- **Priority 40**: Complex heuristic combinations
-- **Priority 50**: Highly specific patterns (method + contract + events)
+Each `methodIds` and `topics` entry has a numeric `priority` (default `0`). When several entries match, only a higher priority overwrites the action and protocol already found. Contract-address matches count as priority `0`.
 
-Higher priority schemas override lower priority ones when multiple matches occur.
+Negative priorities mark generic fallbacks, such as plain ERC-20 and ERC-721 events. A transaction that only matches those resolves to `CONTRACT_CALL` (or `STANDARD` for plain transfers). See [ADDING_TX_COVERAGE.md](ADDING_TX_COVERAGE.md#priority-system) for details.
 
 ## Development Scripts
 
@@ -255,7 +162,7 @@ Debug tool to categorize a specific transaction and see why it was categorized t
 
 ```bash
 # Basic usage (defaults to chain_id=1, subject=transaction.from)
-yarn categorize 0x1234... 
+yarn categorize 0x1234...
 
 # Specify chain ID
 yarn categorize 0x1234... 137
@@ -334,11 +241,19 @@ Find topic hashes in:
 
 ## Localization
 
-The library supports 15 languages. To add a new language:
+The library ships 15 languages: `de`, `el`, `en`, `es`, `fr`, `hi`, `id`, `ja`, `ko`, `pt`, `ru`, `tl`, `tr`, `vi`, `zh`.
 
-1. Create a new folder in `src/localization/locales/`
-2. Add a `translation.json` file with all Action enum translations
-3. Add the language to the `Language` enum in `src/localization/index.ts`
+There are two separate i18next setups:
+
+- **V6** uses `localizationV2` (`initializeI18nextV2`). This is the one that produces `readable` labels.
+- **Legacy V1/V5** use `localization` (`initializeI18next`).
+
+To add a language:
+
+1. Create `src/localizationV2/locales/<code>/translation.json` with every key from the `en` file. If the language should also work with the legacy functions, add `src/localization/locales/<code>/translation.json` too.
+2. Add the language to the `Language` enum in `src/localization/index.ts`.
+
+The V2 interpolation test runs over every `Language` value, so it fails if a translation is missing a placeholder.
 
 ## Contributing
 
@@ -346,7 +261,7 @@ The library supports 15 languages. To add a new language:
 2. Create a feature branch (`git checkout -b feature/new-category`)
 3. Make your changes following the steps above
 4. Add tests for your changes
-5. Run tests and linting (`yarn test && yarn lint`)
+5. Run tests and linting from the repo root (`yarn test && yarn lint`)
 6. Commit your changes (`git commit -am 'Add support for XYZ protocol'`)
 7. Push to the branch (`git push origin feature/new-category`)
 8. Open a Pull Request
@@ -357,5 +272,5 @@ ISC
 
 ## Links
 
-- **npm**: https://www.npmjs.com/package/tx-categorize
+- **npm**: https://www.npmjs.com/package/@metamask/tx-categorize
 - **Repository**: https://github.com/MetaMask/tx-categorize

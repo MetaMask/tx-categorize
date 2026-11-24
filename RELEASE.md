@@ -57,7 +57,7 @@ Edit the generated CHANGELOG.md in the release PR:
 
 - Validate the changelog:
   ```bash
-  yarn auto-changelog validate --rc
+  npx @metamask/auto-changelog validate --rc
   ```
 
 ### 5. Review and QA the Release
@@ -117,17 +117,15 @@ If automated npm publishing is not configured or fails:
 
 Ensure these secrets are configured in your repository settings:
 
-- `NPM_TOKEN` - For npm publishing (set in `npm-publish` environment)
-- `PUBLISH_DOCS_TOKEN` - For documentation deployment
+- `NPM_TOKEN` - Passed to the npm publish step (set in `npm-publish` environment)
 - `SLACK_WEBHOOK_URL` - For release notifications
 - `SECURITY_SCAN_METRICS_TOKEN` - For security scanning metrics (optional)
-- `APPSEC_BOT_SLACK_WEBHOOK` - For security alerts (optional)
 
 ## Quick Reference Commands
 
 ```bash
 # Validate changelog
-yarn auto-changelog validate --rc
+npx @metamask/auto-changelog validate --rc
 
 # Build project
 yarn build
@@ -145,7 +143,7 @@ yarn lint
 npm publish --dry-run
 
 # View published versions
-npm view @codefi/metafi-tx-categorize versions
+npm view @metamask/tx-categorize versions
 ```
 
 ## Resources
