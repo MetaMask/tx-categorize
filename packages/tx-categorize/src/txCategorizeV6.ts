@@ -279,10 +279,16 @@ export const determineTransactionMetadataV6 = (
     const refinedAction = refineActionForMultiAssets(txMetadata.transactionCategory, sentAssets, receivedAssets)
 
     let templateKey: string = refinedAction
-    // Try protocol-specific template key first (e.g., METAMASK_CARD_PAYMENT)
+    const refundKey = `${transactionProtocol}_REFUND`
     const protocolQualifiedKey = `${transactionProtocol}_${refinedAction}`
-    const protocolTemplate = tV2(protocolQualifiedKey, {}, language ?? fallbackLngV2)
-    if (protocolTemplate !== protocolQualifiedKey) {
+    if (
+      refinedAction === Action.PAYMENT &&
+      receivedAssets.length > 0 &&
+      sentAssets.length === 0 &&
+      tV2(refundKey, {}, language ?? fallbackLngV2) !== refundKey
+    ) {
+      templateKey = refundKey
+    } else if (tV2(protocolQualifiedKey, {}, language ?? fallbackLngV2) !== protocolQualifiedKey) {
       templateKey = protocolQualifiedKey
     } else if (refinedAction === Action.TRANSFER) {
       // For TRANSFER, use subject-address-aware sent/received templates

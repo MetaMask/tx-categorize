@@ -743,6 +743,13 @@ const determinants: DeterminantMap = {
       priority: 105,
     },
     {
+      // Monad subscription treasury, padded.
+      hash: '0x00000000000000000000000015dac0bc513d89d54dd14f476e4bcb4cd7eed2ea',
+      name: PAYMENT,
+      protocol: 'METAMASK_SUBSCRIPTION',
+      priority: 105,
+    },
+    {
       hash: '0x2b627736bca15cd5381dcf80b0bf11fd197d01a037c52b927a881a10fb73ba61',
       name: DEPOSIT,
     },
