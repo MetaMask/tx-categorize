@@ -236,6 +236,43 @@ describe('#txCategorizeV2', () => {
 })
 
 describe('#txCategorizeV6', () => {
+  it.each([
+    ['payment', Language.en, 'MetaMask Subscription Payment'],
+    ['refund', Language.de, 'MetaMask Subscription Refund'],
+  ] as const)('labels a subscription %s', async (direction, language, label) => {
+    if (language !== Language.en) await initializeI18nextV2(language)
+    const txHash = txTestCases.ERC_20_TRANSFER
+    const { data } = await getTxWithLogsFromPrimitives(txHash)
+    const [log] = data.logs ?? []
+    const [transfer] = data.valueTransfers
+    if (!log || !transfer) throw new Error('ERC-20 fixture is missing its transfer')
+
+    const treasuryTopic = '0x00000000000000000000000015dac0bc513d89d54dd14f476e4bcb4cd7eed2ea'
+    const treasury = `0x${treasuryTopic.slice(-40)}`
+    const isPayment = direction === 'payment'
+    const topics = [...log.topics]
+    topics[isPayment ? 2 : 1] = treasuryTopic
+
+    const result = determineTransactionMetadataV6(
+      {
+        transaction: {
+          ...data,
+          logs: [{ ...log, topics }],
+          valueTransfers: [isPayment ? { ...transfer, to: treasury } : { ...transfer, from: treasury }],
+        },
+        subjectAddress: createAccountId(isPayment ? transfer.from : transfer.to, ChainId.MONAD_MAINNET),
+      },
+      language,
+    )
+    expect(result).toMatchObject({
+      transactionType: 'METAMASK_SUBSCRIPTION_PAYMENT',
+      transactionCategory: 'PAYMENT',
+      transactionProtocol: 'METAMASK_SUBSCRIPTION',
+      readable: label,
+      readableExtended: label,
+    })
+  })
+
   it('categorizes an ethereum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
