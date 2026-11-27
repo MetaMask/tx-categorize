@@ -743,6 +743,27 @@ const determinants: DeterminantMap = {
       priority: 105,
     },
     {
+      // Immersve DirectSpendDebit(address,uint256,bytes32): card spend.
+      hash: '0x7d21ef3935fe7d9657ac99fe98a59e40da46146de3c917413ddf4fb52decc636',
+      name: PAYMENT,
+      protocol: 'METAMASK_CARD',
+      priority: 105,
+    },
+    {
+      // Immersve DirectSpendRefund(address,address,uint256,bytes32): card refund.
+      hash: '0x07ed227ae1ca3d28b0af8938dee03ab2355de9dbd5e3f2dae93bd2ad1bea912c',
+      name: PAYMENT,
+      protocol: 'METAMASK_CARD',
+      priority: 105,
+    },
+    {
+      // Immersve DirectSpendReversal(bytes32,address,uint256,bytes32): card reversal.
+      hash: '0xe15319dd10a12f32753daaee2634b65e852596eadaad6d88ab268aca668c51a7',
+      name: PAYMENT,
+      protocol: 'METAMASK_CARD',
+      priority: 105,
+    },
+    {
       // Monad subscription treasury, padded.
       hash: '0x00000000000000000000000015dac0bc513d89d54dd14f476e4bcb4cd7eed2ea',
       name: PAYMENT,

@@ -41,6 +41,7 @@
   "PAYMENT": "Paid $sent_assets_0_value $sent_assets_0_ticker",
   "METAMASK_CARD_PAYMENT": "MetaMask Card Payment",
   "METAMASK_CARD_APPROVE": "MetaMask Card Spend Approved",
+  "METAMASK_CARD_REFUND": "MetaMask Card Refund",
   "METAMASK_SUBSCRIPTION_PAYMENT": "MetaMask Subscription Payment",
   "METAMASK_SUBSCRIPTION_REFUND": "MetaMask Subscription Refund",
   "CONTRACT_CALL": "Unidentified Transaction",

@@ -237,6 +237,59 @@ describe('#txCategorizeV2', () => {
 })
 
 describe('#txCategorizeV6', () => {
+  it('labels an Immersve card spend from a Monad Money account', async () => {
+    const txHash = '0x6c99f5d2857de58c33c006a8a9dfe2cc1c23e1e8409485cd874d45717ba0def7'
+    const { data } = await getTxWithLogsFromPrimitives(txHash, ChainId.MONAD_MAINNET)
+    if (!data) throw new Error('Immersve spend fixture is missing')
+    const [transfer] = data.valueTransfers
+    if (!transfer) throw new Error('Immersve spend fixture is missing its transfer')
+
+    const result = determineTransactionMetadataV6({
+      transaction: data,
+      subjectAddress: createAccountId(transfer.from, ChainId.MONAD_MAINNET),
+    })
+
+    expect(result).toMatchObject({
+      transactionType: 'METAMASK_CARD_PAYMENT',
+      transactionCategory: 'PAYMENT',
+      transactionProtocol: 'METAMASK_CARD',
+      readable: 'MetaMask Card Payment',
+    })
+  })
+
+  it.each([
+    ['refund', '0x07ed227ae1ca3d28b0af8938dee03ab2355de9dbd5e3f2dae93bd2ad1bea912c'],
+    ['reversal', '0xe15319dd10a12f32753daaee2634b65e852596eadaad6d88ab268aca668c51a7'],
+  ])('labels an Immersve card %s to a Monad Money account', async (_kind, topic) => {
+    const debitTopic = '0x7d21ef3935fe7d9657ac99fe98a59e40da46146de3c917413ddf4fb52decc636'
+    const txHash = '0x6c99f5d2857de58c33c006a8a9dfe2cc1c23e1e8409485cd874d45717ba0def7'
+    const { data } = await getTxWithLogsFromPrimitives(txHash, ChainId.MONAD_MAINNET)
+    if (!data) throw new Error('Immersve spend fixture is missing')
+    const [transfer] = data.valueTransfers
+    if (!transfer) throw new Error('Immersve spend fixture is missing its transfer')
+
+    const credit: Tx = {
+      ...data,
+      logs: data.logs?.map((log) => ({
+        ...log,
+        topics: log.topics.map((t) => (t.toLowerCase() === debitTopic ? topic : t)),
+      })),
+      valueTransfers: [{ ...transfer, from: transfer.to, to: transfer.from }],
+    }
+
+    const result = determineTransactionMetadataV6({
+      transaction: credit,
+      subjectAddress: createAccountId(transfer.from, ChainId.MONAD_MAINNET),
+    })
+
+    expect(result).toMatchObject({
+      transactionType: 'METAMASK_CARD_PAYMENT',
+      transactionCategory: 'PAYMENT',
+      transactionProtocol: 'METAMASK_CARD',
+      readable: 'MetaMask Card Refund',
+    })
+  })
+
   it.each([
     ['payment', Language.en, 'MetaMask Subscription Payment'],
     ['refund', Language.de, 'MetaMask Subscription Refund'],
