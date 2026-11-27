@@ -3,9 +3,29 @@ import path from 'path'
 import { TFunction, TOptionsBase, createInstance } from 'i18next'
 import Backend from 'i18next-fs-backend'
 
-import { Language } from '../localization'
-
 import enTranslations from './locales/en/translation.json'
+
+/**
+ * Languages supported by the translation files in `locales/`.
+ * Each value is the locale directory name (and the code Crowdin uses).
+ */
+export enum Language {
+  de = 'de',
+  el = 'el',
+  en = 'en',
+  es = 'es',
+  fr = 'fr',
+  hi = 'hi',
+  id = 'id',
+  ja = 'ja',
+  ko = 'ko',
+  pt = 'pt',
+  ru = 'ru',
+  tl = 'tl',
+  tr = 'tr',
+  vi = 'vi',
+  zh = 'zh',
+}
 
 interface $Dictionary<T = unknown> {
   [key: string]: T

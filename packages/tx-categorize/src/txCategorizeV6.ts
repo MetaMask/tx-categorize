@@ -1,7 +1,6 @@
 import { CaipAccountId } from '@metamask/utils'
 
-import { Language } from './localization'
-import { fallbackLngV2, tV2 } from './localizationV2'
+import { Language, fallbackLngV2, tV2 } from './localizationV2'
 import { contractAddressMap, methodIdMap, topicHashMap } from './txSchemas/heuristicMap'
 import { DetermineTransactionMetadataInputV6, Transaction, TxMetadataV6, ValueTransfer } from './types'
 import { TemplateContext, interpolateTemplate, refineActionForMultiAssets, titlecase, truncateAddress } from './utils'

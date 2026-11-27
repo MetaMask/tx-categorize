@@ -1,6 +1,5 @@
 const { determineTransactionMetadataV6 } = require('../dist/txCategorizeV6')
-const { initializeI18nextV2 } = require('../dist/localizationV2/index.js')
-const { Language } = require('../dist/localization/index.js')
+const { Language, initializeI18nextV2 } = require('../dist/localizationV2/index.js')
 const axios = require('axios')
 
 const regexForTxHash = /^0x[0-9a-fA-F]{64}$/

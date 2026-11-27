@@ -177,7 +177,7 @@ V6 also generates a human-readable `readable` string using localized templates f
 
 For example: `Token: Transferred 0.0044 MKR` or `Uniswap V3: Swapped 1.5 ETH for 3000 USDC`.
 
-If your new action requires a new template, add it in `src/localizationV2/locales/`.
+If your new action requires a new template, add the key and template to `src/localizationV2/locales/en/translation.json`. Other languages are synced from Crowdin, so do not edit them by hand. See [Translation workflow](README.md#translation-workflow-crowdin).
 
 ---
 

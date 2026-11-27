@@ -12,6 +12,8 @@ This project follows the same release process as the other libraries in the Meta
   - **New features** → Minor version bump (e.g., 1.0.0 → 1.1.0)
   - **Bug fixes/patches** → Patch version bump (e.g., 1.0.0 → 1.0.1)
 - See [the SemVer specification](https://semver.org/) for more information
+- Removing public exports is a breaking change. Version 3.0.0 is the release that removed the legacy categorizers (V1, V2, V3, V5) and their translations.
+- If the English translation source changed since the last release, sync translations before releasing (see [Translations](#translations))
 
 ### 2. Handle Backport Releases (if applicable)
 
@@ -88,6 +90,18 @@ After the automated workflows complete:
    ```bash
    npm install @metamask/tx-categorize@latest
    ```
+
+## Translations
+
+Translations are managed in Crowdin and synced by the **Crowdin Sync** workflow (`.github/workflows/crowdin.yml`). Only the English source is edited by hand.
+
+The workflow needs these repository secrets: `CROWDIN_PROJECT_ID`, `CROWDIN_PERSONAL_TOKEN` and `METAMASKBOT_CROWDIN_TOKEN` (a token that can push branches and open pull requests). Its file mapping is in `crowdin.yml` at the repository root.
+
+Before a release that changes any English label:
+
+1. Go to **Actions** → **Crowdin Sync** → **Run workflow**. This uploads `src/localizationV2/locales/en/translation.json` to Crowdin and opens a pull request with the translations Crowdin has. The pull request updates `src/localizationV2/locales/<code>/translation.json`.
+2. Review and merge that pull request before creating the release PR. The `localizationV2` tests fail if a translation is missing a key or a placeholder.
+3. Translations that are not finished yet stay in English until the next run after translators complete them.
 
 ## Manual NPM Publishing (Alternative)
 

@@ -1,0 +1,32 @@
+name: Crowdin Sync
+
+# Manual only. Uploads the English source to Crowdin, then opens a PR with the translations Crowdin has.
+on:
+  workflow_dispatch:
+
+jobs:
+  synchronize-with-crowdin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Upload only the English source. Keep upload_translations false: the non-English files in the repo are
+      # English copies, and uploading them would overwrite the translators' work in Crowdin.
+      - name: crowdin action
+        uses: crowdin/github-action@a3160b9e5a9e00739392c23da5e580c6cabe526d
+        with:
+          upload_sources: true
+          upload_translations: false
+          download_translations: true
+          pull_request_base_branch_name: main
+          github_user_name: metamaskbot
+          github_user_email: metamaskbot@users.noreply.github.com
+        env:
+          GITHUB_ACTOR: metamaskbot
+          GITHUB_TOKEN: ${{ secrets.METAMASKBOT_CROWDIN_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
