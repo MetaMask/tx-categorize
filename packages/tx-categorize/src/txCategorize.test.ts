@@ -14,20 +14,11 @@ import {
 } from './testCases.mock'
 import { determineTransactionMetadataV6 } from './txCategorizeV6'
 
-import {
-  Language,
-  Log,
-  ValueTransfer,
-  determineTransactionMetadataV5,
-  initializeI18next,
-  initializeI18nextV2,
-  resetI18nextV2,
-} from './index'
+import { Language, Log, ValueTransfer, initializeI18nextV2, resetI18nextV2 } from './index'
 
 jest.setTimeout(30 * 1000)
 
 beforeAll(async () => {
-  await Promise.resolve(initializeI18next(Language.en))
   await initializeI18nextV2(Language.en)
 })
 
@@ -91,6 +82,7 @@ const getTxWithLogsFromPrimitives = async (
     // AxiosError carries circular refs (request ↔ redirect); Jest workers JSON-serialize
     // failures and crash with "Converting circular structure to JSON" if we rethrow it.
     const message = cause instanceof Error ? cause.message : String(cause)
+    // Intentionally no `cause` option here: it would reintroduce the circular AxiosError object.
     throw new Error(`Primitives request failed for ${fixtureName}: ${message}`)
   } finally {
     nockDone()
@@ -98,7 +90,7 @@ const getTxWithLogsFromPrimitives = async (
   }
 }
 
-/** Serializable slice of metadata for snapshot visibility (V5 vs V6). */
+/** Serializable slice of metadata for snapshot visibility. */
 const pickCategorizationForSnapshot = (meta: {
   transactionType?: string
   transactionCategory?: string
@@ -115,11 +107,10 @@ const pickCategorizationForSnapshot = (meta: {
 
 interface CategorizationSnapshotRow {
   txHash: string
-  v5: ReturnType<typeof pickCategorizationForSnapshot>
   v6: ReturnType<typeof pickCategorizationForSnapshot>
 }
 
-const buildV5V6SnapshotForCases = async (
+const buildSnapshotForCases = async (
   cases: Record<string, string>,
   chainId: ChainId,
 ): Promise<Record<string, CategorizationSnapshotRow>> => {
@@ -128,11 +119,9 @@ const buildV5V6SnapshotForCases = async (
   for (const [category, txHash] of sorted) {
     const { data, chainId: responseChainId } = await getTxWithLogsFromPrimitives(txHash, chainId)
     const subjectAddress = createAccountId(data.from, responseChainId)
-    const v5 = determineTransactionMetadataV5({ transaction: data }, Language.en, false, 49)
     const v6 = determineTransactionMetadataV6({ transaction: data, subjectAddress }, Language.en, false, 49)
     out[category] = {
       txHash,
-      v5: pickCategorizationForSnapshot(v5),
       v6: pickCategorizationForSnapshot(v6),
     }
   }
@@ -140,103 +129,15 @@ const buildV5V6SnapshotForCases = async (
   return out
 }
 
-describe('#txCategorizeV2', () => {
-  it('categorizes an ethereum tx correctly', async () => {
-    for (const [txCategory, txHash] of Object.entries(txTestCases)) {
-      const { data } = await getTxWithLogsFromPrimitives(txHash)
-
-      const categorizedTxV5 = determineTransactionMetadataV5(
-        {
-          transaction: data,
-        },
-        Language.en,
-        false,
-        49,
-      )
-      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
-    }
-  })
-  it('categorizes a linea tx correctly', async () => {
-    for (const [txCategory, txHash] of Object.entries(lineaTxTestCases)) {
-      const { data } = await getTxWithLogsFromPrimitives(txHash, ChainId.LINEA)
-      const categorizedTxV5 = determineTransactionMetadataV5(
-        {
-          transaction: data,
-        },
-        Language.en,
-        false,
-        49,
-      )
-      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
-    }
-  })
-  it('properly attaches a label to a GENERIC_CONTRACT_CALL tx', async () => {
-    const txHash = txTestCases['GENERIC_CONTRACT_CALL']
-    if (!txHash) {
-      throw new Error('No txHash found for GENERIC_CONTRACT_CALL test')
-    }
-    const { data } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV5(
-      {
-        transaction: data,
-      },
-      Language.en,
-      false,
-      49,
-    )
-    expect(categorizedTxV5['readable']).toBe('Unidentified Transaction')
-  })
-  it('properly attaches a label to a STANDARD tx', async () => {
-    const txHash = txTestCases['STANDARD']
-    if (!txHash) {
-      throw new Error('No txHash found for STANDARD test')
-    }
-    const { data } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV5(
-      {
-        transaction: data,
-      },
-      Language.en,
-      false,
-      49,
-    )
-    expect(categorizedTxV5['readable']).toBe('Native Transfer')
-  })
-  it('properly attaches a spam transfer label to a tx', async () => {
-    const txHash = txTestCases['SPAM_TOKEN_TRANSFER']
-    if (!txHash) {
-      throw new Error('No txHash found for SPAM_TOKEN_TRANSFER test')
-    }
-    const { data } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV5(
-      {
-        transaction: data,
-      },
-      Language.en,
-      false,
-      49,
-    )
-    expect(categorizedTxV5['readable']).toBe('Spam Token: Transfer')
-  })
-  it('properly relables ERC20 transfers as Token Transfer', async () => {
-    const txHash = txTestCases['ERC_20_TRANSFER']
-    if (!txHash) {
-      throw new Error('No txHash found for ERC_20_TRANSFER test')
-    }
-    const { data } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV5(
-      {
-        transaction: data,
-      },
-      Language.en,
-      false,
-      49,
-    )
-    expect(categorizedTxV5['readable']).toBe('Token: Transfer')
-  })
-})
-
 describe('#txCategorizeV6', () => {
+  afterEach(async () => {
+    // Step 1: drop any language a test initialized (for example `de` in the subscription refund test)
+    resetI18nextV2()
+
+    // Step 2: restore the English-only setup from beforeAll so tests do not depend on run order
+    await initializeI18nextV2(Language.en)
+  })
+
   it.each([
     ['payment', Language.en, 'MetaMask Subscription Payment'],
     ['refund', Language.de, 'MetaMask Subscription Refund'],
@@ -278,7 +179,7 @@ describe('#txCategorizeV6', () => {
     for (const [txCategory, txHash] of Object.entries(txTestCases)) {
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
 
-      const categorizedTxV5 = determineTransactionMetadataV6(
+      const categorizedTx = determineTransactionMetadataV6(
         {
           transaction: data,
           subjectAddress: createAccountId(data.from, chainId),
@@ -287,13 +188,13 @@ describe('#txCategorizeV6', () => {
         false,
         49,
       )
-      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
+      expect(`${categorizedTx['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
   it('categorizes a linea tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(lineaTxTestCases)) {
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash, ChainId.LINEA)
-      const categorizedTxV5 = determineTransactionMetadataV6(
+      const categorizedTx = determineTransactionMetadataV6(
         {
           transaction: data,
           subjectAddress: createAccountId(data.from, chainId),
@@ -302,13 +203,13 @@ describe('#txCategorizeV6', () => {
         false,
         49,
       )
-      expect(`${categorizedTxV5['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
+      expect(`${categorizedTx['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
   it('categorizes a arbitrum tx correctly', async () => {
     for (const [txCategory, txHash] of Object.entries(arbitrumTxTestCases)) {
       const { data, chainId } = await getTxWithLogsFromPrimitives(txHash, ChainId.ARBITRUM)
-      const categorizedTxV6 = determineTransactionMetadataV6(
+      const categorizedTx = determineTransactionMetadataV6(
         {
           transaction: data,
           subjectAddress: createAccountId(data.from, chainId),
@@ -317,7 +218,7 @@ describe('#txCategorizeV6', () => {
         false,
         49,
       )
-      expect(`${categorizedTxV6['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
+      expect(`${categorizedTx['transactionType']}-${data.hash}`).toBe(`${txCategory}-${data.hash}`)
     }
   })
   it('produces correct readable labels for ethereum txs', async () => {
@@ -370,7 +271,7 @@ describe('#txCategorizeV6', () => {
       throw new Error('No txHash found for GENERIC_CONTRACT_CALL test')
     }
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV6(
+    const categorizedTx = determineTransactionMetadataV6(
       {
         transaction: data,
         subjectAddress: createAccountId(data.from, chainId),
@@ -379,7 +280,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Unidentified Transaction')
+    expect(categorizedTx['readable']).toBe('Unidentified Transaction')
   })
   it('properly attaches a "Sent" label to a STANDARD tx from sender perspective', async () => {
     const txHash = txTestCases['STANDARD']
@@ -387,7 +288,7 @@ describe('#txCategorizeV6', () => {
       throw new Error('No txHash found for STANDARD test')
     }
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV6(
+    const categorizedTx = determineTransactionMetadataV6(
       {
         transaction: data,
         subjectAddress: createAccountId(data.from, chainId),
@@ -396,7 +297,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toMatch(/^Sent/)
+    expect(categorizedTx['readable']).toMatch(/^Sent/)
   })
   it('categorizes a contract call with methodId but no logs as GENERIC_CONTRACT_CALL, not STANDARD', async () => {
     // ENS commit() tx: has a methodId (0xf14fcbc8) and targets a known contract, but emits no logs
@@ -418,7 +319,7 @@ describe('#txCategorizeV6', () => {
   it('properly attaches a spam label to a dust native transfer', async () => {
     const txHash = '0xeda92a5cf7dc7e329ed123d85df969c075707758a853e0c5f0f77c1cf772b3bc'
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV6(
+    const categorizedTx = determineTransactionMetadataV6(
       {
         transaction: data,
         subjectAddress: createAccountId(data.to, chainId),
@@ -427,8 +328,8 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['transactionType']).toBe('SPAM_TRANSFER')
-    expect(categorizedTxV5['readable']).toBe('Dust Attack')
+    expect(categorizedTx['transactionType']).toBe('SPAM_TRANSFER')
+    expect(categorizedTx['readable']).toBe('Dust Attack')
   })
   it('uses the language passed to determineTransactionMetadataV6 for readable labels', async () => {
     try {
@@ -458,7 +359,7 @@ describe('#txCategorizeV6', () => {
       throw new Error('No txHash found for SPAM_TOKEN_TRANSFER test')
     }
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV6(
+    const categorizedTx = determineTransactionMetadataV6(
       {
         transaction: data,
         subjectAddress: createAccountId(data.from, chainId),
@@ -467,7 +368,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readable']).toBe('Dust Attack')
+    expect(categorizedTx['readable']).toBe('Dust Attack')
   })
   it('properly relables ERC20 transfers as Token Transfer', async () => {
     const txHash = txTestCases['ERC_20_TRANSFER']
@@ -475,7 +376,7 @@ describe('#txCategorizeV6', () => {
       throw new Error('No txHash found for ERC_20_TRANSFER test')
     }
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV6(
+    const categorizedTx = determineTransactionMetadataV6(
       {
         transaction: data,
         subjectAddress: createAccountId(data.from, chainId),
@@ -484,7 +385,7 @@ describe('#txCategorizeV6', () => {
       false,
       49,
     )
-    expect(categorizedTxV5['readableExtended']).toBe('Sent 0.0044 MKR')
+    expect(categorizedTx['readableExtended']).toBe('Sent 0.0044 MKR')
   })
   it('properly attaches a label to an ERC_20_APPROVE tx with spender address', async () => {
     const txHash = txTestCases['ERC_20_APPROVE']
@@ -492,7 +393,7 @@ describe('#txCategorizeV6', () => {
       throw new Error('No txHash found for ERC_20_APPROVE test')
     }
     const { data, chainId } = await getTxWithLogsFromPrimitives(txHash)
-    const categorizedTxV5 = determineTransactionMetadataV6(
+    const categorizedTx = determineTransactionMetadataV6(
       {
         transaction: data,
         subjectAddress: createAccountId(data.from, chainId),
@@ -502,16 +403,16 @@ describe('#txCategorizeV6', () => {
       49,
     )
     // Spender should be extracted from the Approval event log
-    expect(categorizedTxV5['readable']).toMatch(/Approve.*spending cap/)
+    expect(categorizedTx['readable']).toMatch(/Approve.*spending cap/)
   })
 })
 
-describe('V5 / V6 categorization snapshots (alongside nock HTTP fixtures)', () => {
+describe('V6 categorization snapshots (alongside nock HTTP fixtures)', () => {
   it('matches snapshot for all ethereum txTestCases', async () => {
-    expect(await buildV5V6SnapshotForCases(txTestCases, ChainId.ETHEREUM)).toMatchSnapshot()
+    expect(await buildSnapshotForCases(txTestCases, ChainId.ETHEREUM)).toMatchSnapshot()
   })
 
   it('matches snapshot for all lineaTxTestCases', async () => {
-    expect(await buildV5V6SnapshotForCases(lineaTxTestCases, ChainId.LINEA)).toMatchSnapshot()
+    expect(await buildSnapshotForCases(lineaTxTestCases, ChainId.LINEA)).toMatchSnapshot()
   })
 })

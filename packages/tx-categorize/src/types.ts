@@ -1,7 +1,6 @@
 import { CaipAccountId } from '@metamask/utils'
 
 import { Action } from './enums'
-import { ChainId } from './networks'
 
 export interface DeterminantMap {
   contracts: Array<{
@@ -22,14 +21,6 @@ export interface DeterminantMap {
     priority?: number
     requiresAction?: Action
   }>
-}
-
-export interface TxMetadata {
-  transactionType?: string
-  transactionCategory?: string
-  transactionProtocol?: string
-  toAddressName?: string
-  readable?: string
 }
 
 export interface TxMetadataV6 {
@@ -65,40 +56,6 @@ export interface ContractAddressMap {
     definingTrait?: string
     version?: string
   }
-}
-
-export interface Schema {
-  key: string
-  type: string
-  topics?: string[]
-  addresses?: string[]
-  methodId?: string[]
-  and?: string[]
-  allRequired?: boolean
-  topicsLength?: number
-}
-export interface SchemaV2 {
-  key: 'toAddress' | 'fromAddress' | 'topics' | 'logAddress' | 'methodId'
-  type: 'methodId' | 'topics' | 'addresses'
-  topics?: string[]
-  addresses?: string[]
-  methodId?: string[]
-  and?: string[]
-  allRequired?: boolean
-  topicsLength?: number
-}
-
-export interface Meta {
-  name: string
-  priority: number
-  type: string
-  protocol: string
-  excludeFromBuild?: boolean
-}
-
-export interface TransactionSchema<T = Schema> {
-  schema?: T
-  meta?: Meta
 }
 
 export interface Log {
@@ -137,28 +94,7 @@ export interface Transaction {
   valueTransfers?: ValueTransfer[]
 }
 
-export interface DetermineTransactionMetadataInputV5 {
-  transaction: Transaction
-}
 export interface DetermineTransactionMetadataInputV6 {
   transaction: Transaction
   subjectAddress: CaipAccountId
-}
-
-export interface DetermineTransactionMetadataInput {
-  chainId: ChainId
-  transaction: Transaction
-  allowExcludedSchemas?: boolean
-}
-
-export interface BaseKeyInput {
-  key: 'toAddress' | 'fromAddress' | 'topics' | 'logAddress' | 'methodId'
-  transaction: Transaction
-  referenceList: string[]
-  allRequired: boolean
-  topicsLength: number
-}
-
-export interface AppliedSchema {
-  [metaName: string]: TransactionSchema<SchemaV2>
 }

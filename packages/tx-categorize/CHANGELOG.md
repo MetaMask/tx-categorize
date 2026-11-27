@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- **BREAKING:** Removed the legacy categorizers `determineTransactionMetadata` (V1), `determineTransactionMetadataV2`, `determineTransactionMetadataV3` and `determineTransactionMetadataV5`. Use `determineTransactionMetadataV6`.
+
+- **BREAKING:** Removed the V1 translations and their i18next helpers (`initializeI18next`, `t`, `fallbackLng`, `isI18nextInitialized`, `resetI18next`, `createI18nInstance`). Use `initializeI18nextV2` and `tV2`. `Language` is still exported.
+
+- **BREAKING:** Removed the per-chain schema exports (`getSchemaByChainId`, the `txSchemas` per-chain files and `txSchemas.json`) and the `bloom-filters` dependency. Legacy V2/V3 schema lookups did not work correctly before this change.
+
 ## [2.1.5]
 
 ### Uncategorized
